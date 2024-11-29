@@ -8,8 +8,44 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <GridView x:Name="gv_activite" IsItemClickEnabled="True" SelectionMode="Single">
-        <GridViewItem>Activité 1</GridViewItem>
-        <GridViewItem>Activité 2</GridViewItem>
-    </GridView>
+    <ScrollViewer>
+        <Grid Background="WhiteSmoke">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <GridView x:Name="gvActivites" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Activite">
+                        <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue" Width="375">
+                            <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                                    <TextBlock Text="Nom : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <TextBlock Text="{x:Bind Nom, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
+                                </StackPanel>
+                                <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                                    <TextBlock Text="Prix : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <TextBlock Text="{x:Bind Prix, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
+                                </StackPanel>
+                                <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                                    <TextBlock Text="Categorie : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <TextBlock Text="{x:Bind Categorie, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <Button x:Name="btnDelete" HorizontalAlignment="Right" Click="btnDelete_Click" Margin="20">
+                                <SymbolIcon Symbol="Delete" Margin="10" Foreground="Red"/>
+                            </Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Grid>
+    </ScrollViewer>
 </Page>
