@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -48,7 +49,17 @@ namespace ProjetFinal
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
 
+            //DataContext représente l'élément parent
+            Activite activite = button.DataContext as Activite;
+
+            //permet de s'assurer que nous avons un élément sélectionné
+            gvActivites.SelectedItem = activite;
+
+            SingletonRequete.InscriptionAdherant(RoleUtilisateur.UtilisateurConnecte, activite.Nom);
         }
+
+
     }
 }
