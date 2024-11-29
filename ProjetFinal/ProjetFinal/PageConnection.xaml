@@ -13,5 +13,10 @@
         <TextBox x:Name="tbx_id_adherent" Header="ID de participant" Margin="5"></TextBox>
         <Button x:Name="btn_submit" Content="Se Connecter" Margin="5" Click="btn_submit_Click" />
         <Button x:Name="btn_admin" Content="Connexion Administrateur" Margin="5, 20, 0, 0" Click="btn_admin_Click" />
+        
+        <!--IL FAUT AFFICHER UN MESSAGE QUI DIT SI LA CONNEXION A FONCTIONNÉ OU NON
+            Afficher déconnexion lorsque connecté et cacher connexion.
+            Afficher connexion lorsque déconnecter et chacher déconnexion
+        -->
     </StackPanel>
 </Page>
