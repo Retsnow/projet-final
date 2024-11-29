@@ -18,27 +18,16 @@ using Windows.Foundation.Collections;
 
 namespace ProjetFinal
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainWindow : Window
+    public sealed partial class ConnexionAdminDialog : ContentDialog
     {
-        public MainWindow()
+        public ConnexionAdminDialog()
         {
             this.InitializeComponent();
         }
 
-        private void nv_main_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            if (nv_activite.IsSelected)
-            {
-                MainFrame.Navigate(typeof(PageActivite));
-            }
-            else if(nv_connexion.IsSelected)
-            {
-                MainFrame.Navigate(typeof(PageConnection));
-            }
-            
+
         }
     }
 }

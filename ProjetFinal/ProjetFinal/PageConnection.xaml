@@ -8,10 +8,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <StackPanel>
         <TextBlock x:Name="Title">Authentification Adhérent</TextBlock>
         <TextBox x:Name="tbx_id_adherent" Header="ID"></TextBox>
         <Button x:Name="btn_submit" Click="btn_submit_Click" />
         <Button x:Name="btn_admin" Click="btn_admin_Click" />
-    </Grid>
+    </StackPanel>
 </Page>
