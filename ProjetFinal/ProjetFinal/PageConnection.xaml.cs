@@ -34,8 +34,16 @@ namespace ProjetFinal
             
         }
 
-        private void btn_admin_Click(object sender, RoutedEventArgs e)
+        private async void btn_admin_Click(object sender, RoutedEventArgs e)
         {
+            ConnexionAdminDialog dialog = new ConnexionAdminDialog();
+           // dialog.XamlRoot = stkpnl.XamlRoot;
+            dialog.Title = "Mon titre";
+            // dialog.Content = "Contenu de la boite de dialogue";
+            dialog.CloseButtonText = "Annuler";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.SecondaryButtonText = "Non";
+            dialog.DefaultButton = ContentDialogButton.Close;
 
         }
 

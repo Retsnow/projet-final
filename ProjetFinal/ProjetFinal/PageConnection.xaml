@@ -8,10 +8,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <TextBlock x:Name="Title">Authentification Adhérent</TextBlock>
-        <TextBox x:Name="tbx_id_adherent" Header="ID"></TextBox>
-        <Button x:Name="btn_submit" Click="btn_submit_Click" />
-        <Button x:Name="btn_admin" Click="btn_admin_Click" />
+    <StackPanel Orientation="Vertical">
+        <TextBlock x:Name="Title" FontSize="36" Padding="10">Authentification Adhérent</TextBlock>
+        <TextBox x:Name="tbx_id_adherent" Header="ID de participant" Margin="5"></TextBox>
+        <Button x:Name="btn_submit" Content="Se Connecter" Margin="5" Click="btn_submit_Click" />
+        <Button x:Name="btn_admin" Content="Connexion Administrateur" Margin="5, 20, 0, 0" Click="btn_admin_Click" />
     </StackPanel>
 </Page>
