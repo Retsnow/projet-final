@@ -90,7 +90,7 @@ namespace ProjetFinal
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
-                    liste.Add(new Activite(Convert.ToInt32(r["id"]), r["nom"].ToString(), Convert.ToDouble(r["prix"]), r["categorie"].ToString()));
+                   liste.Add(new Activite(Convert.ToInt32(r["id"]), r["nom"].ToString(), Convert.ToDouble(r["prix"]), r["categorie"].ToString()));
                 }
 
                 r.Close();
