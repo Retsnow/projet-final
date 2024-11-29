@@ -24,7 +24,7 @@
             <GridView x:Name="gvActivites" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="local:Activite">
-                        <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue" Width="375">
+                        <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="375">
                             <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                                     <TextBlock Text="Nom : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
