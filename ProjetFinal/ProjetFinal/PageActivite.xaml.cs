@@ -26,7 +26,7 @@ namespace ProjetFinal
         public PageActivite()
         {
             this.InitializeComponent();
-            gvProduits.ItemsSource = SingletonRequete.getListe();
+            gvActivites.ItemsSource = SingletonRequete.getListe();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -34,14 +34,14 @@ namespace ProjetFinal
             Button button = sender as Button;
 
             //DataContext représente l'élément parent
-            Activite produit = button.DataContext as Activite;
+            Activite activite = button.DataContext as Activite;
 
             //permet de s'assurer que nous avons un élément sélectionné
-            gvActivites.SelectedItem = produit;
+            gvActivites.SelectedItem = activite;
 
-            SingletonRequete.supprimer(produit.Id);
+            SingletonRequete.supprimer(activite.Nom);
 
-            gvProduits.ItemsSource = SingletonRequete.getListe();
+            gvActivites.ItemsSource = SingletonRequete.getListe();
         }
     }
 }
