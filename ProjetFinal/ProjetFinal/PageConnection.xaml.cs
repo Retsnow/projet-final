@@ -31,10 +31,10 @@ namespace ProjetFinal
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
-            
+            SingletonRequete.connexionAdherant(tbx_id_adherent.Text);
         }
 
-        private async void btn_admin_Click(object sender, RoutedEventArgs e)
+        private void btn_admin_Click(object sender, RoutedEventArgs e)
         {
             ConnexionAdminDialog dialog = new ConnexionAdminDialog();
            // dialog.XamlRoot = stkpnl.XamlRoot;

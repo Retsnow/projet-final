@@ -240,17 +240,26 @@ namespace ProjetFinal
 
         public static bool connexionAdherant(string idEntree)
         {
+            bool b = false;
 
             try
             {
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select id from activite where id = " + idEntree + "limit 1";
+                commande.CommandText = "Select id from activite where id = " + idEntree;
                 conn.Open();
                 MySqlDataReader r = commande.ExecuteReader();
 
-                if (true) { } 
+
+                b = r.Read();
+
+                if (b)
+                {
+                    RoleUtilisateur.UtilisateurConnecte = idEntree;
+                }
+
+
             }
            
             catch (Exception)
@@ -258,7 +267,8 @@ namespace ProjetFinal
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
             }
-            return true;
+
+            return b;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
