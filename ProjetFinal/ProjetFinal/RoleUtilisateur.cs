@@ -16,9 +16,9 @@ namespace ProjetFinal
 			set { admin = value; }
 		}
 
-		private static bool utilisateurConnecte;
+		private static string utilisateurConnecte;
 
-		public static bool UtilisateurConnecte
+		public static string UtilisateurConnecte
 		{
 			get { return utilisateurConnecte; }
 			set { utilisateurConnecte = value; }
