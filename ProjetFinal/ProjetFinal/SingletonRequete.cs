@@ -212,6 +212,32 @@ namespace ProjetFinal
             return liste;
         }
 
+        public static bool InscriptionAdherant(string idAdherent, string nomActivite)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("InscrireAdherentAUneActivite");
+                commande.Connection = conn;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("p_id_adherent", idAdherent);
+                commande.Parameters.AddWithValue("p_nom_activite", nomActivite);
+
+                conn.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                conn.Close();
+
+            }
+            //if ()
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return true;
+        }
+
         public static bool connexionAdherant(string idEntree)
         {
 
@@ -220,11 +246,13 @@ namespace ProjetFinal
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select id from activite where id = " + idEntree;
+                commande.CommandText = "Select id from activite where id = " + idEntree + "limit 1";
                 conn.Open();
                 MySqlDataReader r = commande.ExecuteReader();
+
+                if (true) { } 
             }
-            //if ()
+           
             catch (Exception)
             {
                 if (conn.State == System.Data.ConnectionState.Open)
