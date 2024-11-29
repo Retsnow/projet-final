@@ -185,7 +185,7 @@ namespace ProjetFinal
             }
         }
 
-        public static ObservableCollection<Activite> getListe()
+        public static ObservableCollection<Activite> getListeActivite()
         {
             ObservableCollection<Activite> liste = new ObservableCollection<Activite>();
             try
@@ -210,6 +210,27 @@ namespace ProjetFinal
                     conn.Close();
             }
             return liste;
+        }
+
+        public static bool connexionAdherant(string idEntree)
+        {
+
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select id from activite where id = " + idEntree;
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+            }
+            //if ()
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
