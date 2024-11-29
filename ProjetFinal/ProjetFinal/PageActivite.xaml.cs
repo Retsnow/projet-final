@@ -30,7 +30,7 @@ namespace ProjetFinal
             gvActivites.ItemsSource = SingletonRequete.getListeActivite();
             if (RoleUtilisateur.Admin)
                 (this.gvActivites.FindName("btnDelete") as Button).Visibility = Visibility.Visible;
-            if (RoleUtilisateur.UtilisateurConnecte != "")
+            if (RoleUtilisateur.UtilisateurConnecte != null)                    //Ne sais pas encore si ça fonctionne après la connection d'un usager
                 (this.gvActivites.FindName("btnInscription") as Button).Visibility = Visibility.Visible;
         }
 
