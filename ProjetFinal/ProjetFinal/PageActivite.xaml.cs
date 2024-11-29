@@ -28,7 +28,7 @@ namespace ProjetFinal
             this.InitializeComponent();
             gvActivites.ItemsSource = SingletonRequete.getListe();
             if (RoleUtilisateur.Admin)
-                (this.gvActivites.FindName("btnDelete") as Button).Visibility = Visibility.Collapsed;
+                (this.gvActivites.FindName("btnDelete") as Button).Visibility = Visibility.Visible;
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
