@@ -26,7 +26,7 @@ namespace ProjetFinal
         public PageActivite()
         {
             this.InitializeComponent();
-            gvActivites.ItemsSource = SingletonRequete.getListe();
+            gvActivites.ItemsSource = SingletonRequete.getListeActivite();
             if (RoleUtilisateur.Admin)
                 (this.gvActivites.FindName("btnDelete") as Button).Visibility = Visibility.Visible;
         }
@@ -43,7 +43,12 @@ namespace ProjetFinal
 
             SingletonRequete.supprimer(activite.Nom);
 
-            gvActivites.ItemsSource = SingletonRequete.getListe();
+            gvActivites.ItemsSource = SingletonRequete.getListeActivite();
+        }
+
+        private void btnInscription_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
