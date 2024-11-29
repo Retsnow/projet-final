@@ -49,27 +49,17 @@ namespace ProjetFinal
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-        public static bool InscriptionAdherant(string idAdherent, string nomActivite)
-        {
-            try
-            {
+            Button button = sender as Button;
 
-                MySqlCommand commande = new MySqlCommand();
-                commande.Connection = conn;
-                commande.CommandText = "Select id from activite where id = " + idEntree;
-                conn.Open();
-                MySqlDataReader r = commande.ExecuteReader();
-            }
-            //if ()
-            catch (Exception)
-            {
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
-            }
-            return true;
+            //DataContext représente l'élément parent
+            Activite activite = button.DataContext as Activite;
+
+            //permet de s'assurer que nous avons un élément sélectionné
+            gvActivites.SelectedItem = activite;
+
+            SingletonRequete.InscriptionAdherant(RoleUtilisateur.UtilisateurConnecte, activite.Nom);
         }
+
 
     }
 }
