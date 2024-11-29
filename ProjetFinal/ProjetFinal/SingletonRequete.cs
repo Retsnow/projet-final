@@ -56,7 +56,7 @@ namespace ProjetFinal
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "insert into produits (nom, prix, categorie) values(@nom,@prix,@categorie)";
+                commande.CommandText = "insert into activite (nom, prix, categorie) values(@nom,@prix,@categorie)";
                 commande.Parameters.AddWithValue("@nom", nom);
                 commande.Parameters.AddWithValue("@prix", prix);
                 commande.Parameters.AddWithValue("@categorie", categorie);
@@ -75,102 +75,102 @@ namespace ProjetFinal
         }
 
 
-        public static ObservableCollection<Activite> RechercherProduit(double petitPrix, double grandPrix, string categorie)
-        {
+        //public static ObservableCollection<Activite> RechercherProduit(double petitPrix, double grandPrix, string categorie)
+        //{
 
-            ObservableCollection<Activite> liste = new ObservableCollection<Activite>();
+        //    ObservableCollection<Activite> liste = new ObservableCollection<Activite>();
+        //    try
+        //    {
+
+        //        MySqlCommand commande = new MySqlCommand();
+        //        commande.Connection = conn;
+        //        commande.CommandText = "Select * from produits where " + (grandPrix < 0 ? "" : " prix < " + grandPrix + " and ") + "prix > " + petitPrix +
+        //        (categorie != "" ? " and categorie = '" + categorie + "'" : "");
+        //        conn.Open();
+        //        MySqlDataReader r = commande.ExecuteReader();
+        //        while (r.Read())
+        //        {
+        //            liste.Add(new Activite(r["nom"].ToString(), Convert.ToDouble(r["cout_organisation"]), Convert.ToDouble(r["prix_vente"]), Convert.ToInt32(r["id_categorie"])));
+        //        }
+
+        //        r.Close();
+        //        conn.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        if (conn.State == System.Data.ConnectionState.Open)
+        //            conn.Close();
+        //    }
+        //    return liste;
+
+        //}
+
+
+        //public static int NbProduit(int categorie)
+        //{
+
+        //    int nb = 0;
+        //    try
+        //    {
+
+        //        MySqlCommand commande = new MySqlCommand();
+        //        commande.Connection = conn;
+        //        commande.CommandText = "Select * from produits" + (categorie == 1 ? " where categorie = 'materiel de construction'" : categorie == 2 ? " where categorie = 'salle de bain'" :
+        //            categorie == 3 ? " where categorie = 'cuisine'" : categorie == 4 ? " where categorie = 'electromenagers'" : "");
+        //        conn.Open();
+        //        MySqlDataReader r = commande.ExecuteReader();
+        //        while (r.Read())
+        //        {
+        //            nb++;
+        //        }
+
+        //        r.Close();
+        //        conn.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        if (conn.State == System.Data.ConnectionState.Open)
+        //            conn.Close();
+        //    }
+        //    return nb;
+
+        //}
+
+        //public static string ProduitPlusCher()
+        //{
+        //    string st = "";
+        //    try
+        //    {
+        //        MySqlCommand commande = new MySqlCommand();
+        //        commande.Connection = conn;
+        //        commande.CommandText = "Select * from activite where prix = (Select MAX(prix) from produits)";
+        //        conn.Open();
+        //        MySqlDataReader r = commande.ExecuteReader();
+        //        while (r.Read())
+        //        {
+        //            st = r["id"] + " - " + r["nom"].ToString() + " (" + r["prix"] + " $)";
+        //        }
+
+
+        //        r.Close();
+        //        conn.Close();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        if (conn.State == System.Data.ConnectionState.Open)
+        //            conn.Close();
+        //    }
+        //    return st;
+        //}
+
+        public static void supprimer(string nom)
+        {
             try
             {
-
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select * from produits where " + (grandPrix < 0 ? "" : " prix < " + grandPrix + " and ") + "prix > " + petitPrix +
-                (categorie != "" ? " and categorie = '" + categorie + "'" : "");
-                conn.Open();
-                MySqlDataReader r = commande.ExecuteReader();
-                while (r.Read())
-                {
-                    liste.Add(new Activite(r["nom"].ToString(), Convert.ToDouble(r["cout_organisation"]), Convert.ToDouble(r["prix_vente"]), Convert.ToInt32(r["id_categorie"])));
-                }
-
-                r.Close();
-                conn.Close();
-            }
-            catch (Exception)
-            {
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
-            }
-            return liste;
-
-        }
-
-
-        public static int NbProduit(int categorie)
-        {
-
-            int nb = 0;
-            try
-            {
-
-                MySqlCommand commande = new MySqlCommand();
-                commande.Connection = conn;
-                commande.CommandText = "Select * from produits" + (categorie == 1 ? " where categorie = 'materiel de construction'" : categorie == 2 ? " where categorie = 'salle de bain'" :
-                    categorie == 3 ? " where categorie = 'cuisine'" : categorie == 4 ? " where categorie = 'electromenagers'" : "");
-                conn.Open();
-                MySqlDataReader r = commande.ExecuteReader();
-                while (r.Read())
-                {
-                    nb++;
-                }
-
-                r.Close();
-                conn.Close();
-            }
-            catch (Exception)
-            {
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
-            }
-            return nb;
-
-        }
-
-        public static string ProduitPlusCher()
-        {
-            string st = "";
-            try
-            {
-                MySqlCommand commande = new MySqlCommand();
-                commande.Connection = conn;
-                commande.CommandText = "Select * from produits where prix = (Select MAX(prix) from produits)";
-                conn.Open();
-                MySqlDataReader r = commande.ExecuteReader();
-                while (r.Read())
-                {
-                    st = r["id"] + " - " + r["nom"].ToString() + " (" + r["prix"] + " $)";
-                }
-
-
-                r.Close();
-                conn.Close();
-            }
-            catch (Exception)
-            {
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
-            }
-            return st;
-        }
-
-        public static void supprimer(int id)
-        {
-            try
-            {
-                MySqlCommand commande = new MySqlCommand();
-                commande.Connection = conn;
-                commande.CommandText = "delete from produits where id=@id";
-                commande.Parameters.AddWithValue("@id", id);
+                commande.CommandText = "delete from activite where nom=@nom";
+                commande.Parameters.AddWithValue("@nom", nom);
 
                 conn.Open();
                 commande.Prepare();

@@ -289,7 +289,7 @@ namespace ProjetFinal
             {
                 var lignes = await Windows.Storage.FileIO.ReadLinesAsync(monFichier);
 
-                List<Activite> liste = new List<Activite>();   // Il faut changer Client En fonction de la classe voulu dans la liste. 
+                List<Activite> liste = new List<Activite>();   // Il faut changer la classe en fonction de la classe voulu dans la liste. 
 
                 /*boucle permettant de lire chacune des lignes du fichier
                 * et de remplir une liste d'objets de type Produit
@@ -297,7 +297,7 @@ namespace ProjetFinal
                 foreach (var ligne in lignes)
                 {
                     var v = ligne.Split(";");
-                    liste.Add(new Activite(v[0], Convert.ToDouble(v[1]), v[2]));  // Il faut changer Client En fonction de la classe voulu dans la liste. 
+                    liste.Add(new Activite(Convert.ToDouble(v[0]), Convert.ToDouble(v[1]), Convert.ToInt32(v[2])));  // Il faut changer Client En fonction de la classe voulu dans la liste. 
                 }
 
                 EndroitOuMettreLeTexte.ItemsSource = liste;
