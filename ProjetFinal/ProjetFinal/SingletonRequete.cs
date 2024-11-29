@@ -90,7 +90,7 @@ namespace ProjetFinal
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
-                    liste.Add(new Activite(Convert.ToInt32(r["id"]), r["nom"].ToString(), Convert.ToDouble(r["prix"]), r["categorie"].ToString()));
+                    liste.Add(new Activite(r["nom"].ToString(), Convert.ToDouble(r["cout_organisation"]), Convert.ToDouble(r["prix_vente"]), Convert.ToInt32(r["id_categorie"])));
                 }
 
                 r.Close();
@@ -193,12 +193,12 @@ namespace ProjetFinal
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select * from produits";
+                commande.CommandText = "Select * from activite";
                 conn.Open();
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
-                    liste.Add(new Activite(Convert.ToInt32(r["id"]), r["nom"].ToString(), Convert.ToDouble(r["prix"]), r["categorie"].ToString()));
+                    liste.Add(new Activite(r["nom"].ToString(), Convert.ToDouble(r["cout_organisation"]), Convert.ToDouble(r["prix_vente"]), Convert.ToInt32(r["id_categorie"])));
                 }
 
                 r.Close();
