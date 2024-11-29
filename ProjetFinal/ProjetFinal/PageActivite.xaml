@@ -39,7 +39,7 @@
                                     <TextBlock Text="{x:Bind Id_categorie, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
                                 </StackPanel>
                             </StackPanel>
-                            <Button x:Name="btnInscription" HorizontalAlignment="Right" Content="S'inscrire" Click="btnInscription_Click" Visibility="Visible" Margin="20" Foreground="Blue"/>
+                            <Button x:Name="btnInscription" HorizontalAlignment="Right" Content="S'inscrire" Click="btnInscription_Click" Visibility="Collapsed" Margin="20" Foreground="Blue"/>
 
                             <Button x:Name="btnDelete" HorizontalAlignment="Right" Click="btnDelete_Click" Visibility="Collapsed" Margin="20">
                                 <SymbolIcon Symbol="Delete" Margin="10" Foreground="Red"/>
