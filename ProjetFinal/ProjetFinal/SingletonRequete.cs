@@ -229,13 +229,47 @@ namespace ProjetFinal
                 conn.Close();
 
             }
-            //if ()
             catch (Exception)
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
             }
             return true;
+        }
+
+        public static bool AdherantEstInscritActivite(string idAdherent, string nomActivite)
+        {
+            bool estConnecte = false;
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("UtilisateurEstInscritActivite");
+                commande.Connection = conn;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("p_id_adherent", idAdherent);
+                commande.Parameters.AddWithValue("p_nom_activite", nomActivite);
+                commande.Parameters.Add(new MySqlParameter
+                {
+                    ParameterName = "resultat",
+                    MySqlDbType = MySqlDbType.Byte,
+                    Direction = System.Data.ParameterDirection.ReturnValue
+                });
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                int resultat = Convert.ToInt32(commande.Parameters["resultat"].Value);
+                estConnecte = (resultat == 1);
+
+                conn.Close();
+
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return estConnecte;
         }
 
         public static bool connexionAdherant(string idEntree)
@@ -258,15 +292,16 @@ namespace ProjetFinal
                 {
                     RoleUtilisateur.UtilisateurConnecte = idEntree;
                 }
-
+                conn.Close();
 
             }
-           
+
             catch (Exception)
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
             }
+
 
             return b;
         }
