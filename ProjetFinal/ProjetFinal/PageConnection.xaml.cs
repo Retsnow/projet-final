@@ -31,7 +31,17 @@ namespace ProjetFinal
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
-            SingletonRequete.connexionAdherant(tbx_id_adherent.Text);
+            if (SingletonRequete.connexionAdherant(tbx_id_adherent.Text))
+            {
+                txt_validation.Text = "Connexion réusie";
+
+            }
+            else
+            {
+                txt_validation.Text = "Échec de la connexion";
+            }
+
+            txt_validation.Visibility = Visibility.Visible;
         }
 
         private void btn_admin_Click(object sender, RoutedEventArgs e)

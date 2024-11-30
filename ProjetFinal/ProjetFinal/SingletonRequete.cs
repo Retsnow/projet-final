@@ -247,7 +247,7 @@ namespace ProjetFinal
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select id from activite where id = " + idEntree;
+                commande.CommandText = "Select id from adherent where id = '" + idEntree + "'";
                 conn.Open();
                 MySqlDataReader r = commande.ExecuteReader();
 
