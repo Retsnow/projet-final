@@ -16,17 +16,14 @@ namespace ProjetFinal
         private double cout_organisation;
         private double prix_vente;
         private int id_categorie;
-        private Visibility btnDelete;
-        private Visibility btnInscription;
 
 
         public Visibility BtnDelete
         {
             get
             {
-                btnDelete = RoleUtilisateur.Admin ? Visibility.Visible : Visibility.Collapsed;
                 this.OnPropertyChanged(nameof(BtnDelete));
-                return btnDelete;
+                return RoleUtilisateur.Admin ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -34,9 +31,8 @@ namespace ProjetFinal
         {
             get
             {
-                btnInscription = (RoleUtilisateur.UtilisateurConnecte == Nom) ? Visibility.Visible : Visibility.Collapsed;
                 this.OnPropertyChanged(nameof(BtnInscription));
-                return btnInscription;
+                return (RoleUtilisateur.UtilisateurConnecte == Nom) ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
