@@ -34,11 +34,12 @@ namespace ProjetFinal
             if (SingletonRequete.connexionAdherant(tbx_id_adherent.Text))
             {
                 txt_validation.Text = "Connexion réusie";
-
+                txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
             }
             else
             {
                 txt_validation.Text = "Échec de la connexion";
+                txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
             }
 
             txt_validation.Visibility = Visibility.Visible;

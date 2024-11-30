@@ -38,7 +38,10 @@ namespace ProjetFinal
             {
                 MainFrame.Navigate(typeof(PageConnection));
             }
-            
+            else if (nv_deconnexion.IsSelected)
+            {
+                MainFrame.Navigate(typeof(PageDeconnexion));
+            }
         }
     }
 }

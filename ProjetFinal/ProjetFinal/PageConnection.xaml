@@ -16,8 +16,7 @@
 
         <TextBlock x:Name="txt_validation" Margin="5" Foreground="Red" Visibility="Collapsed" />
 
-        <!--IL FAUT AFFICHER UN MESSAGE QUI DIT SI LA CONNEXION A FONCTIONNÉ OU NON
-            Afficher déconnexion lorsque connecté et cacher connexion.
+        <!--
             Afficher connexion lorsque déconnecter et chacher déconnexion
         -->
     </StackPanel>

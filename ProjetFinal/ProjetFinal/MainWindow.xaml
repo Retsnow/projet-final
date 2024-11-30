@@ -11,6 +11,7 @@
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="List" x:Name="nv_activite" IsSelected="True"  Content="Activité" />
             <NavigationViewItem Icon="OtherUser" x:Name="nv_connexion" Content="Connexion" />
+            <NavigationViewItem Icon="Remove" x:Name="nv_deconnexion" Content="Deconnexion" Visibility="Collapsed" />
         </NavigationView.MenuItems>
         <Frame x:Name="MainFrame" />
     </NavigationView>
