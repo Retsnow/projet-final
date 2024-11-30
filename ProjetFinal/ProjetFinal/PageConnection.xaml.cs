@@ -23,18 +23,26 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageConnection : Page
     {
+        
+
+
         public PageConnection()
         {
             this.InitializeComponent();
+            
+
         }
 
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
+
             if (SingletonRequete.connexionAdherant(tbx_id_adherent.Text))
             {
                 txt_validation.Text = "Connexion réusie";
                 txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
+
+               
             }
             else
             {
@@ -48,14 +56,15 @@ namespace ProjetFinal
         private void btn_admin_Click(object sender, RoutedEventArgs e)
         {
             ConnexionAdminDialog dialog = new ConnexionAdminDialog();
-           // dialog.XamlRoot = stkpnl.XamlRoot;
-            dialog.Title = "Mon titre";
-            // dialog.Content = "Contenu de la boite de dialogue";
+            //dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Connexion Admnisatrateur";
+            dialog.Content = "Contenu de la boite de dialogue";
             dialog.CloseButtonText = "Annuler";
             dialog.PrimaryButtonText = "Oui";
             dialog.SecondaryButtonText = "Non";
             dialog.DefaultButton = ContentDialogButton.Close;
 
+            RoleUtilisateur.Admin = true;
         }
 
     }

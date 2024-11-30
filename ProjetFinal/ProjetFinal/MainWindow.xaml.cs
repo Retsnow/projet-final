@@ -34,7 +34,7 @@ namespace ProjetFinal
             {
                 MainFrame.Navigate(typeof(PageActivite));
             }
-            else if(nv_connexion.IsSelected)
+            else if (nv_connexion.IsSelected)
             {
                 MainFrame.Navigate(typeof(PageConnection));
             }
@@ -43,5 +43,26 @@ namespace ProjetFinal
                 MainFrame.Navigate(typeof(PageDeconnexion));
             }
         }
+
+        public void CollapseNvConnexion()
+        {
+            nv_connexion.Visibility = Visibility.Collapsed;
+        }
+
+        public void VisibleNvConnexion()
+        {
+            nv_connexion.Visibility = Visibility.Visible;
+        }
+
+        public void CollapseNvDeconnexion()
+        {
+            nv_deconnexion.Visibility = Visibility.Collapsed;
+        }
+
+        public void VisibleNvDeconnexion()
+        {
+            nv_deconnexion.Visibility = Visibility.Visible;
+        }
+
     }
-}
+    }
