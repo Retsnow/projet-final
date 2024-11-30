@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Google.Protobuf.WellKnownTypes;
+using Microsoft.UI.Xaml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,6 +16,30 @@ namespace ProjetFinal
         private double cout_organisation;
         private double prix_vente;
         private int id_categorie;
+        private Visibility btnDelete;
+        private Visibility btnInscription;
+
+
+        public Visibility BtnDelete
+        {
+            get
+            {
+                btnDelete = RoleUtilisateur.Admin ? Visibility.Visible : Visibility.Collapsed;
+                this.OnPropertyChanged(nameof(BtnDelete));
+                return btnDelete;
+            }
+        }
+
+        public Visibility BtnInscription
+        {
+            get
+            {
+                btnInscription = (RoleUtilisateur.UtilisateurConnecte == Nom) ? Visibility.Visible : Visibility.Collapsed;
+                this.OnPropertyChanged(nameof(BtnInscription));
+                return btnInscription;
+            }
+        }
+
 
         public string Nom
         {
