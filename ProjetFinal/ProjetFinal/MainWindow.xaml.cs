@@ -43,7 +43,7 @@ namespace ProjetFinal
                 MainFrame.Navigate(typeof(PageDeconnexion));
             }
 
-            if (RoleUtilisateur.UtilisateurConnecte != null && RoleUtilisateur.UtilisateurConnecte != "")
+            if ((RoleUtilisateur.UtilisateurConnecte != null && RoleUtilisateur.UtilisateurConnecte != "") || RoleUtilisateur.Admin)
             {
                 CollapseNvConnexion();
                 VisibleNvDeconnexion();

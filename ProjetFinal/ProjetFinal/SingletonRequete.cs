@@ -306,6 +306,42 @@ namespace ProjetFinal
             return b;
         }
 
+
+        public static bool connexionAdmin(string utili, string pass)
+        {
+            bool b = false;
+
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select user, password from administrateur where user = '" + utili + "' && password = '" + pass + "'";
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+
+
+                b = r.Read();
+
+                if (b)
+                {
+                    RoleUtilisateur.Admin = true;
+                }
+                conn.Close();
+
+            }
+
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+
+
+            return b;
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
