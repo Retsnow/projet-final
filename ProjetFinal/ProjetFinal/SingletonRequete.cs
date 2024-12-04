@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -364,7 +365,34 @@ namespace ProjetFinal
         }
 
         
-        //public static Arra
+        public static ArrayList nbAdherentParActivite()
+        {
+            ArrayList tabActivite = new ArrayList();
+
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select * from nb_participant_activite";
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    tabActivite.Add(r["nom_activite"] + ": " + r["nb_participant"] + " ");
+                    
+                }
+
+                r.Close();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return tabActivite;
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
