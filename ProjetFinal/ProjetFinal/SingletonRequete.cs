@@ -163,7 +163,7 @@ namespace ProjetFinal
         //    return st;
         //}
 
-        public static void supprimer(string nom)
+        public static void supprimerActivite(string nom)
         {
             try
             {
@@ -184,6 +184,28 @@ namespace ProjetFinal
                     conn.Close();
             }
         }
+        public static void supprimerSeance(int id)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "delete from seance where id=@id";
+                commande.Parameters.AddWithValue("@id", id);
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+
 
         public static ObservableCollection<Activite> getListeActivite()
         {
@@ -340,6 +362,9 @@ namespace ProjetFinal
 
             return b;
         }
+
+        
+        //public static Arra
 
 
         public event PropertyChangedEventHandler PropertyChanged;
