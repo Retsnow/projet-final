@@ -17,7 +17,6 @@ namespace ProjetFinal
         private double prix_vente;
         private int id_categorie;
         private Visibility btnDelete;
-        private Visibility btnInscription;
 
 
         public Visibility BtnDelete
@@ -27,16 +26,6 @@ namespace ProjetFinal
                 btnDelete = RoleUtilisateur.Admin ? Visibility.Visible : Visibility.Collapsed;
                 this.OnPropertyChanged(nameof(BtnDelete));
                 return btnDelete;
-            }
-        }
-
-        public Visibility BtnInscription
-        {
-            get
-            {
-                btnInscription = ((RoleUtilisateur.UtilisateurConnecte == null || RoleUtilisateur.UtilisateurConnecte == "") ? Visibility.Collapsed : SingletonRequete.AdherantEstInscritActivite(RoleUtilisateur.UtilisateurConnecte, Nom) ? Visibility.Collapsed : Visibility.Visible);
-                this.OnPropertyChanged(nameof(BtnInscription));
-                return btnInscription;
             }
         }
 

@@ -27,7 +27,7 @@ namespace ProjetFinal
         public PageSeance()
         {
             this.InitializeComponent();
-            gvActivites.ItemsSource = SingletonRequete.getListeActivite();
+            gvSeances.ItemsSource = SingletonRequete.getListeActivite();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -38,11 +38,11 @@ namespace ProjetFinal
             Seance seance = button.DataContext as Seance;
 
             //permet de s'assurer que nous avons un élément sélectionné
-            gvActivites.SelectedItem = seance;
+            gvSeances.SelectedItem = seance;
 
             SingletonRequete.supprimerSeance(seance.Id);
 
-            gvActivites.ItemsSource = SingletonRequete.getListeActivite();
+            gvSeances.ItemsSource = SingletonRequete.getListeActivite();
         }
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
@@ -53,7 +53,7 @@ namespace ProjetFinal
             Activite activite = button.DataContext as Activite;
 
             //permet de s'assurer que nous avons un élément sélectionné
-            gvActivites.SelectedItem = activite;
+            gvSeances.SelectedItem = activite;
 
             SingletonRequete.InscriptionAdherant(RoleUtilisateur.UtilisateurConnecte, activite.Nom);
         }

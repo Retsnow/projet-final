@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <GridView x:Name="gvActivites" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <GridView x:Name="gvSeances" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="local:Seance">
                         <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="375">
