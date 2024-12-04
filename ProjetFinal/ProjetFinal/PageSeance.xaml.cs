@@ -22,9 +22,9 @@ namespace ProjetFinal
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PageActivite : Page
+    public sealed partial class PageSeance : Page
     {
-        public PageActivite()
+        public PageSeance()
         {
             this.InitializeComponent();
             gvActivites.ItemsSource = SingletonRequete.getListeActivite();
@@ -35,12 +35,12 @@ namespace ProjetFinal
             Button button = sender as Button;
 
             //DataContext représente l'élément parent
-            Activite activite = button.DataContext as Activite;
+            Seance seance = button.DataContext as Seance;
 
             //permet de s'assurer que nous avons un élément sélectionné
-            gvActivites.SelectedItem = activite;
+            gvActivites.SelectedItem = seance;
 
-            SingletonRequete.supprimerActivite(activite.Nom);
+            SingletonRequete.supprimerSeance(seance.Id);
 
             gvActivites.ItemsSource = SingletonRequete.getListeActivite();
         }
