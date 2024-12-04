@@ -57,7 +57,5 @@ namespace ProjetFinal
 
             SingletonRequete.InscriptionAdherant(RoleUtilisateur.UtilisateurConnecte, activite.Nom);
         }
-
-
     }
 }

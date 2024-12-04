@@ -34,7 +34,7 @@ namespace ProjetFinal
         {
             get
             {
-                btnInscription = ((RoleUtilisateur.UtilisateurConnecte == null) ? Visibility.Collapsed : SingletonRequete.AdherantEstInscritActivite(RoleUtilisateur.UtilisateurConnecte, Nom) ? Visibility.Collapsed : Visibility.Visible);
+                btnInscription = ((RoleUtilisateur.UtilisateurConnecte == null || RoleUtilisateur.UtilisateurConnecte == "") ? Visibility.Collapsed : SingletonRequete.AdherantEstInscritActivite(RoleUtilisateur.UtilisateurConnecte, Nom) ? Visibility.Collapsed : Visibility.Visible);
                 this.OnPropertyChanged(nameof(BtnInscription));
                 return btnInscription;
             }
