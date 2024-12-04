@@ -7,9 +7,11 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography.X509Certificates;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -23,11 +25,18 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageStatistique : Page
     {
+
+        
+
+        public ObservableCollection<string> Items { get; set; }  
+
+
         public PageStatistique()
         {
             this.InitializeComponent();
 
-           // tbk_nbAdherentParActivite.Text = 
+
+            lv_nbAdherentParActivite.ItemsSource = SingletonRequete.nbAdherentParActivite();
         }
 
 
