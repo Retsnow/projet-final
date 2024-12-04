@@ -9,7 +9,11 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <StackPanel>
+        <TextBlock x:Name="Title" FontSize="36" Padding="10">Déconnexion</TextBlock>
+        <Button x:Name="btn_deconn" Content="Se déconnecter" Margin="5, 20, 0, 0" Click="btn_deconn_Click" />
 
-    </Grid>
+        <TextBlock x:Name="txt_validation" Margin="5" Foreground="Red" Visibility="Collapsed" />
+
+    </StackPanel>
 </Page>

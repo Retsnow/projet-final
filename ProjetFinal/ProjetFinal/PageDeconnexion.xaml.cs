@@ -27,5 +27,21 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
         }
+
+        private void btn_deconn_Click(object sender, RoutedEventArgs e)
+        {
+            if (RoleUtilisateur.UtilisateurConnecte != null)
+            {
+                RoleUtilisateur.UtilisateurConnecte = null;
+            }
+            else
+            {
+                RoleUtilisateur.Admin = false;
+            }
+
+            txt_validation.Text = "Déconnexion réussie";
+            txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
+            txt_validation.Visibility = Visibility.Visible;
+        }
     }
 }
