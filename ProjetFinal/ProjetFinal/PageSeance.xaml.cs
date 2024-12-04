@@ -26,11 +26,17 @@ namespace ProjetFinal
     {
         Activite activite;
 
+        List<DateTime> selectableDates = new List<DateTime>();
 
 
         public PageSeance()
         {
             this.InitializeComponent();
+
+            foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
+            {
+                selectableDates.Add(seance.Date);
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -49,15 +55,6 @@ namespace ProjetFinal
             {
                 DateTime date = args.Item.Date.DateTime;
 
-                // Liste des dates sélectionnables
-                List<DateTime> selectableDates = new List<DateTime>();
-
-                foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
-                {
-
-                }
-
-
                 // Si la date n'est pas dans la liste des dates sélectionnables, appliquez le style de non-sélection
                 if (!selectableDates.Contains(date))
                 {
@@ -70,13 +67,6 @@ namespace ProjetFinal
                 }
             }
         }
-
-
-
-
-
-
-
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
