@@ -42,39 +42,33 @@ namespace ProjetFinal
             {
                 MainFrame.Navigate(typeof(PageDeconnexion));
             }
-
-            if ((RoleUtilisateur.UtilisateurConnecte != null && RoleUtilisateur.UtilisateurConnecte != "") || RoleUtilisateur.Admin)
+            else if (nv_statistique.IsSelected)
             {
-                CollapseNvConnexion();
-                VisibleNvDeconnexion();
+                MainFrame.Navigate(typeof(PageStatistique));
+            }
+
+
+            if (RoleUtilisateur.UtilisateurConnecte != null && RoleUtilisateur.UtilisateurConnecte != "")
+            {
+                nv_connexion.Visibility = Visibility.Collapsed;
+                nv_statistique.Visibility = Visibility.Collapsed;
+                nv_deconnexion.Visibility = Visibility.Visible;
+            }
+            else if (RoleUtilisateur.Admin)
+            {
+                nv_connexion.Visibility = Visibility.Collapsed;
+                nv_deconnexion.Visibility = Visibility.Visible;
+                nv_statistique.Visibility = Visibility.Visible;
             }
             else
             {
-                VisibleNvConnexion();
-                CollapseNvDeconnexion();
+                nv_deconnexion.Visibility = Visibility.Collapsed;
+                nv_statistique.Visibility = Visibility.Collapsed;
+                nv_connexion.Visibility = Visibility.Visible;
             }
 
         }
 
-        public void CollapseNvConnexion()
-        {
-            nv_connexion.Visibility = Visibility.Collapsed;
-        }
-
-        public void VisibleNvConnexion()
-        {
-            nv_connexion.Visibility = Visibility.Visible;
-        }
-
-        public void CollapseNvDeconnexion()
-        {
-            nv_deconnexion.Visibility = Visibility.Collapsed;
-        }
-
-        public void VisibleNvDeconnexion()
-        {
-            nv_deconnexion.Visibility = Visibility.Visible;
-        }
 
     }
 }
