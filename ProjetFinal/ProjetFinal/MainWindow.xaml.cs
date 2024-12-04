@@ -42,6 +42,18 @@ namespace ProjetFinal
             {
                 MainFrame.Navigate(typeof(PageDeconnexion));
             }
+
+            if (RoleUtilisateur.UtilisateurConnecte != null && RoleUtilisateur.UtilisateurConnecte != "")
+            {
+                CollapseNvConnexion();
+                VisibleNvDeconnexion();
+            }
+            else
+            {
+                VisibleNvConnexion();
+                CollapseNvDeconnexion();
+            }
+
         }
 
         public void CollapseNvConnexion()
@@ -65,4 +77,4 @@ namespace ProjetFinal
         }
 
     }
-    }
+}

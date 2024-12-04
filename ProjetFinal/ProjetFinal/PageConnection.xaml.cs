@@ -41,7 +41,7 @@ namespace ProjetFinal
             {
                 txt_validation.Text = "Connexion réusie";
                 txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
-
+                
                
             }
             else
