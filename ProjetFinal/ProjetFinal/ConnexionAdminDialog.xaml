@@ -9,8 +9,8 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     >
 
-    <Grid>
+    <StackPanel>
         <TextBox x:Name="tbx_user" Header="Nom d'utilisateur" />
         <PasswordBox x:Name="pwd_password" Header="Mot de passe" />
-    </Grid>
+    </StackPanel>
 </ContentDialog>

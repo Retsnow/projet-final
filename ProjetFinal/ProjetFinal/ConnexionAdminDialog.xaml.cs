@@ -20,6 +20,8 @@ namespace ProjetFinal
 {
     public sealed partial class ConnexionAdminDialog : ContentDialog
     {
+        public bool Administrateur { get; set; }
+
         public ConnexionAdminDialog()
         {
             this.InitializeComponent();
@@ -27,7 +29,20 @@ namespace ProjetFinal
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+           
 
+                if (SingletonRequete.connexionAdmin(tbx_user.Text, pwd_password.Password))
+                {
+                    Administrateur = true;
+                    
+
+                }
+                else
+                {
+                    Administrateur= false;
+                }
+
+            
         }
     }
 }

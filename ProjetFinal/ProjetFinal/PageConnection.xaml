@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Orientation="Vertical">
+    <StackPanel x:Name="stck_conn" Orientation="Vertical">
         <TextBlock x:Name="Title" FontSize="36" Padding="10">Authentification Adhérent</TextBlock>
         <TextBox x:Name="tbx_id_adherent" Header="ID de participant" Margin="5"></TextBox>
         <Button x:Name="btn_submit" Content="Se Connecter" Margin="5" Click="btn_submit_Click" />

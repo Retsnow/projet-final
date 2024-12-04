@@ -39,32 +39,50 @@ namespace ProjetFinal
 
             if (SingletonRequete.connexionAdherant(tbx_id_adherent.Text))
             {
-                txt_validation.Text = "Connexion réusie";
+                txt_validation.Text = "Connexion en tant qu'adhérent réussie";
                 txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
                 
                
             }
             else
             {
-                txt_validation.Text = "Échec de la connexion";
+                txt_validation.Text = "Échec de la connexion en tant qu'adhérent";
                 txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
             }
 
             txt_validation.Visibility = Visibility.Visible;
         }
 
-        private void btn_admin_Click(object sender, RoutedEventArgs e)
+        private async void btn_admin_Click(object sender, RoutedEventArgs e)
         {
             ConnexionAdminDialog dialog = new ConnexionAdminDialog();
-            //dialog.XamlRoot = this.XamlRoot;
+            dialog.XamlRoot = stck_conn.XamlRoot;
             dialog.Title = "Connexion Admnisatrateur";
-            dialog.Content = "Contenu de la boite de dialogue";
             dialog.CloseButtonText = "Annuler";
-            dialog.PrimaryButtonText = "Oui";
-            dialog.SecondaryButtonText = "Non";
+            dialog.PrimaryButtonText = "Se connecter";
             dialog.DefaultButton = ContentDialogButton.Close;
 
-            RoleUtilisateur.Admin = true;
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+
+           
+
+                if (dialog.Administrateur)
+                {
+                    txt_validation.Text = "Connexion en tant qu'administrateur réussie";
+                    txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
+
+
+                }
+                else
+                {
+                    txt_validation.Text = "Échec de la connexion en tant qu'administrateur";
+                    txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+                }
+
+                txt_validation.Visibility = Visibility.Visible;
+           
+
         }
 
     }
