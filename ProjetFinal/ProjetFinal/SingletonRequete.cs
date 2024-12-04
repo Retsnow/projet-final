@@ -235,6 +235,35 @@ namespace ProjetFinal
             return liste;
         }
 
+
+        public static ObservableCollection<Seance> getListeSeance(string nomActivite)
+        {
+            ObservableCollection<Seance> liste = new ObservableCollection<Seance>();
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select * from seance where nom_activite ='" + nomActivite + "'";
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    liste.Add(new Seance(Convert.ToDateTime(r["date"]), Convert.ToDateTime(r["heure"]), Convert.ToInt32(r["nb_place_disponible"]), r["nom_activite"].ToString(), 
+                        Convert.ToInt32(r["id_categorie"])));
+                }
+
+                r.Close();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return liste;
+        }
+
         public static bool InscriptionAdherant(string idAdherent, string nomActivite)
         {
             try

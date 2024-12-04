@@ -13,7 +13,7 @@ namespace ProjetFinal
 
         private int id;
         private DateTime date;
-        private TimeOnly heure;
+        private DateTime heure;
         private int nb_place_disponible;
         private string nom_activite;
         private int id_categorie;
@@ -60,7 +60,7 @@ namespace ProjetFinal
             }
         }
 
-        public TimeOnly Heure
+        public DateTime Heure
         {
             get { return heure; }
             set
@@ -100,7 +100,7 @@ namespace ProjetFinal
             }
         }
 
-        public Seance(DateTime p_date, TimeOnly p_heure, int p_nb_place_disponible, string p_nom_activite, int p_id_categorie)
+        public Seance(DateTime p_date, DateTime p_heure, int p_nb_place_disponible, string p_nom_activite, int p_id_categorie)
         {
             Date = p_date;
             Heure = p_heure;
@@ -109,7 +109,7 @@ namespace ProjetFinal
             Id_categorie = p_id_categorie;
         }
 
-        public Seance(int p_id, DateTime p_date, TimeOnly p_heure, int p_nb_place_disponible, string p_nom_activite, int p_id_categorie)
+        public Seance(int p_id, DateTime p_date, DateTime p_heure, int p_nb_place_disponible, string p_nom_activite, int p_id_categorie)
         {
             Id = p_id;
             Date = p_date;
