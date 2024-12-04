@@ -408,7 +408,7 @@ namespace ProjetFinal
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
-                    tabActivite.Add(r["nom_activite"] + ": " + r["nb_participant"] + " ");
+                    tabActivite.Add(r["nom_activite"] + ": " + r["nb_participant"] + " participants");
                     
                 }
 

@@ -26,6 +26,10 @@ namespace ProjetFinal
         public PageStatistique()
         {
             this.InitializeComponent();
+
+           // tbk_nbAdherentParActivite.Text = 
         }
+
+
     }
 }
