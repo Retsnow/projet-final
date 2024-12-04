@@ -24,11 +24,59 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageSeance : Page
     {
+        Activite activite;
+
+
+
         public PageSeance()
         {
             this.InitializeComponent();
-            gvSeances.ItemsSource = SingletonRequete.getListeActivite();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+            if (e.Parameter is not null)
+            {
+                activite = (Activite)e.Parameter;
+            }
+        }
+
+
+        private void CalendarPicker_CalendarViewDayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args)
+        {
+            if (args.Item != null)
+            {
+                DateTime date = args.Item.Date.DateTime;
+
+                // Liste des dates sélectionnables
+                List<DateTime> selectableDates = new List<DateTime>();
+
+                foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
+                {
+
+                }
+
+
+                // Si la date n'est pas dans la liste des dates sélectionnables, appliquez le style de non-sélection
+                if (!selectableDates.Contains(date))
+                {
+                    args.Item.Style = (Style)this.Resources["NonSelectableDayStyle"];
+                }
+                else
+                {
+                    // Si la date est sélectionnable, enlever le style de non-sélection (si besoin)
+                    args.Item.ClearValue(CalendarViewDayItem.StyleProperty);
+                }
+            }
+        }
+
+
+
+
+
+
+
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
