@@ -44,6 +44,21 @@ namespace ProjetFinal
             SingletonRequete.InscriptionAdherant(RoleUtilisateur.UtilisateurConnecte, activite.Nom);
         }
 
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            //DataContext représente l'élément parent
+            Seance seance = button.DataContext as Seance;
+
+            //permet de s'assurer que nous avons un élément sélectionné
+            gvActivites.SelectedItem = seance;
+
+            SingletonRequete.supprimerSeance(seance.Id);
+
+            gvActivites.ItemsSource = SingletonRequete.getListeActivite();
+        }
+
         private void gvActivites_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Frame.Navigate(typeof(PageSeance), gvActivites.SelectedItem);
