@@ -249,8 +249,18 @@ namespace ProjetFinal
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
-                    liste.Add(new Seance(Convert.ToDateTime(r["date"]), Convert.ToDateTime(r["heure"]), Convert.ToInt32(r["nb_place_disponible"]), r["nom_activite"].ToString(), 
-                        Convert.ToInt32(r["id_categorie"])));
+                    DateTime date = Convert.ToDateTime(r["date"]);
+
+                    TimeSpan timeSpan = TimeSpan.Parse(r["heure"].ToString());
+                    TimeOnly heure = TimeOnly.FromTimeSpan(timeSpan);
+                    int nb_place_disponible = Convert.ToInt32(r["nb_place_disponible"]);
+                    string nom_activite = r["nom_activite"].ToString();
+                    int id_categorie = Convert.ToInt32(r["id_categorie"]);
+
+
+
+
+                    liste.Add(new Seance(date, heure, nb_place_disponible, nom_activite, id_categorie));
                 }
 
                 r.Close();

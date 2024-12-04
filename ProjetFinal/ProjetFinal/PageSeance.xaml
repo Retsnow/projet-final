@@ -20,47 +20,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
-            <Grid.Resources>
-                <Style x:Key="NonSelectableDayStyle" TargetType="CalendarViewDayItem">
-                    <Setter Property="IsEnabled" Value="False"/>
-                    <Setter Property="Foreground" Value="Gray"/>
-                </Style>
-            </Grid.Resources>
-
             <CalendarDatePicker x:Name="CalendarPicker" CalendarViewDayItemChanging="CalendarPicker_CalendarViewDayItemChanging"/>
 
-            <GridView x:Name="gvSeances" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="local:Seance">
-                        <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="375">
-                            <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                    <TextBlock Text="Nom : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                    <TextBlock Text="{x:Bind Id, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
-                                </StackPanel>
-                                <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                    <TextBlock Text="Nom : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                    <TextBlock Text="{x:Bind Id, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
-                                </StackPanel>
-                                <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                    <TextBlock Text="Nom : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                    <TextBlock Text="{x:Bind Id, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
-                                </StackPanel>
-                                <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                    <TextBlock Text="Prix : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                    <TextBlock Text="{x:Bind Nb_place_disponible, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <Button x:Name="btnInscription" HorizontalAlignment="Right" Content="S'inscrire" Click="btnInscription_Click" Visibility="{x:Bind BtnInscription, Mode=OneWay}" Margin="20" Foreground="Blue"/>
-
-                            <Button x:Name="btnDelete" HorizontalAlignment="Right" Click="btnDelete_Click" Visibility="{x:Bind BtnDelete, Mode=OneWay}" Margin="20">
-                                <SymbolIcon Symbol="Delete" Margin="10" Foreground="Red"/>
-                            </Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
         </Grid>
     </ScrollViewer>
 </Page>

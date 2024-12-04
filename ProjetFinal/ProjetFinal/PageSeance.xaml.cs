@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -32,19 +33,20 @@ namespace ProjetFinal
         public PageSeance()
         {
             this.InitializeComponent();
-
-            foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
-            {
-                selectableDates.Add(seance.Date);
-            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
             if (e.Parameter is not null)
             {
                 activite = (Activite)e.Parameter;
+            }
+                CalendarPicker.MinDate = DateTimeOffset.Now;
+            
+            foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
+            {
+                selectableDates.Add(seance.Date);
+
             }
         }
 
@@ -53,14 +55,15 @@ namespace ProjetFinal
         {
             if (args.Item != null)
             {
-                DateTime date = args.Item.Date.DateTime;
+                DateTime date = new DateTime(args.Item.Date.DateTime.Year, args.Item.Date.DateTime.Month, args.Item.Date.DateTime.Day);
 
                 // Si la date n'est pas dans la liste des dates sélectionnables, appliquez le style de non-sélection
                 if (!selectableDates.Contains(date))
                 {
-                    args.Item.Style = (Style)this.Resources["NonSelectableDayStyle"];
+                    args.Item.IsEnabled = false; 
+                    args.Item.Foreground = new SolidColorBrush(Colors.Gray);
                 }
-                else
+                else if (selectableDates.Contains(date))
                 {
                     // Si la date est sélectionnable, enlever le style de non-sélection (si besoin)
                     args.Item.ClearValue(CalendarViewDayItem.StyleProperty);
@@ -76,11 +79,11 @@ namespace ProjetFinal
             Seance seance = button.DataContext as Seance;
 
             //permet de s'assurer que nous avons un élément sélectionné
-            gvSeances.SelectedItem = seance;
+            //gvSeances.SelectedItem = seance;
 
             SingletonRequete.supprimerSeance(seance.Id);
 
-            gvSeances.ItemsSource = SingletonRequete.getListeActivite();
+            //gvSeances.ItemsSource = SingletonRequete.getListeActivite();
         }
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
@@ -91,7 +94,7 @@ namespace ProjetFinal
             Activite activite = button.DataContext as Activite;
 
             //permet de s'assurer que nous avons un élément sélectionné
-            gvSeances.SelectedItem = activite;
+            //gvSeances.SelectedItem = activite;
 
             SingletonRequete.InscriptionAdherant(RoleUtilisateur.UtilisateurConnecte, activite.Nom);
         }
