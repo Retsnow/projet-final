@@ -20,6 +20,17 @@ namespace ProjetFinal
         private Visibility btnDelete;
 
 
+        public Adherent(string id, string nom, string prenom, string adresse, DateOnly date_naissance, int age)
+        {
+            Id = id;
+            Nom = nom;
+            Prenom = prenom;
+            Adresse = adresse;
+            Date_naissance = date_naissance;
+            Age = age;
+      
+        }
+
         public Visibility BtnDelete
         {
             get
@@ -75,19 +86,24 @@ namespace ProjetFinal
             get { return date_naissance; }
             set
             {
-                //adresse = value;
-                this.OnPropertyChanged(nameof(adresse));
+                date_naissance = value;
+                this.OnPropertyChanged(nameof(date_naissance));
             }
         }
 
-        public string Adressee
+        public int Age
         {
-            get { return adresse; }
+            get { return age; }
             set
             {
-                adresse = value;
-                this.OnPropertyChanged(nameof(adresse));
+                age = value;
+                this.OnPropertyChanged(nameof(age));
             }
+        }
+
+        public string NomComplet
+        {
+            get { return prenom + " " + nom; } 
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
