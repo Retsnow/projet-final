@@ -22,14 +22,17 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+
+
+
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
 
                 <StackPanel MinHeight="100" Orientation="Horizontal">
                     <TextBlock Text="Choix de la séance à noter:" VerticalAlignment="Center" Margin="20"/>
-                    <CalendarDatePicker x:Name="CalendarPicker" CalendarViewDayItemChanging="CalendarPicker_CalendarViewDayItemChanging" VerticalAlignment="Center"/>
+                    <CalendarDatePicker x:Name="CalendarPicker" CalendarViewDayItemChanging="CalendarPicker_CalendarViewDayItemChanging" DateChanged="CalendarPicker_DateChanged" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel>
-
+                    <RatingControl x:Name="ratingControl" MaxRating="5" Value="0" IsReadOnly="False" ValueChanged="ratingControl_ValueChanged"/>
                 </StackPanel>
                 <StackPanel>
 

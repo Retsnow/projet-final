@@ -29,6 +29,7 @@ namespace ProjetFinal
 
         List<DateTime> selectableDates = new List<DateTime>();
 
+        
 
         public PageSeance()
         {
@@ -98,6 +99,20 @@ namespace ProjetFinal
             //gvSeances.SelectedItem = activite;
 
             SingletonRequete.InscriptionAdherant(RoleUtilisateur.UtilisateurConnecte, activite.Nom);
+        }
+
+        private void ratingControl_ValueChanged(RatingControl sender, object args)
+        {
+
+        }
+
+        private void CalendarPicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            DateTime date = CalendarPicker.Date.Value.DateTime;
+
+
+
+            
         }
     }
 }
