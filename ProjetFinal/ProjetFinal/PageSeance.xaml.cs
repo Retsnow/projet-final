@@ -126,10 +126,11 @@ namespace ProjetFinal
         {
             if (cbHeure.SelectedIndex > -1)
             {
+                string u = RoleUtilisateur.UtilisateurConnecte;
                 ratingControl.IsEnabled = true;
 
-                //ratingControl.Value = SingletonRequete.prendreNote(RoleUtilisateur.UtilisateurConnecte, 
-                    //SingletonRequete.TrouverIdSeance(RoleUtilisateur.UtilisateurConnecte,));
+                ratingControl.Value = SingletonRequete.prendreNote(u,SingletonRequete.TrouverIdSeance(u, activite.Nom, 
+                    new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day)));
             }
         }
     }
