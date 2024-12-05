@@ -44,20 +44,6 @@ namespace ProjetFinal
 
         }
 
-
-        private void btnInscription_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-
-            //DataContext représente l'élément parent
-            Activite activite = button.DataContext as Activite;
-
-            //permet de s'assurer que nous avons un élément sélectionné
-            gvActivites.SelectedItem = activite;
-
-            SingletonRequete.InscriptionAdherant(RoleUtilisateur.UtilisateurConnecte, activite.Nom);
-        }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;

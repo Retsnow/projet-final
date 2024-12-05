@@ -298,15 +298,15 @@ namespace ProjetFinal
             return liste;
         }
 
-        public static bool InscriptionAdherant(string idAdherent, string nomActivite)
+        public static bool InscriptionAdherantSeance(string idAdherent, int idSeance)
         {
             try
             {
-                MySqlCommand commande = new MySqlCommand("InscrireAdherentAUneActivite");
+                MySqlCommand commande = new MySqlCommand("InscrireAdherentAUneSeance");
                 commande.Connection = conn;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("p_id_seance", idSeance);
                 commande.Parameters.AddWithValue("p_id_adherent", idAdherent);
-                commande.Parameters.AddWithValue("p_nom_activite", nomActivite);
 
                 conn.Open();
                 commande.Prepare();
@@ -321,6 +321,75 @@ namespace ProjetFinal
                     conn.Close();
             }
             return true;
+        }
+
+        public static float prendreNote(string idAdherent, int idSeance)
+        {
+            float result = -1;
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("NoteAdherentSeance");
+                commande.Connection = conn;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("p_id_adherent", idAdherent);
+                commande.Parameters.AddWithValue("p_id_seance", idSeance);
+                commande.Parameters.Add(new MySqlParameter
+                {
+                    ParameterName = "resultat",
+                    MySqlDbType = MySqlDbType.Byte,
+                    Direction = System.Data.ParameterDirection.ReturnValue
+                });
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                result = Convert.ToInt32(commande.Parameters["resultat"].Value);
+
+                conn.Close();
+
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return result;
+        }
+
+        public static int TrouverIdSeance(string idAdherent, string nomActivite, DateTime date)
+        {
+            int result = -1;
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("TrouverIdSeance");
+                commande.Connection = conn;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("p_id_adherent", idAdherent);
+                commande.Parameters.AddWithValue("p_nom_activite", nomActivite);
+                commande.Parameters.AddWithValue("p_date", date);
+                commande.Parameters.Add(new MySqlParameter
+                {
+                    ParameterName = "resultat",
+                    MySqlDbType = MySqlDbType.Byte,
+                    Direction = System.Data.ParameterDirection.ReturnValue
+                });
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                result = Convert.ToInt32(commande.Parameters["resultat"].Value);
+
+                conn.Close();
+
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return result;
         }
 
         public static bool AdherantEstInscritActivite(string idAdherent, string nomActivite)

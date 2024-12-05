@@ -95,15 +95,9 @@ namespace ProjetFinal
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
+            //Seance seance = new Seance();
 
-            //DataContext représente l'élément parent
-            Activite activite = button.DataContext as Activite;
-
-            //permet de s'assurer que nous avons un élément sélectionné
-            //gvSeances.SelectedItem = activite;
-
-            SingletonRequete.InscriptionAdherant(RoleUtilisateur.UtilisateurConnecte, activite.Nom);
+            //SingletonRequete.InscriptionAdherantSeance(RoleUtilisateur.UtilisateurConnecte, seance.Id);
         }
 
         private void ratingControl_ValueChanged(RatingControl sender, object args)
@@ -133,7 +127,9 @@ namespace ProjetFinal
             if (cbHeure.SelectedIndex > -1)
             {
                 ratingControl.IsEnabled = true;
-                
+
+                //ratingControl.Value = SingletonRequete.prendreNote(RoleUtilisateur.UtilisateurConnecte, 
+                    //SingletonRequete.TrouverIdSeance(RoleUtilisateur.UtilisateurConnecte,));
             }
         }
     }
