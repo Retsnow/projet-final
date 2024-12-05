@@ -75,95 +75,6 @@ namespace ProjetFinal
             }
         }
 
-
-        //public static ObservableCollection<Activite> RechercherProduit(double petitPrix, double grandPrix, string categorie)
-        //{
-
-        //    ObservableCollection<Activite> liste = new ObservableCollection<Activite>();
-        //    try
-        //    {
-
-        //        MySqlCommand commande = new MySqlCommand();
-        //        commande.Connection = conn;
-        //        commande.CommandText = "Select * from produits where " + (grandPrix < 0 ? "" : " prix < " + grandPrix + " and ") + "prix > " + petitPrix +
-        //        (categorie != "" ? " and categorie = '" + categorie + "'" : "");
-        //        conn.Open();
-        //        MySqlDataReader r = commande.ExecuteReader();
-        //        while (r.Read())
-        //        {
-        //            liste.Add(new Activite(r["nom"].ToString(), Convert.ToDouble(r["cout_organisation"]), Convert.ToDouble(r["prix_vente"]), Convert.ToInt32(r["id_categorie"])));
-        //        }
-
-        //        r.Close();
-        //        conn.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (conn.State == System.Data.ConnectionState.Open)
-        //            conn.Close();
-        //    }
-        //    return liste;
-
-        //}
-
-
-        //public static int NbProduit(int categorie)
-        //{
-
-        //    int nb = 0;
-        //    try
-        //    {
-
-        //        MySqlCommand commande = new MySqlCommand();
-        //        commande.Connection = conn;
-        //        commande.CommandText = "Select * from produits" + (categorie == 1 ? " where categorie = 'materiel de construction'" : categorie == 2 ? " where categorie = 'salle de bain'" :
-        //            categorie == 3 ? " where categorie = 'cuisine'" : categorie == 4 ? " where categorie = 'electromenagers'" : "");
-        //        conn.Open();
-        //        MySqlDataReader r = commande.ExecuteReader();
-        //        while (r.Read())
-        //        {
-        //            nb++;
-        //        }
-
-        //        r.Close();
-        //        conn.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (conn.State == System.Data.ConnectionState.Open)
-        //            conn.Close();
-        //    }
-        //    return nb;
-
-        //}
-
-        //public static string ProduitPlusCher()
-        //{
-        //    string st = "";
-        //    try
-        //    {
-        //        MySqlCommand commande = new MySqlCommand();
-        //        commande.Connection = conn;
-        //        commande.CommandText = "Select * from activite where prix = (Select MAX(prix) from produits)";
-        //        conn.Open();
-        //        MySqlDataReader r = commande.ExecuteReader();
-        //        while (r.Read())
-        //        {
-        //            st = r["id"] + " - " + r["nom"].ToString() + " (" + r["prix"] + " $)";
-        //        }
-
-
-        //        r.Close();
-        //        conn.Close();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (conn.State == System.Data.ConnectionState.Open)
-        //            conn.Close();
-        //    }
-        //    return st;
-        //}
-
         public static void supprimerActivite(string nom)
         {
             try
@@ -392,16 +303,16 @@ namespace ProjetFinal
             return result;
         }
 
-        public static bool AdherantEstInscritActivite(string idAdherent, string nomActivite)
+        public static bool UtilisateurEstInscritSeance(string idAdherent, int idSeance)
         {
             bool estConnecte = false;
             try
             {
-                MySqlCommand commande = new MySqlCommand("UtilisateurEstInscritActivite");
+                MySqlCommand commande = new MySqlCommand("UtilisateurEstInscritSeance");
                 commande.Connection = conn;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
                 commande.Parameters.AddWithValue("p_id_adherent", idAdherent);
-                commande.Parameters.AddWithValue("p_nom_activite", nomActivite);
+                commande.Parameters.AddWithValue("p_id_seance", idSeance);
                 commande.Parameters.Add(new MySqlParameter
                 {
                     ParameterName = "resultat",

@@ -27,6 +27,7 @@ namespace ProjetFinal
     {
 
         Activite activite;
+        int idSeance;
 
         List<DateTime> selectableDates = new List<DateTime>();
         List<DateTime> heuresSelectionnables = new List<DateTime>();
@@ -36,6 +37,7 @@ namespace ProjetFinal
         public PageSeance()
         {
             this.InitializeComponent();
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -109,29 +111,34 @@ namespace ProjetFinal
         {
             DateTime date = new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day);
 
-            cbHeure.Items.Clear();
-
-            cbHeure.IsEnabled = true;
-
-
             foreach (Seance seanceTemp in SingletonRequete.getListeSeance(activite.Nom))
             {
                 if (seanceTemp.Date == date)
-                    cbHeure.Items.Add($"{seanceTemp.Heure}");
+                {
+                    txtHeure.Text = seanceTemp.Heure.ToString();
+                    string u = RoleUtilisateur.UtilisateurConnecte;
+                    ratingControl.IsEnabled = true;
+
+                    idSeance = SingletonRequete.TrouverIdSeance(u, activite.Nom,
+                        new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day));
+
+                    ratingControl.Value = SingletonRequete.prendreNote(u, idSeance);
+                }
             }
 
-        }
-
-        private void cbHeure_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cbHeure.SelectedIndex > -1)
+            if (RoleUtilisateur.UtilisateurConnecte != "")
             {
-                string u = RoleUtilisateur.UtilisateurConnecte;
-                ratingControl.IsEnabled = true;
-
-                ratingControl.Value = SingletonRequete.prendreNote(u,SingletonRequete.TrouverIdSeance(u, activite.Nom, 
-                    new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day)));
+                if (SingletonRequete.UtilisateurEstInscritSeance(RoleUtilisateur.UtilisateurConnecte, idSeance))
+                    ratingControl.Visibility = Visibility.Visible;
+                else
+                    btnInscription.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ratingControl.Visibility = Visibility.Collapsed;
+                btnInscription.Visibility = Visibility.Collapsed;
             }
         }
+
     }
 }

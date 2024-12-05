@@ -28,15 +28,15 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
 
                 <StackPanel MinHeight="100" Orientation="Horizontal">
-                    <TextBlock Text="Choix de la séance à noter:" VerticalAlignment="Center" Margin="20"/>
+                    <TextBlock Text="Choix de la séance:" VerticalAlignment="Center" Margin="20"/>
                     <CalendarDatePicker x:Name="CalendarPicker" CalendarViewDayItemChanging="CalendarPicker_CalendarViewDayItemChanging" DateChanged="CalendarPicker_DateChanged" VerticalAlignment="Center"/>
-                    <ComboBox x:Name="cbHeure" Header="Sélectionnez l'heure de la séance à noter" Margin="20" IsEnabled="False" SelectionChanged="cbHeure_SelectionChanged"/>
+                    <TextBox x:Name="txtHeure" Header="Heure de la séance:" Margin="20" IsEnabled="False"/>
                 </StackPanel>
                 <StackPanel>
-                    <RatingControl x:Name="ratingControl" MaxRating="5" Value="0" IsReadOnly="False" ValueChanged="ratingControl_ValueChanged" IsEnabled="False"/>
+                    <RatingControl x:Name="ratingControl" MaxRating="5" Value="0" IsReadOnly="False" ValueChanged="ratingControl_ValueChanged" IsEnabled="False" Visibility="Collapsed"/>
                 </StackPanel>
                 <StackPanel>
-
+                    <Button x:Name="btnInscription" HorizontalAlignment="Right" Content="S'inscrire" Click="btnInscription_Click" Visibility="Collapsed" Margin="20" Foreground="Blue"/>
                 </StackPanel>
             </StackPanel>
 
