@@ -271,6 +271,33 @@ namespace ProjetFinal
             return liste;
         }
 
+        public static ObservableCollection<Activite> getListeAdherent()
+        {
+            ObservableCollection<Activite> liste = new ObservableCollection<Activite>();
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select * from activite";
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    liste.Add(new Activite(r["nom"].ToString(), Convert.ToDouble(r["cout_organisation"]), Convert.ToDouble(r["prix_vente"]), Convert.ToInt32(r["id_categorie"])));
+                }
+
+                r.Close();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return liste;
+        }
+
         public static bool InscriptionAdherant(string idAdherent, string nomActivite)
         {
             try
@@ -523,6 +550,8 @@ namespace ProjetFinal
             }
             return tabNote;
         }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

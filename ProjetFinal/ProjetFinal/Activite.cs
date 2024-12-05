@@ -85,6 +85,15 @@ namespace ProjetFinal
             Id_categorie = p_id_categorie;
         }
 
+        public string StringCSV
+        {
+            get
+            {
+                return $"{Nom};{Cout_organisation};{prix_vente};{id_categorie}" ;
+            }
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
