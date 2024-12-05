@@ -37,6 +37,10 @@ namespace ProjetFinal
 
 
             lv_nbAdherentParActivite.ItemsSource = SingletonRequete.nbAdherentParActivite();
+            tbk_nbAdherent.Text += " " + SingletonRequete.nbTotalAdherent();
+            tbk_nbActivite.Text += " " + SingletonRequete.nbTotalActivite();
+            lv_moyenneNoteParActivite.ItemsSource = SingletonRequete.moyenneNoteActivite();
+
         }
 
 
