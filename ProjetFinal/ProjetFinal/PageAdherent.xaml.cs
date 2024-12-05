@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,14 +24,39 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageAdherent : Page
     {
+        object target;
+
         public PageAdherent()
         {
             this.InitializeComponent();
             lv_adherent.ItemsSource = SingletonRequete.getListeAdherent();
         }
 
-        private void btn_export_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter is not null)
+            {
+                target = (object)e.Parameter;
+            }
+
+        }
+
+        private async void btn_export_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(target);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            picker.SuggestedFileName = "liste_adherent";
+            picker.FileTypeChoices.Add("Fichier CSV", new List<string>() { ".csv" });
+
+
+            //crée le fichier
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+            //écrit dans le fichier
+            await Windows.Storage.FileIO.WriteLinesAsync(monFichier, SingletonRequete.getListeAdherent().Select(x => x.StringCSV).ToList(), Windows.Storage.Streams.UnicodeEncoding.Utf8);
 
         }
 

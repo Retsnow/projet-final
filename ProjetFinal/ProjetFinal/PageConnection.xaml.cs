@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,8 +24,8 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageConnection : Page
     {
-        
 
+        NavigationViewItem nv_activite;
 
         public PageConnection()
         {
@@ -33,15 +34,22 @@ namespace ProjetFinal
 
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is not null)
+            {
+                nv_activite = (NavigationViewItem)e.Parameter;
+            }
+
+        }
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
 
             if (SingletonRequete.connexionAdherant(tbx_id_adherent.Text))
             {
-                txt_validation.Text = "Connexion en tant qu'adhérent réussie";
-                txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
                 
+                nv_activite.IsSelected = true;
                
             }
             else
@@ -69,10 +77,7 @@ namespace ProjetFinal
 
                 if (dialog.Administrateur)
                 {
-                    txt_validation.Text = "Connexion en tant qu'administrateur réussie";
-                    txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
-
-
+                    nv_activite.IsSelected = true;
                 }
                 else
                 {
