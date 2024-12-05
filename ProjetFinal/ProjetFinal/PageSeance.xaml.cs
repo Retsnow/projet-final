@@ -25,11 +25,13 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageSeance : Page
     {
+
         Activite activite;
 
         List<DateTime> selectableDates = new List<DateTime>();
+        List<DateTime> heuresSelectionnables = new List<DateTime>();
 
-        
+
 
         public PageSeance()
         {
@@ -45,10 +47,13 @@ namespace ProjetFinal
 
             CalendarPicker.MinDate = DateTimeOffset.Now;
 
-            foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
+            foreach (Seance seanceTemp in SingletonRequete.getListeSeance(activite.Nom))
             {
-                if (seance.UtilisateurInscrit)
-                    selectableDates.Add(seance.Date);
+                if (seanceTemp.UtilisateurInscrit)
+                {
+                    selectableDates.Add(seanceTemp.Date);
+                    heuresSelectionnables.Add(new DateTime(seanceTemp.Date.Year, seanceTemp.Date.Month, seanceTemp.Date.Day, seanceTemp.Heure.Hour, seanceTemp.Heure.Minute, 0));
+                }
             }
         }
 
@@ -108,11 +113,28 @@ namespace ProjetFinal
 
         private void CalendarPicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
-            DateTime date = CalendarPicker.Date.Value.DateTime;
+            DateTime date = new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day);
+
+            cbHeure.Items.Clear();
+
+            cbHeure.IsEnabled = true;
 
 
+            foreach (Seance seanceTemp in SingletonRequete.getListeSeance(activite.Nom))
+            {
+                if (seanceTemp.Date == date)
+                    cbHeure.Items.Add($"{seanceTemp.Heure}");
+            }
 
-            
+        }
+
+        private void cbHeure_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbHeure.SelectedIndex > -1)
+            {
+                ratingControl.IsEnabled = true;
+                
+            }
         }
     }
 }
