@@ -33,6 +33,17 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
             gvActivites.ItemsSource = SingletonRequete.getListeActivite();
+            
+            if (RoleUtilisateur.Admin)
+            {
+                btn_export.Visibility = Visibility.Visible;
+                btn_ajouter.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btn_export.Visibility = Visibility.Collapsed;
+                btn_ajouter.Visibility = Visibility.Collapsed;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

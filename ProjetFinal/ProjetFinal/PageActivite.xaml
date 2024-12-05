@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button x:Name="btn_export" Content="Exporter dans un fichier csv" Margin="5" Click="btn_export_Click" />
+                <Button x:Name="btn_export" Content="Exporter dans un fichier csv" Margin="5" Click="btn_export_Click"/>
                 <Button x:Name="btn_ajouter" Content="Ajouter" Margin="5" Click="btn_ajouter_Click" />
             </StackPanel>
             

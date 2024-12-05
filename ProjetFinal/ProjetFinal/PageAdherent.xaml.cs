@@ -26,6 +26,17 @@ namespace ProjetFinal
         public PageAdherent()
         {
             this.InitializeComponent();
+            lv_adherent.ItemsSource = SingletonRequete.getListeAdherent();
+        }
+
+        private void btn_export_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_ajouter_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

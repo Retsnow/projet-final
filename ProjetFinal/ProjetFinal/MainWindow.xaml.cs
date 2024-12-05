@@ -46,12 +46,17 @@ namespace ProjetFinal
             {
                 MainFrame.Navigate(typeof(PageStatistique));
             }
+            else if (nv_adherent.IsSelected)
+            {
+                MainFrame.Navigate(typeof(PageAdherent));
+            }
 
 
             if (RoleUtilisateur.UtilisateurConnecte != null && RoleUtilisateur.UtilisateurConnecte != "")
             {
                 nv_connexion.Visibility = Visibility.Collapsed;
                 nv_statistique.Visibility = Visibility.Collapsed;
+                nv_adherent.Visibility = Visibility.Collapsed;
                 nv_deconnexion.Visibility = Visibility.Visible;
             }
             else if (RoleUtilisateur.Admin)
@@ -59,11 +64,13 @@ namespace ProjetFinal
                 nv_connexion.Visibility = Visibility.Collapsed;
                 nv_deconnexion.Visibility = Visibility.Visible;
                 nv_statistique.Visibility = Visibility.Visible;
+                nv_adherent.Visibility = Visibility.Visible;
             }
             else
             {
                 nv_deconnexion.Visibility = Visibility.Collapsed;
                 nv_statistique.Visibility = Visibility.Collapsed;
+                nv_adherent.Visibility = Visibility.Collapsed;
                 nv_connexion.Visibility = Visibility.Visible;
             }
 

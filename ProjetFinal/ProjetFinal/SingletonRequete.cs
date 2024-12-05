@@ -182,20 +182,20 @@ namespace ProjetFinal
             return liste;
         }
 
-        public static ObservableCollection<Activite> getListeAdherent()
+        public static ObservableCollection<Adherent> getListeAdherent()
         {
-            ObservableCollection<Activite> liste = new ObservableCollection<Activite>();
+            ObservableCollection<Adherent> liste = new ObservableCollection<Adherent>();
             try
             {
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select * from activite";
+                commande.CommandText = "Select * from adherent";
                 conn.Open();
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
-                    liste.Add(new Activite(r["nom"].ToString(), Convert.ToDouble(r["cout_organisation"]), Convert.ToDouble(r["prix_vente"]), Convert.ToInt32(r["id_categorie"])));
+                    liste.Add(new Adherent(r["id"].ToString(), r["nom"].ToString(), r["prenom"].ToString(), r["adresse"].ToString(), DateOnly.FromDateTime(Convert.ToDateTime(r["date_naissance"])), Convert.ToInt32(r["age"])));
                 }
 
                 r.Close();
