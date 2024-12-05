@@ -109,32 +109,41 @@ namespace ProjetFinal
 
         private void CalendarPicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
-            DateTime date = new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day);
-
-            foreach (Seance seanceTemp in SingletonRequete.getListeSeance(activite.Nom))
+            if (CalendarPicker.Date != null)
             {
-                if (seanceTemp.Date == date)
+                DateTime date = new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day);
+
+                foreach (Seance seanceTemp in SingletonRequete.getListeSeance(activite.Nom))
                 {
-                    txtHeure.Text = seanceTemp.Heure.ToString();
-                    string u = RoleUtilisateur.UtilisateurConnecte;
-                    ratingControl.IsEnabled = true;
+                    if (seanceTemp.Date == date)
+                    {
+                        txtHeure.Text = seanceTemp.Heure.ToString();
+                        string u = RoleUtilisateur.UtilisateurConnecte;
+                        ratingControl.IsEnabled = true;
 
-                    idSeance = SingletonRequete.TrouverIdSeance(u, activite.Nom,
-                        new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day));
+                        idSeance = SingletonRequete.TrouverIdSeance(u, activite.Nom,
+                            new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day));
 
-                    ratingControl.Value = SingletonRequete.prendreNote(u, idSeance);
+                        ratingControl.Value = SingletonRequete.prendreNote(u, idSeance);
+                    }
                 }
-            }
 
-            if (RoleUtilisateur.UtilisateurConnecte != "")
-            {
-                if (SingletonRequete.UtilisateurEstInscritSeance(RoleUtilisateur.UtilisateurConnecte, idSeance))
-                    ratingControl.Visibility = Visibility.Visible;
+                if (RoleUtilisateur.UtilisateurConnecte != null)
+                {
+                    if (SingletonRequete.UtilisateurEstInscritSeance(RoleUtilisateur.UtilisateurConnecte, idSeance))
+                        ratingControl.Visibility = Visibility.Visible;
+                    else
+                        btnInscription.Visibility = Visibility.Visible;
+                }
                 else
-                    btnInscription.Visibility = Visibility.Visible;
+                {
+                    ratingControl.Visibility = Visibility.Collapsed;
+                    btnInscription.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
+                txtHeure.Text = "";
                 ratingControl.Visibility = Visibility.Collapsed;
                 btnInscription.Visibility = Visibility.Collapsed;
             }
