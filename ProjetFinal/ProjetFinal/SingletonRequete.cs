@@ -430,6 +430,99 @@ namespace ProjetFinal
             return tabActivite;
         }
 
+        public static int nbTotalAdherent()
+        {
+            int nb = 0;
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("NbTotalAdherent");
+                commande.Connection = conn;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.Add(new MySqlParameter
+                {
+                    ParameterName = "resultat",
+                    MySqlDbType = MySqlDbType.Byte,
+                    Direction = System.Data.ParameterDirection.ReturnValue
+                });
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                nb = Convert.ToInt32(commande.Parameters["resultat"].Value);
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return nb;
+        }
+
+        public static int nbTotalActivite()
+        {
+            int nb = 0;
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("NbTotalActivite");
+                commande.Connection = conn;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.Add(new MySqlParameter
+                {
+                    ParameterName = "resultat",
+                    MySqlDbType = MySqlDbType.Byte,
+                    Direction = System.Data.ParameterDirection.ReturnValue
+                });
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                nb = Convert.ToInt32(commande.Parameters["resultat"].Value);
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return nb;
+        }
+
+
+        public static ArrayList moyenneNoteActivite()
+        {
+            ArrayList tabNote = new ArrayList();
+
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select * FROM moyennenoteactivite";
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    tabNote.Add(r["nom"] + ": " + r["noteMoyenne"] + "/5");
+
+                }
+
+                r.Close();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return tabNote;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
