@@ -17,7 +17,6 @@ namespace ProjetFinal
         private int nb_place_disponible;
         private string nom_activite;
         private int id_categorie;
-        private Visibility btnInscription;
         private Visibility btnDelete;
         private bool utilisateurInscrit;
 
@@ -31,15 +30,7 @@ namespace ProjetFinal
             }
         }
 
-        public Visibility BtnInscription
-        {
-            get
-            {
-                btnInscription = ((RoleUtilisateur.UtilisateurConnecte == null || RoleUtilisateur.UtilisateurConnecte == "") ? Visibility.Collapsed : SingletonRequete.AdherantEstInscritActivite(RoleUtilisateur.UtilisateurConnecte, Nom_activite) ? Visibility.Collapsed : Visibility.Visible);
-                this.OnPropertyChanged(nameof(BtnInscription));
-                return btnInscription;
-            }
-        }
+       
 
         public int Id
         {
