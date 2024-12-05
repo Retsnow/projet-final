@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,11 +24,21 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageDeconnexion : Page
     {
+        NavigationViewItem nv_activite;
+
         public PageDeconnexion()
         {
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is not null)
+            {
+                nv_activite = (NavigationViewItem)e.Parameter;
+            }
+
+        }
         private void btn_deconn_Click(object sender, RoutedEventArgs e)
         {
             if (RoleUtilisateur.UtilisateurConnecte != null)
@@ -42,6 +53,7 @@ namespace ProjetFinal
             txt_validation.Text = "Déconnexion réussie";
             txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
             txt_validation.Visibility = Visibility.Visible;
+            nv_activite.IsSelected = true;
         }
     }
 }

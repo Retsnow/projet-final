@@ -36,11 +36,11 @@ namespace ProjetFinal
             }
             else if (nv_connexion.IsSelected)
             {
-                MainFrame.Navigate(typeof(PageConnection));
+                MainFrame.Navigate(typeof(PageConnection), nv_activite);
             }
             else if (nv_deconnexion.IsSelected)
             {
-                MainFrame.Navigate(typeof(PageDeconnexion));
+                MainFrame.Navigate(typeof(PageDeconnexion), nv_activite);
             }
             else if (nv_statistique.IsSelected)
             {
@@ -48,7 +48,7 @@ namespace ProjetFinal
             }
             else if (nv_adherent.IsSelected)
             {
-                MainFrame.Navigate(typeof(PageAdherent));
+                MainFrame.Navigate(typeof(PageAdherent), this);
             }
 
 

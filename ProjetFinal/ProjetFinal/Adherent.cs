@@ -106,6 +106,14 @@ namespace ProjetFinal
             get { return prenom + " " + nom; } 
         }
 
+        public string StringCSV
+        {
+            get
+            {
+                return $"{Id};{Nom};{Prenom};{Adresse};{Date_naissance};{Age}";
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
