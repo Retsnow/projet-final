@@ -19,6 +19,7 @@ namespace ProjetFinal
         private int id_categorie;
         private Visibility btnInscription;
         private Visibility btnDelete;
+        private bool utilisateurInscrit;
 
         public Visibility BtnDelete
         {
@@ -108,6 +109,22 @@ namespace ProjetFinal
             Nom_activite = p_nom_activite;
             Id_categorie = p_id_categorie;
         }
+
+        public bool UtilisateurInscrit
+        {
+            get
+            {
+                utilisateurInscrit = SingletonRequete.getListeSeance(Nom_activite).Count > 0;
+                this.OnPropertyChanged(nameof(UtilisateurInscrit));
+                return utilisateurInscrit;
+            }
+        }
+
+
+
+
+
+
 
         public Seance(int p_id, DateTime p_date, TimeOnly p_heure, int p_nb_place_disponible, string p_nom_activite, int p_id_categorie)
         {

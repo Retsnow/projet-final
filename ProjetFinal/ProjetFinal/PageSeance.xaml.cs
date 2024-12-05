@@ -41,12 +41,13 @@ namespace ProjetFinal
             {
                 activite = (Activite)e.Parameter;
             }
-                CalendarPicker.MinDate = DateTimeOffset.Now;
-            
+
+            CalendarPicker.MinDate = DateTimeOffset.Now;
+
             foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
             {
-                selectableDates.Add(seance.Date);
-
+                if (seance.UtilisateurInscrit)
+                    selectableDates.Add(seance.Date);
             }
         }
 
@@ -60,7 +61,7 @@ namespace ProjetFinal
                 // Si la date n'est pas dans la liste des dates sélectionnables, appliquez le style de non-sélection
                 if (!selectableDates.Contains(date))
                 {
-                    args.Item.IsEnabled = false; 
+                    args.Item.IsEnabled = false;
                     args.Item.Foreground = new SolidColorBrush(Colors.Gray);
                 }
                 else if (selectableDates.Contains(date))
