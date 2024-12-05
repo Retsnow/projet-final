@@ -257,9 +257,6 @@ namespace ProjetFinal
                     string nom_activite = r["nom_activite"].ToString();
                     int id_categorie = Convert.ToInt32(r["id_categorie"]);
 
-
-
-
                     liste.Add(new Seance(date, heure, nb_place_disponible, nom_activite, id_categorie));
                 }
 
