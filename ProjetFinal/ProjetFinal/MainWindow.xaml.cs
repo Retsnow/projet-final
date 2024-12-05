@@ -32,7 +32,7 @@ namespace ProjetFinal
         {
             if (nv_activite.IsSelected)
             {
-                MainFrame.Navigate(typeof(PageActivite));
+                MainFrame.Navigate(typeof(PageActivite), this);
             }
             else if (nv_connexion.IsSelected)
             {

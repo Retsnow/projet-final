@@ -10,8 +10,8 @@
 
     <ScrollViewer>
         <Grid>
+            
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
@@ -21,7 +21,12 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <GridView x:Name="gvActivites" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="gvActivites_SelectionChanged">
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button x:Name="btn_export" Content="Exporter dans un fichier csv" Margin="5" Click="btn_export_Click" />
+                <Button x:Name="btn_ajouter" Content="Ajouter" Margin="5" Click="btn_ajouter_Click" />
+            </StackPanel>
+            
+            <GridView x:Name="gvActivites" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="gvActivites_SelectionChanged">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="local:Activite">
                         <StackPanel Margin="5" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="375" >
