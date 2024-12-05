@@ -75,12 +75,12 @@ namespace ProjetFinal
             get { return date_naissance; }
             set
             {
-                adresse = value;
+                //adresse = value;
                 this.OnPropertyChanged(nameof(adresse));
             }
         }
 
-        public string Adresse
+        public string Adressee
         {
             get { return adresse; }
             set
