@@ -96,6 +96,8 @@ namespace ProjetFinal
                     conn.Close();
             }
         }
+
+
         public static void supprimerSeance(int id)
         {
             try

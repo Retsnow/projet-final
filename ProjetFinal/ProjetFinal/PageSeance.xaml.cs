@@ -82,17 +82,7 @@ namespace ProjetFinal
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-
-            //DataContext représente l'élément parent
-            Seance seance = button.DataContext as Seance;
-
-            //permet de s'assurer que nous avons un élément sélectionné
-            //gvSeances.SelectedItem = seance;
-
-            SingletonRequete.supprimerSeance(seance.Id);
-
-            //gvSeances.ItemsSource = SingletonRequete.getListeActivite();
+            SingletonRequete.supprimerSeance(idSeance);
         }
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
@@ -149,12 +139,16 @@ namespace ProjetFinal
                     ratingControl.Visibility = Visibility.Collapsed;
                     btnInscription.Visibility = Visibility.Collapsed;
                 }
+                if (RoleUtilisateur.Admin)
+                    btnDelete.Visibility = Visibility.Visible;
+
             }
             else
             {
                 txtHeure.Text = "";
                 ratingControl.Visibility = Visibility.Collapsed;
                 btnInscription.Visibility = Visibility.Collapsed;
+                btnDelete.Visibility = Visibility.Collapsed;
             }
         }
 

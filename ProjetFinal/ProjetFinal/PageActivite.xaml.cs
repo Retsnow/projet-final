@@ -60,12 +60,12 @@ namespace ProjetFinal
             Button button = sender as Button;
 
             //DataContext représente l'élément parent
-            Seance seance = button.DataContext as Seance;
+            Activite activite = button.DataContext as Activite;
 
             //permet de s'assurer que nous avons un élément sélectionné
-            gvActivites.SelectedItem = seance;
+            gvActivites.SelectedItem = activite;
 
-            SingletonRequete.supprimerSeance(seance.Id);
+            SingletonRequete.supprimerActivite(activite.Nom);
 
             gvActivites.ItemsSource = SingletonRequete.getListeActivite();
         }
