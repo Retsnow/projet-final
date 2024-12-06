@@ -27,7 +27,7 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageActivite : Page
     {
-        object target;
+        MainWindow window;
 
         public PageActivite()
         {
@@ -50,7 +50,7 @@ namespace ProjetFinal
         {
             if (e.Parameter is not null)
             {
-                target = (object)e.Parameter;
+                window = (MainWindow)e.Parameter;
             }
 
         }
@@ -79,7 +79,7 @@ namespace ProjetFinal
         {
             var picker = new Windows.Storage.Pickers.FileSavePicker();
 
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(target);
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
 
             picker.SuggestedFileName = "liste_activite";
@@ -96,7 +96,7 @@ namespace ProjetFinal
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
-
+            window.mainFrame.Navigate(typeof(PageAjouterActivite));
         }
     }
 }
