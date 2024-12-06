@@ -97,14 +97,23 @@ namespace ProjetFinal
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
         {
-            //Seance seance = new Seance();
+            SingletonRequete.InscriptionAdherantSeance(RoleUtilisateur.UtilisateurConnecte, idSeance);
 
-            //SingletonRequete.InscriptionAdherantSeance(RoleUtilisateur.UtilisateurConnecte, seance.Id);
+            if (RoleUtilisateur.UtilisateurConnecte != null)
+            {
+                if (SingletonRequete.UtilisateurEstInscritSeance(RoleUtilisateur.UtilisateurConnecte, idSeance))
+                {
+                    ratingControl.Visibility = Visibility.Visible;
+                    btnInscription.Visibility = Visibility.Collapsed;
+                }
+                else
+                    btnInscription.Visibility = Visibility.Visible;
+            }
         }
 
         private void ratingControl_ValueChanged(RatingControl sender, object args)
         {
-
+            //SingletonRequete.AdherentNoteSeance
         }
 
         private void CalendarPicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
