@@ -113,7 +113,7 @@ namespace ProjetFinal
 
         private void ratingControl_ValueChanged(RatingControl sender, object args)
         {
-            //SingletonRequete.AdherentNoteSeance
+            SingletonRequete.AdherentNoteSeance(RoleUtilisateur.UtilisateurConnecte, ratingControl.Value, idSeance);
         }
 
         private void CalendarPicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
