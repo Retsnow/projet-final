@@ -268,6 +268,32 @@ namespace ProjetFinal
             return result;
         }
 
+
+        public static void AdherentNoteSeance(string idAdherent,double note, int idSeance)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("AdherentNoteSeance");
+                commande.Connection = conn;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("p_id_adherent", idAdherent);
+                commande.Parameters.AddWithValue("p_note", note);
+                commande.Parameters.AddWithValue("p_id_seance", idSeance);
+
+                conn.Open();
+                commande.Prepare();
+                int i = commande.ExecuteNonQuery();
+
+                conn.Close();
+
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+
         public static int TrouverIdSeance(string idAdherent, string nomActivite, DateTime date)
         {
             int result = -1;
