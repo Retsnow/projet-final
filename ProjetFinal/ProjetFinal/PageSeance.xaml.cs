@@ -144,7 +144,10 @@ namespace ProjetFinal
                     btnInscription.Visibility = Visibility.Collapsed;
                 }
                 if (RoleUtilisateur.Admin)
+                {
                     btnDelete.Visibility = Visibility.Visible;
+                    btnModifier.Visibility = Visibility.Visible;
+                }
 
             }
             else
@@ -153,6 +156,7 @@ namespace ProjetFinal
                 ratingControl.Visibility = Visibility.Collapsed;
                 btnInscription.Visibility = Visibility.Collapsed;
                 btnDelete.Visibility = Visibility.Collapsed;
+                btnModifier.Visibility = Visibility.Collapsed;
             }
         }
 

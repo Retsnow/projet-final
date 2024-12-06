@@ -98,5 +98,10 @@ namespace ProjetFinal
         {
             window.mainFrame.Navigate(typeof(PageAjouterActivite));
         }
+
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
