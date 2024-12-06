@@ -96,8 +96,12 @@ namespace ProjetFinal
                     ratingControl.Visibility = Visibility.Visible;
                     btnInscription.Visibility = Visibility.Collapsed;
                 }
-                else
+                else 
+                { 
                     btnInscription.Visibility = Visibility.Visible;
+                    ratingControl.Visibility = Visibility.Collapsed;
+
+                }
             }
         }
 
