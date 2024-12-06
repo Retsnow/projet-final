@@ -15,9 +15,5 @@
         <Button x:Name="btn_admin" Content="Connexion Administrateur" Margin="5, 20, 0, 0" Click="btn_admin_Click" />
 
         <TextBlock x:Name="txt_validation" Margin="5" Foreground="Red" Visibility="Collapsed" />
-
-        <!--
-            Afficher connexion lorsque déconnecter et chacher déconnexion
-        -->
     </StackPanel>
 </Page>
