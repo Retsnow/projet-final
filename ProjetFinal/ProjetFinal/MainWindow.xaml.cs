@@ -26,6 +26,17 @@ namespace ProjetFinal
         public MainWindow()
         {
             this.InitializeComponent();
+            nv_main.BackRequested += Nv_main_BackRequested;
+
+        }
+
+        private void Nv_main_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            // À modiffier pour etre plus userfriendly
+            if (MainFrame.CanGoBack)
+            {
+                MainFrame.GoBack();
+            }
         }
 
         public Frame mainFrame

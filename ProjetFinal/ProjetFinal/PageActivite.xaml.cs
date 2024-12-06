@@ -90,7 +90,8 @@ namespace ProjetFinal
             Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
 
             //écrit dans le fichier
-            await Windows.Storage.FileIO.WriteLinesAsync(monFichier, SingletonRequete.getListeActivite().Select(x => x.StringCSV).ToList(), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            if (monFichier != null)
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, SingletonRequete.getListeActivite().Select(x => x.StringCSV).ToList(), Windows.Storage.Streams.UnicodeEncoding.Utf8);
 
         }
 

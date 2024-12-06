@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView x:Name="nv_main" SelectionChanged="nv_main_SelectionChanged" IsSettingsVisible="False">
+    <NavigationView x:Name="nv_main" SelectionChanged="nv_main_SelectionChanged" IsSettingsVisible="False" IsBackButtonVisible="Visible" IsBackEnabled="True">
         <NavigationView.MenuItems>
             <NavigationViewItem Icon="List" x:Name="nv_activite" IsSelected="True"  Content="Activité" />
             <NavigationViewItem Icon="OtherUser" x:Name="nv_connexion" Content="Connexion" />
