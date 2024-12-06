@@ -24,7 +24,7 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageAdherent : Page
     {
-        object target;
+        MainWindow window;
 
         public PageAdherent()
         {
@@ -36,16 +36,15 @@ namespace ProjetFinal
         {
             if (e.Parameter is not null)
             {
-                target = (object)e.Parameter;
+                window = (MainWindow)e.Parameter;
             }
-
         }
 
         private async void btn_export_Click(object sender, RoutedEventArgs e)
         {
             var picker = new Windows.Storage.Pickers.FileSavePicker();
 
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(target);
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
             WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
 
             picker.SuggestedFileName = "liste_adherent";
@@ -62,7 +61,7 @@ namespace ProjetFinal
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
-
+            window.mainFrame.Navigate(typeof(PageAjouterAdherent));
         }
     }
 }
