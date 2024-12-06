@@ -29,11 +29,12 @@ namespace ProjetFinal
     {
         MainWindow window;
 
+
         public PageActivite()
         {
             this.InitializeComponent();
             gvActivites.ItemsSource = SingletonRequete.getListeActivite();
-            
+
             if (RoleUtilisateur.Admin)
             {
                 btn_export.Visibility = Visibility.Visible;
@@ -72,7 +73,7 @@ namespace ProjetFinal
 
         private void gvActivites_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Frame.Navigate(typeof(PageSeance), gvActivites.SelectedItem);
+            Frame.Navigate(typeof(PageSeance), new object[2] { gvActivites.SelectedItem, window });
         }
 
         private async void btn_export_Click(object sender, RoutedEventArgs e)
