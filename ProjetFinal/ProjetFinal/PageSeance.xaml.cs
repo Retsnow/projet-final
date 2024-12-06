@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,6 +28,8 @@ namespace ProjetFinal
     {
 
         Activite activite;
+        MainWindow window;
+        
         int idSeance;
 
         List<DateTime> selectableDates = new List<DateTime>();
@@ -42,9 +45,13 @@ namespace ProjetFinal
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            object[] objects = new object[2];
+
             if (e.Parameter is not null)
             {
-                activite = (Activite)e.Parameter;
+                objects = (object[])e.Parameter;
+                activite = objects[0] as Activite;
+                window = objects[1] as MainWindow;
             }
 
             CalendarPicker.MinDate = DateTimeOffset.Now;
