@@ -100,7 +100,6 @@ namespace ProjetFinal
                 { 
                     btnInscription.Visibility = Visibility.Visible;
                     ratingControl.Visibility = Visibility.Collapsed;
-
                 }
             }
         }
