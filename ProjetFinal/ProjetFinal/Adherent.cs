@@ -28,7 +28,15 @@ namespace ProjetFinal
             Adresse = adresse;
             Date_naissance = date_naissance;
             Age = age;
-      
+        }
+
+        public Adherent(string nom, string prenom, string adresse, DateOnly date_naissance, int age)
+        {
+            Nom = nom;
+            Prenom = prenom;
+            Adresse = adresse;
+            Date_naissance = date_naissance;
+            Age = age;
         }
 
         public Visibility BtnDelete

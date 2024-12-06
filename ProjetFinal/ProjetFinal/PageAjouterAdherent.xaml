@@ -11,7 +11,6 @@
 
     <StackPanel x:Name="stck_conn" Orientation="Vertical">
         <TextBlock x:Name="Title" FontSize="36" Padding="10">Ajouter un adhérent</TextBlock>
-        <TextBox x:Name="tbx_id_adherent" Header="ID" Margin="5"></TextBox>
         <TextBox x:Name="tbx_nom_adherent" Header="Nom" Margin="5"></TextBox>
         <TextBox x:Name="tbx_prenom_adherent" Header="Prenom" Margin="5"></TextBox>
         <TextBox x:Name="tbx_id_adresse" Header="Adresse" Margin="5"></TextBox>

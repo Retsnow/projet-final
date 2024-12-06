@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,9 +24,22 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageAjouterAdherent : Page
     {
+        Adherent adherent;
+
         public PageAjouterAdherent()
         {
             this.InitializeComponent();
+
+
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is not null)
+            {
+                adherent = (Adherent)e.Parameter;
+            }
+
         }
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
