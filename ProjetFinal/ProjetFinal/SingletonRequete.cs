@@ -353,7 +353,7 @@ namespace ProjetFinal
                 commande.ExecuteNonQuery();
 
                 int resultat = Convert.ToInt32(commande.Parameters["resultat"].Value);
-                estConnecte = (resultat == 1);
+                estConnecte = (resultat >= 1);
 
                 conn.Close();
 

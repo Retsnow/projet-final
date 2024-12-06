@@ -160,5 +160,9 @@ namespace ProjetFinal
             }
         }
 
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
