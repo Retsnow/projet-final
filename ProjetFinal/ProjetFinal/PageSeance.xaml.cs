@@ -95,7 +95,7 @@ namespace ProjetFinal
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
         {
-            SingletonRequete.InscriptionAdherantSeance(RoleUtilisateur.UtilisateurConnecte, idSeance);
+            string temp = SingletonRequete.InscriptionAdherantSeance(RoleUtilisateur.UtilisateurConnecte, idSeance);
 
             if (RoleUtilisateur.UtilisateurConnecte != null)
             {
@@ -141,9 +141,15 @@ namespace ProjetFinal
                 if (RoleUtilisateur.UtilisateurConnecte != null)
                 {
                     if (SingletonRequete.UtilisateurEstInscritSeance(RoleUtilisateur.UtilisateurConnecte, idSeance))
+                    {
                         ratingControl.Visibility = Visibility.Visible;
+                        btnInscription.Visibility = Visibility.Collapsed;
+                    }
                     else
+                    {
+                        ratingControl.Visibility = Visibility.Collapsed;
                         btnInscription.Visibility = Visibility.Visible;
+                    }
                 }
                 else
                 {

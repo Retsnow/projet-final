@@ -211,7 +211,7 @@ namespace ProjetFinal
             return liste;
         }
 
-        public static bool InscriptionAdherantSeance(string idAdherent, int idSeance)
+        public static string InscriptionAdherantSeance(string idAdherent, int idSeance)
         {
             try
             {
@@ -228,12 +228,13 @@ namespace ProjetFinal
                 conn.Close();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                return ex.Message;
             }
-            return true;
+            return "";
         }
 
         public static float prendreNote(string idAdherent, int idSeance)
