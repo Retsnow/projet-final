@@ -177,5 +177,10 @@ namespace ProjetFinal
         {
 
         }
+
+        private void btn_ajouter_Click(object sender, RoutedEventArgs e)
+        {
+            window.mainFrame.Navigate(typeof(PageAjouterSeance));
+        }
     }
 }

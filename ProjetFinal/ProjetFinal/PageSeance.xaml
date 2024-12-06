@@ -23,6 +23,9 @@
             </Grid.ColumnDefinitions>
 
 
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button x:Name="btn_ajouter" Content="Ajouter" Margin="5" Click="btn_ajouter_Click" />
+            </StackPanel>
 
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
