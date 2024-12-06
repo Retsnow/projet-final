@@ -83,6 +83,7 @@ namespace ProjetFinal
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             SingletonRequete.supprimerSeance(idSeance);
+            CalendarPicker.Date = null;
         }
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
