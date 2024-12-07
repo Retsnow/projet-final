@@ -297,7 +297,7 @@ namespace ProjetFinal
             }
         }
 
-        public static int TrouverIdSeance(string idAdherent, string nomActivite, DateTime date)
+        public static int TrouverIdSeance(string nomActivite, DateTime date)
         {
             int result = -1;
             try
@@ -305,7 +305,6 @@ namespace ProjetFinal
                 MySqlCommand commande = new MySqlCommand("TrouverIdSeance");
                 commande.Connection = conn;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
-                commande.Parameters.AddWithValue("p_id_adherent", idAdherent);
                 commande.Parameters.AddWithValue("p_nom_activite", nomActivite);
                 commande.Parameters.AddWithValue("p_date", date);
                 commande.Parameters.Add(new MySqlParameter
