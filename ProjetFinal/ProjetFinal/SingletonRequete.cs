@@ -119,6 +119,34 @@ namespace ProjetFinal
         }
 
 
+        public static ObservableCollection<Categorie> getListeCategorie()
+        {
+            ObservableCollection<Categorie> liste = new ObservableCollection<Categorie>();
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select * from categorie";
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    liste.Add(new Categorie(r["id"].ToString(), r["nom"].ToString()));
+                }
+
+                r.Close();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return liste;
+        }
+
+
         public static ObservableCollection<Seance> getListeSeance(string nomActivite)
         {
             ObservableCollection<Seance> liste = new ObservableCollection<Seance>();

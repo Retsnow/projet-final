@@ -26,26 +26,6 @@ namespace ProjetFinal
 
         NavigationViewItem nv_activite;
 
-        internal class Categorie
-        {
-            private  int id;
-
-            public  int Id
-            {
-                get { return id; }
-                set { id = value; }
-            }
-
-            private  string nom;
-
-            public  string Nom
-            {
-                get { return nom; }
-                set { nom = value; }
-            }
-        }
-
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter is not null)
@@ -58,6 +38,15 @@ namespace ProjetFinal
         public PageAjouterActivite()
         {
             this.InitializeComponent();
+
+            foreach (Categorie categorie in SingletonRequete.getListeCategorie())
+            {
+                if(categorie != null)
+                {
+                    cbxCategorie.Items.Add(categorie);
+                }
+            }
+
 
         }
 
