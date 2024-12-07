@@ -539,7 +539,7 @@ namespace ProjetFinal
             conn.Open();
             commande.ExecuteReader();
             conn.Close();
-            // Try cathc a faire
+            // Try catch a faire
 
         }
 
