@@ -559,13 +559,12 @@ namespace ProjetFinal
             return tabNote;
         }
 
-        public static void ajouterAdherent(string nom, string prenom, string adresse, DateOnly date_naissance)
+        public static void ajouterAdherent(string nom, string prenom, string adresse, string date_naissance)
         {
-            string date = date_naissance.ToString();
 
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = conn;
-            commande.CommandText = "INSERT INTO adherent (nom, prenom, adresse, date_naissance) VALUES ('" + nom + "', '" + prenom + "', '" + adresse + "', '" + date + "');";
+            commande.CommandText = "INSERT INTO adherent (nom, prenom, adresse, date_naissance) VALUES ('" + nom + "', '" + prenom + "', '" + adresse + "', '" + date_naissance + "');";
             conn.Open();
             commande.ExecuteReader();
             conn.Close();
