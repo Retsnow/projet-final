@@ -28,6 +28,7 @@ namespace ProjetFinal
     public sealed partial class PageActivite : Page
     {
         MainWindow window;
+        NavigationViewItem nv_activite;
 
 
         public PageActivite()
@@ -49,9 +50,13 @@ namespace ProjetFinal
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            object[] objects = new object[2];
+
             if (e.Parameter is not null)
             {
-                window = (MainWindow)e.Parameter;
+                objects = (object[])e.Parameter;
+                window = objects[0] as MainWindow;
+                nv_activite = objects[1] as NavigationViewItem;
             }
 
         }
@@ -98,7 +103,7 @@ namespace ProjetFinal
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(typeof(PageAjouterActivite));
+            window.mainFrame.Navigate(typeof(PageAjouterActivite), nv_activite);
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)

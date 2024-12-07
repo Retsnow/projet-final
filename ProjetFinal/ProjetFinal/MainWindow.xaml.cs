@@ -48,7 +48,7 @@ namespace ProjetFinal
         {
             if (nv_activite.IsSelected)
             {
-                MainFrame.Navigate(typeof(PageActivite), this);
+                MainFrame.Navigate(typeof(PageActivite), new object[2] { this, nv_activite });
             }
             else if (nv_connexion.IsSelected)
             {

@@ -39,20 +39,13 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
 
-            foreach (Categorie categorie in SingletonRequete.getListeCategorie())
-            {
-                if(categorie != null)
-                {
-                    cbxCategorie.Items.Add(categorie);
-                }
-            }
-
-
+            cbxCategorie.ItemsSource = SingletonRequete.getListeCategorie();
         }
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
             SingletonRequete.ajouterActivite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+            nv_activite.IsSelected = false;
             nv_activite.IsSelected = true;
 
         }

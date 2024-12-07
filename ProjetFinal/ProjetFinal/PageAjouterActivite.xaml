@@ -14,8 +14,15 @@
         <TextBox x:Name="tbx_nom_activite" Header="Nom" Margin="5"></TextBox>
         <TextBox x:Name="tbx_cout_organisation" Header="Cout d'organisation" Margin="5"></TextBox>
         <TextBox x:Name="tbx_prix_vente" Header="Prix de vente" Margin="5"></TextBox>
-        <ComboBox x:Name="cbxCategorie" Header="Catégorie" Margin="5" />
-        <Button x:Name="btn_submit" Content="Se Connecter" Margin="5" Click="btn_submit_Click" />
+        <ComboBox x:Name="cbxCategorie" Header="Catégorie" Margin="5">
+            <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="local:Categorie">
+                    <TextBlock Text="{x:Bind Nom, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Button x:Name="btn_submit" Content="Créer l'activité" Margin="5" Click="btn_submit_Click" />
 
     </StackPanel>
 </Page>
