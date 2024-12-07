@@ -27,5 +27,14 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
         }
+
+        private void btn_submit_Click(object sender, RoutedEventArgs e)
+        {
+            string nom;
+            string prenom;
+            string adresse;
+            DateOnly date_naissance; 
+
+        }
     }
 }
