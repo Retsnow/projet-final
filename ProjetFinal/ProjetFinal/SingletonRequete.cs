@@ -568,6 +568,9 @@ namespace ProjetFinal
             commande.CommandText = "INSERT INTO adherent (nom, prenom, adresse, date_naissance) VALUES ('" + nom + "', '" + prenom + "', '" + adresse + "', '" + date + "');";
             conn.Open();
             commande.ExecuteReader();
+            conn.Close();
+
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
