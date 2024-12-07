@@ -47,14 +47,16 @@ namespace ProjetFinal
             string nom;
             string prenom;
             string adresse;
-            DateOnly date_naissance;
+            DateOnly date_denaissance;
 
             nom = tbx_nom_adherent.Text;
             prenom = tbx_prenom_adherent.Text;
             adresse = tbx_adresse.Text;
-            date_naissance = DateOnly.Parse(tbx_dateNaissance.Text);
+            date_denaissance = DateOnly.Parse(date_naissance.ToString());
 
-            SingletonRequete.ajouterAdherent(nom, prenom, adresse, date_naissance);
+            SingletonRequete.ajouterAdherent(nom, prenom, adresse, date_denaissance);
+
+           
         }
     }
 }
