@@ -24,7 +24,9 @@ namespace ProjetFinal
     public sealed partial class PageAjouterActivite : Page
     {
 
-        internal  class Categorie
+        NavigationViewItem nv_activite;
+
+        internal class Categorie
         {
             private  int id;
 
@@ -43,19 +45,27 @@ namespace ProjetFinal
             }
         }
 
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is not null)
+            {
+                nv_activite = (NavigationViewItem)e.Parameter;
+            }
+
+        }
+
         public PageAjouterActivite()
         {
             this.InitializeComponent();
-
-
 
         }
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
-            Activite activite = new Activite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id);
+            SingletonRequete.ajouterActivite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+            nv_activite.IsSelected = true;
 
-           // SingletonRequete.ajouterActivite();
         }
     }
 }
