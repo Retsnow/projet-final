@@ -23,18 +23,38 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageAjouterActivite : Page
     {
+
+        internal static class Categorie
+        {
+            private static int id;
+
+            public static int Id
+            {
+                get { return id; }
+                set { id = value; }
+            }
+
+            private static string nom;
+
+            public static string Nom
+            {
+                get { return nom; }
+                set { nom = value; }
+            }
+        }
+
         public PageAjouterActivite()
         {
             this.InitializeComponent();
+
+
+
         }
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
-            string nom;
-            string prenom;
-            string adresse;
-            DateOnly date_naissance; 
-
+            //Activite activite = new Activite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), cbxCategorie.SelectedItem);
+           
         }
     }
 }
