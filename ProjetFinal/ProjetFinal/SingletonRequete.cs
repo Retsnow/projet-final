@@ -20,47 +20,17 @@ namespace ProjetFinal
 
         }
 
-        public static async void AjouterSelonCSV(object target, Frame currentFrame)
-        {
-
-            var picker = new Windows.Storage.Pickers.FileOpenPicker();
-            picker.FileTypeFilter.Add(".csv");
-
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(target);
-            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
-
-            //sélectionne le fichier à lire
-            Windows.Storage.StorageFile monFichier = await picker.PickSingleFileAsync();
-
-            //ouvre le fichier et lit le contenu
-            if (monFichier != null)
-            {
-                var lignes = await Windows.Storage.FileIO.ReadLinesAsync(monFichier);
-
-                /*boucle permettant de lire chacune des lignes du fichier
-                * et de remplir un tableau d'objets de type string
-                */
-                foreach (var ligne in lignes)
-                {
-                    var v = ligne.Split(";");
-
-                    ajouter(v[0], Convert.ToDouble(v[1]), v[2]);
-                }
-            }
-
-            currentFrame.Navigate(currentFrame.CurrentSourcePageType);
-        }
-
-        public static void ajouter(string nom, double prix, string categorie)
+        public static void ajouterActivite(string nom, double coutOrganisation, double prixVente, string idCategorie)
         {
             try
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "insert into activite (nom, prix, categorie) values(@nom,@prix,@categorie)";
+                commande.CommandText = "insert into activite (nom, cout_organisation, prix_vente, id_categorie) values(@nom,@cout,@prix,@categorie)";
                 commande.Parameters.AddWithValue("@nom", nom);
-                commande.Parameters.AddWithValue("@prix", prix);
-                commande.Parameters.AddWithValue("@categorie", categorie);
+                commande.Parameters.AddWithValue("@cout", coutOrganisation);
+                commande.Parameters.AddWithValue("@prix", prixVente);
+                commande.Parameters.AddWithValue("@categorie", idCategorie);
 
                 conn.Open();
                 commande.Prepare();
