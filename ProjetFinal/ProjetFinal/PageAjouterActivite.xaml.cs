@@ -55,7 +55,7 @@ namespace ProjetFinal
         {
             Activite activite = new Activite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id);
 
-            SingletonRequete.ajouterActivite();
+           // SingletonRequete.ajouterActivite();
         }
     }
 }
