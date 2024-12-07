@@ -24,19 +24,19 @@ namespace ProjetFinal
     public sealed partial class PageAjouterActivite : Page
     {
 
-        internal static class Categorie
+        internal  class Categorie
         {
-            private static int id;
+            private  int id;
 
-            public static int Id
+            public  int Id
             {
                 get { return id; }
                 set { id = value; }
             }
 
-            private static string nom;
+            private  string nom;
 
-            public static string Nom
+            public  string Nom
             {
                 get { return nom; }
                 set { nom = value; }
@@ -53,7 +53,7 @@ namespace ProjetFinal
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
-            //Activite activite = new Activite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), cbxCategorie.SelectedItem);
+            Activite activite = new Activite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id);
            
         }
     }
