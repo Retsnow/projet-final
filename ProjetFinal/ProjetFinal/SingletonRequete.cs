@@ -605,20 +605,24 @@ namespace ProjetFinal
                     conn.Close();
                 return e.Message;
             }
-            return message;
+
         }
 
-        public static void modifierAdherent(string nom, string prenom, string adresse, DateOnly date_naissance)
+        public static string modifierAdherent(string id, string nom, string prenom, string adresse, DateOnly date_naissance)
         {
+            string message = "";
+            string date = date_naissance.ToString();
+
             try
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "update adherent SET cout_organisation=@cout, prix_vente=@prix, id_categorie=@categorie WHERE nom=@nom";
+                commande.CommandText = "update adherent SET nom=@nom, prenom=@prenom, adresse=@adresse, date_naissance=@date_naissance WHERE id=@id";
+                commande.Parameters.AddWithValue("@id", id);
                 commande.Parameters.AddWithValue("@nom", nom);
-                commande.Parameters.AddWithValue("@cout", prenom);
-                commande.Parameters.AddWithValue("@prix", adresse);
-                commande.Parameters.AddWithValue("@categorie", date_naissance);
+                commande.Parameters.AddWithValue("@prenom", prenom);
+                commande.Parameters.AddWithValue("@adresse", adresse);
+                commande.Parameters.AddWithValue("@date_naissance", date);
 
                 conn.Open();
                 commande.Prepare();
@@ -626,11 +630,13 @@ namespace ProjetFinal
 
                 conn.Close();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                return e.Message;
             }
+            return message;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
