@@ -608,6 +608,31 @@ namespace ProjetFinal
             return message;
         }
 
+        public static void modifierAdherent(string nom, string prenom, string adresse, DateOnly date_naissance)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "update adherent SET cout_organisation=@cout, prix_vente=@prix, id_categorie=@categorie WHERE nom=@nom";
+                commande.Parameters.AddWithValue("@nom", nom);
+                commande.Parameters.AddWithValue("@cout", prenom);
+                commande.Parameters.AddWithValue("@prix", adresse);
+                commande.Parameters.AddWithValue("@categorie", date_naissance);
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
