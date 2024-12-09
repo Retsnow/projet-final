@@ -67,7 +67,8 @@ namespace ProjetFinal
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-
+            // Requete à faire
+            // Appelé le dialog qui averti qu'il s
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -83,6 +84,9 @@ namespace ProjetFinal
             SingletonRequete.supprimerAdherent(adherent.Id);
 
             lv_adherent.ItemsSource = SingletonRequete.getListeAdherent();
+
+
+            // Appelé le dialog qui averti qu'il sera retiré des senaces auquel il participe
         }
     }
 }
