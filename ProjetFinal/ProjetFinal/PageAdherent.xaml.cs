@@ -64,5 +64,25 @@ namespace ProjetFinal
         {
             window.mainFrame.Navigate(typeof(PageAjouterAdherent));
         }
+
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            //DataContext représente l'élément parent
+            Adherent adherent = button.DataContext as Adherent;
+
+            //permet de s'assurer que nous avons un élément sélectionné
+            lv_adherent.SelectedItem = adherent;
+
+            SingletonRequete.supprimerAdherent(adherent.Id);
+
+            lv_adherent.ItemsSource = SingletonRequete.getListeAdherent();
+        }
     }
 }
