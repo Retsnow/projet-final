@@ -41,6 +41,18 @@ namespace ProjetFinal
                     activite = objects[1] as Activite;
             }
 
+            if (activite != null)
+            {
+                tbx_nom_activite.Text = activite.Nom;
+                tbx_nom_activite.IsEnabled = false;
+                tbx_cout_organisation.Text = activite.Cout_organisation.ToString();
+                tbx_prix_vente.Text = activite.Prix_vente.ToString();
+
+                foreach (var item in cbxCategorie.Items)
+                    if ((item as Categorie).Id == activite.Id_categorie)
+                        cbxCategorie.SelectedItem = item; 
+
+            }
         }
 
         public PageAjouterActivite()
@@ -48,16 +60,6 @@ namespace ProjetFinal
             this.InitializeComponent();
 
             cbxCategorie.ItemsSource = SingletonRequete.getListeCategorie();
-
-            if (activite != null)
-            {
-                tbx_nom_activite.Text = activite.Nom;
-                tbx_nom_activite.IsEnabled = false;
-                tbx_cout_organisation.Text = activite.Cout_organisation.ToString();
-                tbx_prix_vente.Text = activite.Prix_vente.ToString();
-                cbxCategorie.SelectedItem = activite.Id_categorie;
-            }
-
         }
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
