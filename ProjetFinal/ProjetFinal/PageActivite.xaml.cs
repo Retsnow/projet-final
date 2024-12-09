@@ -78,7 +78,8 @@ namespace ProjetFinal
 
         private void gvActivites_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Frame.Navigate(typeof(PageSeance), new object[2] { gvActivites.SelectedItem, window });
+            if (!RoleUtilisateur.Admin)
+                Frame.Navigate(typeof(PageSeance), new object[2] { gvActivites.SelectedItem, window });
         }
 
         private async void btn_export_Click(object sender, RoutedEventArgs e)
