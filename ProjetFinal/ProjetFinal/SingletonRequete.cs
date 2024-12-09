@@ -585,7 +585,7 @@ namespace ProjetFinal
 
         public static string ajouterAdherent(string nom, string prenom, string adresse, DateOnly date_naissance)
         {
-            string message = "";
+            
             string date = date_naissance.ToString();
 
             try
@@ -637,6 +637,41 @@ namespace ProjetFinal
                 return e.Message;
             }
             return message;
+        }
+
+        public static void supprimerAdherent(string id)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "delete from participe_par where id_adherent=@id";
+                commande.Parameters.AddWithValue("@id", id);
+
+                conn.Open();
+
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                conn.Close();
+
+                commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "delete from adherent where id=@id";
+                commande.Parameters.AddWithValue("@id", id);
+
+                conn.Open();
+
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
