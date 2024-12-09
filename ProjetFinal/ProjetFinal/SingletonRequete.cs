@@ -557,8 +557,9 @@ namespace ProjetFinal
             return tabNote;
         }
 
-        public static void ajouterAdherent(string nom, string prenom, string adresse, DateOnly date_naissance)
+        public static string ajouterAdherent(string nom, string prenom, string adresse, DateOnly date_naissance)
         {
+            string message = "";
             string date = date_naissance.ToString();
 
             try
@@ -569,14 +570,16 @@ namespace ProjetFinal
                 conn.Open();
                 commande.ExecuteReader();
                 conn.Close();
+                return "Adherent ajouté avec succès";
             }
 
-            catch (Exception)
+            catch (Exception e)
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
+                return e.Message;
             }
-
+            return message;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
