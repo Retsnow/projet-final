@@ -109,12 +109,28 @@ namespace ProjetFinal
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(typeof(PageAjouterActivite), new object[2] { nv_activite, gvActivites.SelectedItem });
+            Button button = sender as Button;
+
+            //DataContext représente l'élément parent
+            Activite activite = button.DataContext as Activite;
+
+            //permet de s'assurer que nous avons un élément sélectionné
+            gvActivites.SelectedItem = activite;
+
+            window.mainFrame.Navigate(typeof(PageAjouterActivite), new object[2] { nv_activite, activite });
         }
 
         private void btnSeance_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(typeof(PageSeance), new object[2] { gvActivites.SelectedItem, window });
+            Button button = sender as Button;
+
+            //DataContext représente l'élément parent
+            Activite activite = button.DataContext as Activite;
+
+            //permet de s'assurer que nous avons un élément sélectionné
+            gvActivites.SelectedItem = activite;
+
+            window.mainFrame.Navigate(typeof(PageSeance), new object[2] { activite, window });
         }
     }
 }
