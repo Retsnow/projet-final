@@ -10,7 +10,7 @@
 
     <ScrollViewer>
         <Grid>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
@@ -25,7 +25,7 @@
                 <Button x:Name="btn_export" Content="Exporter dans un fichier csv" Margin="5" Click="btn_export_Click"/>
                 <Button x:Name="btn_ajouter" Content="Ajouter" Margin="5" Click="btn_ajouter_Click" />
             </StackPanel>
-            
+
             <GridView x:Name="gvActivites" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="gvActivites_SelectionChanged">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="local:Activite">
@@ -44,12 +44,15 @@
                                     <TextBlock Text="{x:Bind Id_categorie, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
                                 </StackPanel>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal"> 
-                            <Button x:Name="btnModifier" HorizontalAlignment="Right" Click="btnModifier_Click" Visibility="{x:Bind BtnDelete, Mode=OneWay}" Margin="20">
-                                <SymbolIcon Symbol="Edit" Margin="10" Foreground="Blue"/>
-                            </Button>
-                            <Button x:Name="btnDelete" HorizontalAlignment="Right" Click="btnDelete_Click" Visibility="{x:Bind BtnDelete, Mode=OneWay}" Margin="20">
-                                <SymbolIcon Symbol="Delete" Margin="10" Foreground="Red"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="btnSeance" HorizontalAlignment="Right" Click="btnSeance_Click" Visibility="{x:Bind BtnDelete, Mode=OneWay}" Margin="20">
+                                    Voir séances
+                                </Button>
+                                <Button x:Name="btnModifier" HorizontalAlignment="Right" Click="btnModifier_Click" Visibility="{x:Bind BtnDelete, Mode=OneWay}" Margin="20">
+                                    <SymbolIcon Symbol="Edit" Margin="10" Foreground="Blue"/>
+                                </Button>
+                                <Button x:Name="btnDelete" HorizontalAlignment="Right" Click="btnDelete_Click" Visibility="{x:Bind BtnDelete, Mode=OneWay}" Margin="20">
+                                    <SymbolIcon Symbol="Delete" Margin="10" Foreground="Red"/>
                                 </Button>
                             </StackPanel>
                         </StackPanel>

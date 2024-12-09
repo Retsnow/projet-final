@@ -1,3 +1,4 @@
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -7,6 +8,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,12 +27,18 @@ namespace ProjetFinal
     {
 
         NavigationViewItem nv_activite;
+        Activite activite;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            object[] objects = new object[2];
+
             if (e.Parameter is not null)
             {
-                nv_activite = (NavigationViewItem)e.Parameter;
+                objects = (object[])e.Parameter;
+                nv_activite = objects[0] as NavigationViewItem;
+                if (objects.Count() == 2)
+                    activite = objects[1] as Activite;
             }
 
         }
@@ -40,11 +48,25 @@ namespace ProjetFinal
             this.InitializeComponent();
 
             cbxCategorie.ItemsSource = SingletonRequete.getListeCategorie();
+
+            if (activite != null)
+            {
+                tbx_nom_activite.Text = activite.Nom;
+                tbx_nom_activite.IsEnabled = false;
+                tbx_cout_organisation.Text = activite.Cout_organisation.ToString();
+                tbx_prix_vente.Text = activite.Prix_vente.ToString();
+                cbxCategorie.SelectedItem = activite.Id_categorie;
+            }
+
         }
 
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
-            SingletonRequete.ajouterActivite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+            if (activite != null)
+                SingletonRequete.modifierActivite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+            else
+                SingletonRequete.ajouterActivite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+
             nv_activite.IsSelected = false;
             nv_activite.IsSelected = true;
 

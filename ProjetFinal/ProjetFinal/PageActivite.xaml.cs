@@ -109,7 +109,12 @@ namespace ProjetFinal
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
+            window.mainFrame.Navigate(typeof(PageAjouterActivite), new object[2] { nv_activite, gvActivites.SelectedItem });
+        }
 
+        private void btnSeance_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(PageSeance), new object[2] { gvActivites.SelectedItem, window });
         }
     }
 }

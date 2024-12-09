@@ -45,6 +45,31 @@ namespace ProjetFinal
             }
         }
 
+        public static void modifierActivite(string nom, double coutOrganisation, double prixVente, string idCategorie)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "update activite SET cout_organisation=@cout, prix_vente=@prix, id_categorie=@categorie WHERE nom=@nom";
+                commande.Parameters.AddWithValue("@nom", nom);
+                commande.Parameters.AddWithValue("@cout", coutOrganisation);
+                commande.Parameters.AddWithValue("@prix", prixVente);
+                commande.Parameters.AddWithValue("@categorie", idCategorie);
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+
         public static void supprimerActivite(string nom)
         {
             try
