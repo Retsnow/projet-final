@@ -561,13 +561,21 @@ namespace ProjetFinal
         {
             string date = date_naissance.ToString();
 
-            MySqlCommand commande = new MySqlCommand();
-            commande.Connection = conn;
-            commande.CommandText = "INSERT INTO adherent (nom, prenom, adresse, date_naissance) VALUES ('" + nom + "', '" + prenom + "', '" + adresse + "', '" + date + "');";
-            conn.Open();
-            commande.ExecuteReader();
-            conn.Close();
-            // Try catch a faire
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "INSERT INTO adherent (nom, prenom, adresse, date_naissance) VALUES ('" + nom + "', '" + prenom + "', '" + adresse + "', '" + date + "');";
+                conn.Open();
+                commande.ExecuteReader();
+                conn.Close();
+            }
+
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
 
         }
 
