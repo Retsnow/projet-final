@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid>
-
+        <TextBlock>Êtes-vous sur de vouloir supprimer tous les séances et les inscriptions relié à cette activité?</TextBlock>
     </Grid>
 </UserControl>

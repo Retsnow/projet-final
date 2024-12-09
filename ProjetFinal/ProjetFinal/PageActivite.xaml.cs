@@ -114,7 +114,7 @@ namespace ProjetFinal
 
         private void btnSeance_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(PageSeance), new object[2] { gvActivites.SelectedItem, window });
+            window.mainFrame.Navigate(typeof(PageSeance), new object[2] { gvActivites.SelectedItem, window });
         }
     }
 }
