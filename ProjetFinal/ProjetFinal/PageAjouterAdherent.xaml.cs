@@ -54,9 +54,9 @@ namespace ProjetFinal
             adresse = tbx_adresse.Text;
             date_denaissance = DateOnly.Parse(date_naissance.SelectedDate.Value.ToString("yyyy-MM-dd"));
 
-            SingletonRequete.ajouterAdherent(nom, prenom, adresse, date_denaissance);
-
-            // Message de validation
+            tbk_confirmation.Text = SingletonRequete.ajouterAdherent(nom, prenom, adresse, date_denaissance);
+            tbk_confirmation.Visibility = Visibility.Visible;
+            
         }
     }
 }
