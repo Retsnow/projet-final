@@ -79,7 +79,7 @@ namespace ProjetFinal
         private void gvActivites_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!RoleUtilisateur.Admin)
-                Frame.Navigate(typeof(PageSeance), new object[2] { gvActivites.SelectedItem, window });
+                window.mainFrame.Navigate(typeof(PageSeance), new object[2] { gvActivites.SelectedItem, window });
         }
 
         private async void btn_export_Click(object sender, RoutedEventArgs e)
@@ -104,7 +104,7 @@ namespace ProjetFinal
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(typeof(PageAjouterActivite), nv_activite);
+            window.mainFrame.Navigate(typeof(PageAjouterActivite), new object[2] { nv_activite, null });
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
