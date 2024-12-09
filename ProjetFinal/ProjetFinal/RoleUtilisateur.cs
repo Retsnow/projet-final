@@ -23,5 +23,13 @@ namespace ProjetFinal
 			get { return utilisateurConnecte; }
 			set { utilisateurConnecte = value; }
 		}
-	}
+
+        private static string utilisateurNom;
+
+        public static string UtilisateurNom
+        {
+            get { return utilisateurConnecte; }
+            set { utilisateurConnecte = value; }
+        }
+    }
 }

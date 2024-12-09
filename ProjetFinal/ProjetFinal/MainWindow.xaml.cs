@@ -70,6 +70,8 @@ namespace ProjetFinal
 
             if (RoleUtilisateur.UtilisateurConnecte != null && RoleUtilisateur.UtilisateurConnecte != "")
             {
+                nv_user.Content = RoleUtilisateur.UtilisateurNom;
+                nv_user.Visibility = Visibility.Visible;
                 nv_connexion.Visibility = Visibility.Collapsed;
                 nv_statistique.Visibility = Visibility.Collapsed;
                 nv_adherent.Visibility = Visibility.Collapsed;
@@ -77,6 +79,8 @@ namespace ProjetFinal
             }
             else if (RoleUtilisateur.Admin)
             {
+                nv_user.Content = "Admin";
+                nv_user.Visibility = Visibility.Visible;
                 nv_connexion.Visibility = Visibility.Collapsed;
                 nv_deconnexion.Visibility = Visibility.Visible;
                 nv_statistique.Visibility = Visibility.Visible;
@@ -84,6 +88,7 @@ namespace ProjetFinal
             }
             else
             {
+                nv_user.Visibility = Visibility.Collapsed;
                 nv_deconnexion.Visibility = Visibility.Collapsed;
                 nv_statistique.Visibility = Visibility.Collapsed;
                 nv_adherent.Visibility = Visibility.Collapsed;

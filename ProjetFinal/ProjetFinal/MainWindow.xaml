@@ -9,6 +9,7 @@
 
     <NavigationView x:Name="nv_main" SelectionChanged="nv_main_SelectionChanged" IsSettingsVisible="False" IsBackButtonVisible="Visible" IsBackEnabled="True">
         <NavigationView.MenuItems>
+            <NavigationViewItem x:Name="nv_user" Content="Admin" Visibility="Collapsed" SelectsOnInvoked="False"/>
             <NavigationViewItem Icon="List" x:Name="nv_activite" IsSelected="True"  Content="Activité" />
             <NavigationViewItem Icon="OtherUser" x:Name="nv_connexion" Content="Connexion" />
             <NavigationViewItem Icon="People" x:Name="nv_adherent" Content="Adhérent" Visibility="Collapsed" />

@@ -398,7 +398,7 @@ namespace ProjetFinal
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select id from adherent where id = '" + idEntree + "'";
+                commande.CommandText = "Select id, nom, prenom from adherent where id = '" + idEntree + "'";
                 conn.Open();
                 MySqlDataReader r = commande.ExecuteReader();
 
@@ -408,6 +408,7 @@ namespace ProjetFinal
                 if (b)
                 {
                     RoleUtilisateur.UtilisateurConnecte = idEntree;
+                    RoleUtilisateur.UtilisateurNom = r["prenom"] + " " + r["nom"];
                 }
                 conn.Close();
 
