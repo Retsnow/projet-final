@@ -62,7 +62,7 @@ namespace ProjetFinal
 
         }
 
-        private async Task btnDelete_ClickAsync(object sender, RoutedEventArgs e)
+        private async void btnDelete_ClickAsync(object sender, RoutedEventArgs e)
         {
             PermissionDeleteDialog dialog = new PermissionDeleteDialog();
             ContentDialogResult resultat = ContentDialogResult.None;

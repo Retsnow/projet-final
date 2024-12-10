@@ -78,8 +78,22 @@ namespace ProjetFinal
             window.mainFrame.Navigate(typeof(PageAjouterAdherent), new object[2] { adherent, window });
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            PermissionDeleteDialog dialog = new PermissionDeleteDialog();
+            dialog.XamlRoot = sv_main.XamlRoot;
+            dialog.Title = "Supprimer Adherent";
+            dialog.CloseButtonText = "Annuler";
+            dialog.PrimaryButtonText = "Supprimer";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            if (SingletonRequete.getListeAdherent().Count > 0)
+            {
+                dialog.Message = "Voulez-vous vraiment supprimer l'adhrent";
+            }
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
             Button button = sender as Button;
 
             Adherent adherent = button.DataContext as Adherent;
