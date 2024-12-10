@@ -26,17 +26,11 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageSeance : Page
     {
-
         Activite activite;
         MainWindow window;
         NavigationViewItem nv_activite;
 
         int idSeance;
-
-        List<DateTime> selectableDates = new List<DateTime>();
-        List<DateTime> heuresSelectionnables = new List<DateTime>();
-
-
 
         public PageSeance()
         {
@@ -55,62 +49,33 @@ namespace ProjetFinal
                 window = objects[1] as MainWindow;
                 nv_activite = objects[2] as NavigationViewItem;
             }
-
-            CalendarPicker.MinDate = DateTimeOffset.Now;
-
-            foreach (Seance seanceTemp in SingletonRequete.getListeSeance(activite.Nom))
-            {
-                if (seanceTemp.UtilisateurInscrit)
-                {
-                    selectableDates.Add(seanceTemp.Date);
-                    heuresSelectionnables.Add(new DateTime(seanceTemp.Date.Year, seanceTemp.Date.Month, seanceTemp.Date.Day, seanceTemp.Heure.Hour, seanceTemp.Heure.Minute, 0));
-                }
-            }
+            cbxDate.ItemsSource = SingletonRequete.getListeSeance(activite.Nom);
         }
 
-
-        private void CalendarPicker_CalendarViewDayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args)
-        {
-            if (args.Item != null)
-            {
-                DateTime date = new DateTime(args.Item.Date.DateTime.Year, args.Item.Date.DateTime.Month, args.Item.Date.DateTime.Day);
-
-                // Si la date n'est pas dans la liste des dates sélectionnables, appliquez le style de non-sélection
-                if (!selectableDates.Contains(date))
-                {
-                    args.Item.IsEnabled = false;
-                    args.Item.Foreground = new SolidColorBrush(Colors.Gray);
-                }
-                else if (selectableDates.Contains(date))
-                {
-                    // Si la date est sélectionnable, enlever le style de non-sélection (si besoin)
-                    args.Item.ClearValue(CalendarViewDayItem.StyleProperty);
-                }
-            }
-        }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             SingletonRequete.supprimerSeance(idSeance);
-            CalendarPicker.Date = null;
+            cbxDate.ItemsSource = SingletonRequete.getListeSeance(activite.Nom);
         }
 
         private void btnInscription_Click(object sender, RoutedEventArgs e)
         {
-            string temp = SingletonRequete.InscriptionAdherantSeance(RoleUtilisateur.UtilisateurConnecte, idSeance);
-
             if (RoleUtilisateur.UtilisateurConnecte != null)
             {
+                string temp = SingletonRequete.InscriptionAdherantSeance(RoleUtilisateur.UtilisateurConnecte, idSeance);
+
                 if (SingletonRequete.UtilisateurEstInscritSeance(RoleUtilisateur.UtilisateurConnecte, idSeance))
                 {
                     ratingControl.Visibility = Visibility.Visible;
                     btnInscription.Visibility = Visibility.Collapsed;
                 }
-                else 
-                { 
+                else
+                {
                     btnInscription.Visibility = Visibility.Visible;
                     ratingControl.Visibility = Visibility.Collapsed;
                 }
+                cbxDate.ItemsSource = SingletonRequete.getListeSeance(activite.Nom);
             }
         }
 
@@ -119,11 +84,21 @@ namespace ProjetFinal
             SingletonRequete.AdherentNoteSeance(RoleUtilisateur.UtilisateurConnecte, ratingControl.Value, idSeance);
         }
 
-        private void CalendarPicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            if (CalendarPicker.Date != null)
+            window.mainFrame.Navigate(typeof(PageAjouterSeance), new object[3] { nv_activite, activite, SingletonRequete.getSeance(idSeance) });
+        }
+
+        private void btn_ajouter_Click(object sender, RoutedEventArgs e)
+        {
+            window.mainFrame.Navigate(typeof(PageAjouterSeance), new object[3] { nv_activite, activite, null });
+        }
+
+        private void cbxDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbxDate.SelectedIndex != -1)
             {
-                DateTime date = new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day);
+                DateTime date = (cbxDate.SelectedItem as Seance).Date;
 
                 foreach (Seance seanceTemp in SingletonRequete.getListeSeance(activite.Nom))
                 {
@@ -134,7 +109,7 @@ namespace ProjetFinal
                         ratingControl.IsEnabled = true;
 
                         idSeance = SingletonRequete.TrouverIdSeance(activite.Nom,
-                            new DateTime(CalendarPicker.Date.Value.Year, CalendarPicker.Date.Value.Month, CalendarPicker.Date.Value.Day));
+                            new DateTime(date.Year, date.Month, date.Day));
 
                         ratingControl.Value = SingletonRequete.prendreNote(u, idSeance);
                     }
@@ -173,16 +148,6 @@ namespace ProjetFinal
                 btnDelete.Visibility = Visibility.Collapsed;
                 btnModifier.Visibility = Visibility.Collapsed;
             }
-        }
-
-        private void btnModifier_Click(object sender, RoutedEventArgs e)
-        {
-            window.mainFrame.Navigate(typeof(PageAjouterSeance), new object[3] { nv_activite, activite , SingletonRequete.getSeance(idSeance) });
-        }
-
-        private void btn_ajouter_Click(object sender, RoutedEventArgs e)
-        {
-            window.mainFrame.Navigate(typeof(PageAjouterSeance), new object[3] { nv_activite, activite, null });
         }
     }
 }

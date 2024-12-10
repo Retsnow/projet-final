@@ -31,8 +31,13 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
 
                 <StackPanel MinHeight="100" Orientation="Horizontal">
-                    <TextBlock Text="Choix de la séance:" VerticalAlignment="Center" Margin="20"/>
-                    <CalendarDatePicker x:Name="CalendarPicker" CalendarViewDayItemChanging="CalendarPicker_CalendarViewDayItemChanging" DateChanged="CalendarPicker_DateChanged" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cbxDate" Header="Date de la séance:" Margin="5" SelectionChanged="cbxDate_SelectionChanged" VerticalAlignment="Center">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="local:Seance">
+                                <TextBlock Text="{x:Bind Date, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <TextBox x:Name="txtHeure" Header="Heure de la séance:" Margin="20" IsEnabled="False"/>
                 </StackPanel>
                 <StackPanel>
@@ -40,7 +45,7 @@
                 </StackPanel>
                 <StackPanel>
                     <Button x:Name="btnInscription" HorizontalAlignment="Right" Content="S'inscrire" Click="btnInscription_Click" Visibility="Collapsed" Margin="20" Foreground="Blue"/>
-                    
+
                     <Button x:Name="btnModifier" HorizontalAlignment="Right" Click="btnModifier_Click" Visibility="Collapsed" Margin="20">
                         <SymbolIcon Symbol="Edit" Margin="10" Foreground="Blue"/>
                     </Button>
