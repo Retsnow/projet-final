@@ -228,6 +228,41 @@ namespace ProjetFinal
             return liste;
         }
 
+        public static Seance getSeance(int idSeance)
+        {
+            Seance seance;
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select * from seance where id ='" + idSeance + "'";
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    DateTime date = Convert.ToDateTime(r["date"]);
+
+                    TimeSpan timeSpan = TimeSpan.Parse(r["heure"].ToString());
+                    TimeOnly heure = TimeOnly.FromTimeSpan(timeSpan);
+                    int nb_place_disponible = Convert.ToInt32(r["nb_place_disponible"]);
+                    string nom_activite = r["nom_activite"].ToString();
+                    int id_categorie = Convert.ToInt32(r["id_categorie"]);
+
+                    return seance = new Seance(date, heure, nb_place_disponible, nom_activite, id_categorie);
+                }
+
+                r.Close();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return null;
+        }
+
         public static ObservableCollection<Adherent> getListeAdherent()
         {
             ObservableCollection<Adherent> liste = new ObservableCollection<Adherent>();
