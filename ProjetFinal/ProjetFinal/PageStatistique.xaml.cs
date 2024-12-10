@@ -23,10 +23,19 @@ namespace ProjetFinal
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+
+    public class ActiviteProfit
+    {
+        public string Nom { get; set; }
+        public double Note { get; set; }
+    }
+
     public sealed partial class PageStatistique : Page
     {
 
         
+
 
         public ObservableCollection<string> Items { get; set; }  
 
@@ -39,9 +48,21 @@ namespace ProjetFinal
             lv_nbAdherentParActivite.ItemsSource = SingletonRequete.nbAdherentParActivite();
             tbk_nbAdherent.Text += " " + SingletonRequete.nbTotalAdherent();
             tbk_nbActivite.Text += " " + SingletonRequete.nbTotalActivite();
-            lv_moyenneNoteParActivite.ItemsSource = SingletonRequete.moyenneNoteActivite();
+
+            List<double> notes;
+            List<string> noms;
+            SingletonRequete.moyenneNoteActivite(out notes, out noms);
+
+            List<ActiviteProfit> profit = new List<ActiviteProfit>();
+            for (int i = 0; i < noms.Count; i++)
+            {
+                profit.Add(new ActiviteProfit { Nom = noms[i], Note = notes[i] });
+            }
+            lv_profit_activite.ItemsSource = profit;
+
             lv_maxSeance.ItemsSource = SingletonRequete.max_seance();
             lv_prixMoyenActivitePourChaqueParticipant.ItemsSource = SingletonRequete.prixMoyenActivitePourChaqueParticipant();
+            lv_profit_activite.ItemsSource = SingletonRequete.profitActivite();
         }
 
 
