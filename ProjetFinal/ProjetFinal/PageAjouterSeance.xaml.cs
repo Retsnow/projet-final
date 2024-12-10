@@ -46,7 +46,7 @@ namespace ProjetFinal
             {
                 idCategorie.Value = seance.Id_categorie;
                 txtActivite.Text = seance.Nom_activite;
-                calendarPicker.Date = new DateTimeOffset(seance.Date);
+                calendarPicker.Date = new DateTimeOffset(seance.Date.ToDateTime(new TimeOnly()));
                 timePickerHeure.Time = seance.Heure.ToTimeSpan();
                 nbPlaceDisponible.Value = seance.Nb_place_disponible;
             }

@@ -106,13 +106,7 @@ namespace ProjetFinal
         {
             if (!RoleUtilisateur.Admin)
             {
-                GridViewItem gridViewItem = sender as GridViewItem;
-
-                //DataContext représente l'élément parent
-                Activite activite = gridViewItem.DataContext as Activite;
-
-                //permet de s'assurer que nous avons un élément sélectionné
-                gvActivites.SelectedItem = activite;
+                Activite activite = gvActivites.SelectedItem as Activite;
 
                 window.mainFrame.Navigate(typeof(PageSeance), new object[3] { activite, window, nv_activite });
             }

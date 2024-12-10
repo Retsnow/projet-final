@@ -98,7 +98,7 @@ namespace ProjetFinal
         {
             if (cbxDate.SelectedIndex != -1)
             {
-                DateTime date = (cbxDate.SelectedItem as Seance).Date;
+                DateOnly date = (cbxDate.SelectedItem as Seance).Date;
 
                 foreach (Seance seanceTemp in SingletonRequete.getListeSeance(activite.Nom))
                 {
