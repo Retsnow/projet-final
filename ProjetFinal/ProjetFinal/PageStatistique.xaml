@@ -64,6 +64,21 @@
                 </ListView.ItemTemplate>
             </ListView>
 
+            <ListView x:Name="lv_profit_activite"  
+                SelectionMode="Single" 
+                Header="Profi de chaque activite:" 
+                Margin="5"
+                FontSize="20">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:ActiviteProfit">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Nom}" x:Phase="1" Margin="0,5,0,5"/>
+                            <RatingControl Value="{x:Bind Note}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackPanel>
     </ScrollViewer>
 </Page>

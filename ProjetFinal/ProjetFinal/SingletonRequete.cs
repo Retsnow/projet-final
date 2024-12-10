@@ -662,22 +662,26 @@ namespace ProjetFinal
         }
 
 
-        public static ArrayList moyenneNoteActivite()
+        public static void moyenneNoteActivite(out List<double> notes, out List<string> noms)
         {
-            ArrayList tabNote = new ArrayList();
+            notes = new List<double>();
+            noms = new List<string>();
 
             try
             {
-
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select * FROM moyennenoteactivite";
+                commande.CommandText = "SELECT * FROM moyennenoteactivite";
                 conn.Open();
                 MySqlDataReader r = commande.ExecuteReader();
+
                 while (r.Read())
                 {
-                    tabNote.Add(r["nom"] + ": " + r["noteMoyenne"] + "/5");
+                    double note = Convert.ToDouble(r["noteMoyenne"]);
+                    string nom = r["nom"].ToString();
 
+                    notes.Add(note);
+                    noms.Add(nom);
                 }
 
                 r.Close();
@@ -688,7 +692,6 @@ namespace ProjetFinal
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
             }
-            return tabNote;
         }
 
         public static string ajouterAdherent(string nom, string prenom, string adresse, DateOnly date_naissance)
@@ -839,7 +842,8 @@ namespace ProjetFinal
             }
             return tab;
         }
-        public static ArrayList prixActivite()
+
+        public static ArrayList profitActivite()
         {
 
 
@@ -850,12 +854,12 @@ namespace ProjetFinal
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select * FROM prixmoyenparactivitepourchaqueparticipant";
+                commande.CommandText = "Select * FROM profitactivite";
                 conn.Open();
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
-                    tab.Add("Prix d'activité moyen: " + r["prixMoyenActivites"] + " / Adhérent: " + r["id"]);
+                    tab.Add(r["nom_activite"] + ": " + r["profit_total"] + " $");
 
                 }
 
