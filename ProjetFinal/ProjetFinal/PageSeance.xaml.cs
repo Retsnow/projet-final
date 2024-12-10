@@ -182,7 +182,7 @@ namespace ProjetFinal
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(typeof(PageAjouterSeance), new object[2] { nv_activite, null });
+            window.mainFrame.Navigate(typeof(PageAjouterSeance), new object[3] { nv_activite, activite, null });
         }
     }
 }

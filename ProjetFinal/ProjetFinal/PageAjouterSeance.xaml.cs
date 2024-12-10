@@ -66,9 +66,9 @@ namespace ProjetFinal
         private void btn_submit_Click(object sender, RoutedEventArgs e)
         {
             if (seance != null)
-                SingletonRequete.modifierSeance(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+                SingletonRequete.modifierSeance(seance.Id, seance.Date, seance.Heure.ToTimeSpan(), seance.Nb_place_disponible, seance.Nom_activite, seance.Id_categorie);
             else
-                SingletonRequete.ajouterSeance(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+                SingletonRequete.ajouterSeance(seance.Date, seance.Heure.ToTimeSpan(), seance.Nb_place_disponible, seance.Nom_activite, seance.Id_categorie);
 
             nv_activite.IsSelected = false;
             nv_activite.IsSelected = true;

@@ -70,14 +70,13 @@ namespace ProjetFinal
             }
         }
 
-        public static void ajouterSeance(int id, DateTime date, TimeSpan heure, int nb_place_disponible, string nom_activite, int id_categorie)
+        public static void ajouterSeance(DateTime date, TimeSpan heure, int nb_place_disponible, string nom_activite, int id_categorie)
         {
             try
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
                 commande.CommandText = "insert into seance (date,heure,nb_place_disponible,nom_activite,id_categorie) values(@date,@heure,@nb_place_disponible,@nom_activite,@id_categorie)";
-                commande.Parameters.AddWithValue("@id", id.ToString());
                 commande.Parameters.AddWithValue("@date", date.Year + "-" + date.Month + "-" + date.Day);
                 commande.Parameters.AddWithValue("@heure", heure.Hours + ":" + heure.Minutes + ":00");
                 commande.Parameters.AddWithValue("@nb_place_disponible", nb_place_disponible);
