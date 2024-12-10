@@ -9,16 +9,17 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
-        <TextBlock x:Name="Title" FontSize="36" Padding="10">Statistique</TextBlock>
+        <TextBlock x:Name="Title" FontSize="36" Padding="10">Statistiques</TextBlock>
         
-        <TextBlock x:Name="tbk_nbAdherent" Margin="5">Nombre total d'adhérents:</TextBlock>
+        <TextBlock x:Name="tbk_nbAdherent" FontSize="20" Margin="5">Nombre total d'adhérents:</TextBlock>
         
-        <TextBlock x:Name="tbk_nbActivite" Margin="5">Nombre total d'activités:</TextBlock>
+        <TextBlock x:Name="tbk_nbActivite" FontSize="20" Margin="5">Nombre total d'activités:</TextBlock>
 
         <ListView x:Name="lv_nbAdherentParActivite"  
-                  SelectionMode="None" 
-                  Header="Nombre d'adhérents pour chaque activités" 
-                  Margin="5">
+                  SelectionMode="Single" 
+                  Header="Nombre d'adhérents pour chaque activités:" 
+                  Margin="5"
+                  FontSize="20">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
@@ -27,9 +28,22 @@
         </ListView>
 
         <ListView x:Name="lv_moyenneNoteParActivite"  
-                  SelectionMode="None" 
+                  SelectionMode="Single" 
                   Header="La moyenne des notes d'appréciation pour chacune des activités:" 
-                  Margin="5">
+                  Margin="5"
+                  FontSize="20">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView x:Name="lv_maxSeance"  
+                  SelectionMode="Single" 
+                  Header="Adhérent participant au plus grande nombre de seance:" 
+                  Margin="5"
+                  FontSize="20">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>

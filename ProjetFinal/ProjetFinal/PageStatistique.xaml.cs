@@ -40,7 +40,7 @@ namespace ProjetFinal
             tbk_nbAdherent.Text += " " + SingletonRequete.nbTotalAdherent();
             tbk_nbActivite.Text += " " + SingletonRequete.nbTotalActivite();
             lv_moyenneNoteParActivite.ItemsSource = SingletonRequete.moyenneNoteActivite();
-
+            lv_maxSeance.ItemsSource = SingletonRequete.max_seance();
         }
 
 
