@@ -695,6 +695,64 @@ namespace ProjetFinal
             }
         }
 
+        public static ArrayList max_seance()
+        {
+            ArrayList tab = new ArrayList();
+
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select * FROM max_seance";
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    tab.Add(r["id"] + " avec " + r["nombre_seances"] + " séances");
+
+                }
+
+                r.Close();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return tab;
+        }
+
+        public static ArrayList prixMoyenActivitePourChaqueParticipant()
+        {
+            ArrayList tab = new ArrayList();
+
+            try
+            {
+
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "Select * FROM prixmoyenparactivitepourchaqueparticipant";
+                conn.Open();
+                MySqlDataReader r = commande.ExecuteReader();
+                while (r.Read())
+                {
+                    tab.Add("Prix d'activité moyen: " + r["prixMoyenActivites"] + " / Adhérent: " + r["id"]);
+
+                }
+
+                r.Close();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return tab;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {

@@ -65,7 +65,7 @@ namespace ProjetFinal
         {
             ConnexionAdminDialog dialog = new ConnexionAdminDialog();
             dialog.XamlRoot = stck_conn.XamlRoot;
-            dialog.Title = "Connexion Admnisatrateur";
+            dialog.Title = "Connexion Administrateur";
             dialog.CloseButtonText = "Annuler";
             dialog.PrimaryButtonText = "Se connecter";
             dialog.DefaultButton = ContentDialogButton.Primary;
