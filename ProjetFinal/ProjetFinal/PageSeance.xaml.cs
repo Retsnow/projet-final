@@ -177,9 +177,7 @@ namespace ProjetFinal
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            Seance seance = SingletonRequete.getListeSeance(activite.Nom).Where(s => Equals(s.Id,idSeance)).First();
-
-            window.mainFrame.Navigate(typeof(PageAjouterSeance), new object[3] { nv_activite, activite , seance });
+            window.mainFrame.Navigate(typeof(PageAjouterSeance), new object[3] { nv_activite, activite , SingletonRequete.getSeance(idSeance) });
         }
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)

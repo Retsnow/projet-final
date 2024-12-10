@@ -9,18 +9,24 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <StackPanel MinHeight="100" Orientation="Vertical">
-            <TextBox x:Name="txtActivite" Header="Nom de l'activité:" Margin="20" IsEnabled="False"/>
-            <CalendarDatePicker Header="Date de la séance:" x:Name="calendarPicker" VerticalAlignment="Center" Margin="20"/>
-            <TimePicker Header="Heure de la séance" x:Name="timePickerHeure" Margin="20"/>
-            <NumberBox Header="Nombre de place disponible" x:Name="nbPlaceDisponible"/>
-            <NumberBox x:Name="idCategorie" Visibility="Collapsed"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+
+            <TextBox x:Name="txtActivite" Header="Nom de l'activité:" Margin="20" IsEnabled="False" HorizontalAlignment="Stretch"/>
+            <CalendarDatePicker Header="Date de la séance:" x:Name="calendarPicker" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Stretch"/>
+            <TimePicker Header="Heure de la séance:" x:Name="timePickerHeure" Margin="20" HorizontalAlignment="Stretch"/>
+            <NumberBox Header="Nombre de place disponible:" x:Name="nbPlaceDisponible" Margin="20" HorizontalAlignment="Stretch"/>
+            <NumberBox x:Name="idCategorie" Visibility="Collapsed" Margin="20" HorizontalAlignment="Stretch"/>
+
+            <Button x:Name="btn_submit" Content="Créer la séance" Click="btn_submit_Click" Margin="20" HorizontalAlignment="Stretch"/>
+
         </StackPanel>
-
-        <Button x:Name="btn_submit" Content="Créer la séance" Click="btn_submit_Click" Margin="5"  />
-
-    </StackPanel>
+    </Grid>
 
 </Page>

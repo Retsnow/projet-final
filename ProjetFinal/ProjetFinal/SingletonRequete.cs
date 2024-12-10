@@ -70,6 +70,60 @@ namespace ProjetFinal
             }
         }
 
+        public static void ajouterSeance(int id, DateTime date, TimeSpan heure, int nb_place_disponible, string nom_activite, int id_categorie)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "insert into seance (date,heure,nb_place_disponible,nom_activite,id_categorie) values(@date,@heure,@nb_place_disponible,@nom_activite,@id_categorie)";
+                commande.Parameters.AddWithValue("@id", id.ToString());
+                commande.Parameters.AddWithValue("@date", date.Year + "-" + date.Month + "-" + date.Day);
+                commande.Parameters.AddWithValue("@heure", heure.Hours + ":" + heure.Minutes + ":00");
+                commande.Parameters.AddWithValue("@nb_place_disponible", nb_place_disponible);
+                commande.Parameters.AddWithValue("@nom_activite", nom_activite);
+                commande.Parameters.AddWithValue("@id_categorie", id_categorie);
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+
+        public static void modifierSeance(int id, DateTime date, TimeSpan heure, int nb_place_disponible, string nom_activite, int id_categorie)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "update seance SET date=@date, heure=@heure, nb_place_disponible=@nb_place_disponible, nom_activite=@nom_activite, id_categorie=@id_categorie WHERE id=@id";
+                commande.Parameters.AddWithValue("@id", id.ToString());
+                commande.Parameters.AddWithValue("@date", date.Year + "-" + date.Month + "-" + date.Day);
+                commande.Parameters.AddWithValue("@heure", heure.Hours + ":" + heure.Minutes + ":00");
+                commande.Parameters.AddWithValue("@nb_place_disponible", nb_place_disponible);
+                commande.Parameters.AddWithValue("@nom_activite", nom_activite);
+                commande.Parameters.AddWithValue("@id_categorie", id_categorie);
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+
         public static void supprimerActivite(string nom)
         {
             try
@@ -233,7 +287,6 @@ namespace ProjetFinal
             Seance seance;
             try
             {
-
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
                 commande.CommandText = "Select * from seance where id ='" + idSeance + "'";
