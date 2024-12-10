@@ -70,7 +70,7 @@ namespace ProjetFinal
             }
         }
 
-        public static void ajouterSeance(DateTime date, TimeSpan heure, int nb_place_disponible, string nom_activite, int id_categorie)
+        public static void ajouterSeance(DateOnly date, TimeSpan heure, int nb_place_disponible, string nom_activite, int id_categorie)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace ProjetFinal
             }
         }
 
-        public static void modifierSeance(int id, DateTime date, TimeSpan heure, int nb_place_disponible, string nom_activite, int id_categorie)
+        public static void modifierSeance(int id, DateOnly date, TimeSpan heure, int nb_place_disponible, string nom_activite, int id_categorie)
         {
             try
             {
@@ -259,7 +259,8 @@ namespace ProjetFinal
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
-                    DateTime date = Convert.ToDateTime(r["date"]);
+                    DateTime dateTemp = Convert.ToDateTime(r["date"]);
+                    DateOnly date = new DateOnly(dateTemp.Year, dateTemp.Month, dateTemp.Day);
 
                     TimeSpan timeSpan = TimeSpan.Parse(r["heure"].ToString());
                     TimeOnly heure = TimeOnly.FromTimeSpan(timeSpan);
@@ -293,7 +294,8 @@ namespace ProjetFinal
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
-                    DateTime date = Convert.ToDateTime(r["date"]);
+                    DateTime dateTemp = Convert.ToDateTime(r["date"]);
+                    DateOnly date = new DateOnly(dateTemp.Year, dateTemp.Month, dateTemp.Day);
 
                     TimeSpan timeSpan = TimeSpan.Parse(r["heure"].ToString());
                     TimeOnly heure = TimeOnly.FromTimeSpan(timeSpan);
