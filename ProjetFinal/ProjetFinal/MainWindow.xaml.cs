@@ -27,7 +27,7 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
             nv_main.BackRequested += Nv_main_BackRequested;
-
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "fr-FR";
         }
 
         private void Nv_main_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)

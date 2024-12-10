@@ -29,7 +29,8 @@ namespace ProjetFinal
 
         Activite activite;
         MainWindow window;
-        
+        NavigationViewItem nv_activite;
+
         int idSeance;
 
         List<DateTime> selectableDates = new List<DateTime>();
@@ -52,6 +53,7 @@ namespace ProjetFinal
                 objects = (object[])e.Parameter;
                 activite = objects[0] as Activite;
                 window = objects[1] as MainWindow;
+                nv_activite = objects[2] as NavigationViewItem;
             }
 
             CalendarPicker.MinDate = DateTimeOffset.Now;
@@ -175,12 +177,14 @@ namespace ProjetFinal
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
+            Seance seance = SingletonRequete.getListeSeance(activite.Nom).Where(s => Equals(s.Id,idSeance)).First();
 
+            window.mainFrame.Navigate(typeof(PageAjouterActivite), new object[3] { nv_activite, activite , seance });
         }
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(typeof(PageAjouterSeance));
+            window.mainFrame.Navigate(typeof(PageAjouterSeance), new object[2] { nv_activite, null });
         }
     }
 }

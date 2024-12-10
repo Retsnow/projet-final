@@ -169,7 +169,7 @@ namespace ProjetFinal
             //permet de s'assurer que nous avons un élément sélectionné
             gvActivites.SelectedItem = activite;
 
-            window.mainFrame.Navigate(typeof(PageSeance), new object[2] { activite, window });
+            window.mainFrame.Navigate(typeof(PageSeance), new object[3] { activite, window, nv_activite });
         }
     }
 }

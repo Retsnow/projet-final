@@ -23,9 +23,55 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class PageAjouterSeance : Page
     {
+
+        NavigationViewItem nv_activite;
+        Activite activite;
+        Seance seance;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            object[] objects = new object[2];
+
+            if (e.Parameter is not null)
+            {
+                objects = (object[])e.Parameter;
+                nv_activite = objects[0] as NavigationViewItem;
+                if (objects.Count() > 1)
+                    activite = objects[1] as Activite;
+                if (objects.Count() > 2)
+                    seance = objects[2] as Seance;
+            }
+
+            if (seance != null)
+            {
+                idCategorie.Value = seance.Id_categorie;
+                txtActivite.Text = seance.Nom_activite;
+                calendarPicker.Date = new DateTimeOffset(seance.Date);
+                timePickerHeure.Time = seance.Heure.ToTimeSpan();
+                nbPlaceDisponible.Value = seance.Nb_place_disponible;
+            }
+            else if(activite != null)
+            {
+                idCategorie.Value = activite.Id_categorie;
+                txtActivite.Text = activite.Nom;
+            }
+        }
+
         public PageAjouterSeance()
         {
             this.InitializeComponent();
+            calendarPicker.MinDate = DateTimeOffset.Now;
+        }
+
+        private void btn_submit_Click(object sender, RoutedEventArgs e)
+        {
+            //if (seance != null)
+                //SingletonRequete.modifierSeance(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+            //else
+                //SingletonRequete.ajouterSeance(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+
+            nv_activite.IsSelected = false;
+            nv_activite.IsSelected = true;
         }
     }
 }

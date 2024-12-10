@@ -71,7 +71,6 @@ namespace ProjetFinal
 
             nv_activite.IsSelected = false;
             nv_activite.IsSelected = true;
-
         }
     }
 }
