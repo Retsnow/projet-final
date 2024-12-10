@@ -80,32 +80,29 @@ namespace ProjetFinal
 
         private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
+            Adherent adherent = button.DataContext as Adherent;
+
             PermissionDeleteDialog dialog = new PermissionDeleteDialog();
             dialog.XamlRoot = sv_main.XamlRoot;
             dialog.Title = "Supprimer Adherent";
             dialog.CloseButtonText = "Annuler";
             dialog.PrimaryButtonText = "Supprimer";
             dialog.DefaultButton = ContentDialogButton.Close;
-
-            if (SingletonRequete.getListeAdherent().Count > 0)
-            {
-                dialog.Message = "Voulez-vous vraiment supprimer l'adhrent";
-            }
+            dialog.Message = "Voulez-vous vraiment supprimer l'adhérent?\nSes inscriptions aux activités seront aussi supprimer.";
+            
 
             ContentDialogResult resultat = await dialog.ShowAsync();
 
-            Button button = sender as Button;
-
-            Adherent adherent = button.DataContext as Adherent;
+            
 
             lv_adherent.SelectedItem = adherent;
 
+            if (dialog.Supprimer)
             SingletonRequete.supprimerAdherent(adherent.Id);
 
             lv_adherent.ItemsSource = SingletonRequete.getListeAdherent();
 
-
-            // Appelé le dialog qui averti qu'il sera retiré des seances auquel il participe
         }
     }
 }
