@@ -92,7 +92,6 @@ namespace ProjetFinal
             }
         }
 
-
         public static void supprimerSeance(int id)
         {
             try
@@ -101,6 +100,28 @@ namespace ProjetFinal
                 commande.Connection = conn;
                 commande.CommandText = "delete from seance where id=@id";
                 commande.Parameters.AddWithValue("@id", id);
+
+                conn.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+
+        public static void supprimerInscription(int idSeance)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "delete from participe_par where id_seance=@id";
+                commande.Parameters.AddWithValue("@id", idSeance);
 
                 conn.Open();
                 commande.Prepare();
