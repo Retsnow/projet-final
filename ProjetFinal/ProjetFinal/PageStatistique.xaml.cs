@@ -25,7 +25,7 @@ namespace ProjetFinal
     /// </summary>
     /// 
 
-    public class ActiviteProfit
+    public class ActiviteNote
     {
         public string Nom { get; set; }
         public double Note { get; set; }
@@ -53,12 +53,12 @@ namespace ProjetFinal
             List<string> noms;
             SingletonRequete.moyenneNoteActivite(out notes, out noms);
 
-            List<ActiviteProfit> profit = new List<ActiviteProfit>();
+            List<ActiviteNote> Note = new List<ActiviteNote>();
             for (int i = 0; i < noms.Count; i++)
             {
-                profit.Add(new ActiviteProfit { Nom = noms[i], Note = notes[i] });
+                Note.Add(new ActiviteNote { Nom = noms[i], Note = notes[i] });
             }
-            lv_profit_activite.ItemsSource = profit;
+            lv_moyenneNoteParActivite.ItemsSource = Note;
 
             lv_maxSeance.ItemsSource = SingletonRequete.max_seance();
             lv_prixMoyenActivitePourChaqueParticipant.ItemsSource = SingletonRequete.prixMoyenActivitePourChaqueParticipant();
