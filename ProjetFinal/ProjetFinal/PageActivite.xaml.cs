@@ -88,10 +88,9 @@ namespace ProjetFinal
 
                 if (dialog.Supprimer)
                 {
-                    //Supprimer Inscriptions
-                    
                     foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
                     {
+                        SingletonRequete.supprimerInscription(seance.Id);
                         SingletonRequete.supprimerSeance(seance.Id);
                     }
 
