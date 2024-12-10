@@ -8,48 +8,62 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <TextBlock x:Name="Title" FontSize="36" Padding="10">Statistiques</TextBlock>
-        
-        <TextBlock x:Name="tbk_nbAdherent" FontSize="20" Margin="5">Nombre total d'adhérents:</TextBlock>
-        
-        <TextBlock x:Name="tbk_nbActivite" FontSize="20" Margin="5">Nombre total d'activités:</TextBlock>
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock x:Name="Title" FontSize="36" Padding="10">Statistiques</TextBlock>
 
-        <ListView x:Name="lv_nbAdherentParActivite"  
+            <TextBlock x:Name="tbk_nbAdherent" FontSize="20" Margin="5">Nombre total d'adhérents:</TextBlock>
+
+            <TextBlock x:Name="tbk_nbActivite" FontSize="20" Margin="5">Nombre total d'activités:</TextBlock>
+
+            <ListView x:Name="lv_nbAdherentParActivite"  
                   SelectionMode="Single" 
                   Header="Nombre d'adhérents pour chaque activités:" 
                   Margin="5"
                   FontSize="20">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="x:String">
-                    <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <ListView x:Name="lv_moyenneNoteParActivite"  
+            <ListView x:Name="lv_moyenneNoteParActivite"  
                   SelectionMode="Single" 
                   Header="La moyenne des notes d'appréciation pour chacune des activités:" 
                   Margin="5"
                   FontSize="20">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="x:String">
-                    <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <ListView x:Name="lv_maxSeance"  
+            <ListView x:Name="lv_maxSeance"  
                   SelectionMode="Single" 
                   Header="Adhérent participant au plus grande nombre de seance:" 
                   Margin="5"
                   FontSize="20">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="x:String">
-                    <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-    </StackPanel>
+            <ListView x:Name="lv_prixMoyenActivitePourChaqueParticipant"  
+                  SelectionMode="Single" 
+                  Header="Prix moyen des activités de chaque participant:" 
+                  Margin="5"
+                  FontSize="20">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+    </ScrollViewer>
 </Page>

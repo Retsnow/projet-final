@@ -41,6 +41,7 @@ namespace ProjetFinal
             tbk_nbActivite.Text += " " + SingletonRequete.nbTotalActivite();
             lv_moyenneNoteParActivite.ItemsSource = SingletonRequete.moyenneNoteActivite();
             lv_maxSeance.ItemsSource = SingletonRequete.max_seance();
+            lv_prixMoyenActivitePourChaqueParticipant.ItemsSource = SingletonRequete.prixMoyenActivitePourChaqueParticipant();
         }
 
 
