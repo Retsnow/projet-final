@@ -9,6 +9,6 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <Grid>
-        <TextBlock>Êtes-vous sur de vouloir supprimer tous les séances et les inscriptions reliés à cette activité?</TextBlock>
+        <TextBlock Text="{x:Bind Message, Mode=OneWay}"/>
     </Grid>
 </ContentDialog>
