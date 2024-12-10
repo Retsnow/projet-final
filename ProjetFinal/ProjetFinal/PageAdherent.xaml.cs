@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -62,22 +63,27 @@ namespace ProjetFinal
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(typeof(PageAjouterAdherent));
+            Adherent adherent = null;
+            window.mainFrame.Navigate(typeof(PageAjouterAdherent), new object[2] { adherent, window });
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            // Requete à faire
+            Button button = sender as Button;
+
+            Adherent adherent = button.DataContext as Adherent;
+
+            lv_adherent.SelectedItem = adherent;
+
+            window.mainFrame.Navigate(typeof(PageAjouterAdherent), new object[2] { adherent, window });
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
 
-            //DataContext représente l'élément parent
             Adherent adherent = button.DataContext as Adherent;
 
-            //permet de s'assurer que nous avons un élément sélectionné
             lv_adherent.SelectedItem = adherent;
 
             SingletonRequete.supprimerAdherent(adherent.Id);
