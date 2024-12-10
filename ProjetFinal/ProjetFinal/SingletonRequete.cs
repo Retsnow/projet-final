@@ -610,7 +610,6 @@ namespace ProjetFinal
 
         public static string modifierAdherent(string id, string nom, string prenom, string adresse, DateOnly date_naissance)
         {
-            string message = "";
             string date = date_naissance.ToString();
 
             try
@@ -629,6 +628,8 @@ namespace ProjetFinal
                 commande.ExecuteNonQuery();
 
                 conn.Close();
+
+                return "Adhérent modifier avec succès";
             }
             catch (Exception e)
             {
@@ -636,7 +637,6 @@ namespace ProjetFinal
                     conn.Close();
                 return e.Message;
             }
-            return message;
         }
 
         public static void supprimerAdherent(string id)

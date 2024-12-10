@@ -11,11 +11,13 @@
 
     <StackPanel x:Name="stck_conn" Orientation="Vertical">
         <TextBlock x:Name="Title" FontSize="36" Padding="10">Ajouter un adhérent</TextBlock>
+        <TextBox x:Name="tbx_id_adherent" Header="ID" Margin="5" Visibility="Collapsed"></TextBox>
         <TextBox x:Name="tbx_nom_adherent" Header="Nom" Margin="5"></TextBox>
         <TextBox x:Name="tbx_prenom_adherent" Header="Prenom" Margin="5"></TextBox>
         <TextBox x:Name="tbx_adresse" Header="Adresse" Margin="5"></TextBox>
         <DatePicker x:Name="date_naissance" Header="Pick a date" />
-        <Button x:Name="btn_submit" Content="Ajouter" Margin="5" Click="btn_submit_Click" />
+        <TextBox x:Name="tbx_age_adherent" Header="Age" Margin="5" Visibility="Collapsed"></TextBox>
+        <Button x:Name="btn_submit" Content="Envoyer" Margin="5" Click="btn_submit_Click" />
 
         <TextBlock x:Name="tbk_confirmation" Visibility="Collapsed"/>
     </StackPanel>
