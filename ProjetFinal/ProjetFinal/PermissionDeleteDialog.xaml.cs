@@ -18,11 +18,19 @@ using Windows.Foundation.Collections;
 
 namespace ProjetFinal
 {
-    public sealed partial class PermissionDeleteDialog : UserControl
+    public sealed partial class PermissionDeleteDialog : ContentDialog
     {
+        public bool Supprimer { get; set; }
+        public string Message { get; set; }
+
         public PermissionDeleteDialog()
         {
             this.InitializeComponent();
+            Supprimer = false;
+        }
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            Supprimer = true;
         }
     }
 }

@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<UserControl
+<ContentDialog
     x:Class="ProjetFinal.PermissionDeleteDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ProjetFinal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <Grid>
-        <TextBlock>Êtes-vous sur de vouloir supprimer tous les séances et les inscriptions relié à cette activité?</TextBlock>
+        <TextBlock>Êtes-vous sur de vouloir supprimer tous les séances et les inscriptions reliés à cette activité?</TextBlock>
     </Grid>
-</UserControl>
+</ContentDialog>

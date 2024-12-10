@@ -71,6 +71,11 @@ namespace ProjetFinal
             //permet de s'assurer que nous avons un élément sélectionné
             gvActivites.SelectedItem = activite;
 
+            foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
+            {
+                SingletonRequete.supprimerSeance(seance.Id);
+            }
+
             SingletonRequete.supprimerActivite(activite.Nom);
 
             gvActivites.ItemsSource = SingletonRequete.getListeActivite();
