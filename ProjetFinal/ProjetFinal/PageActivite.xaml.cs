@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -61,8 +62,11 @@ namespace ProjetFinal
 
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async Task btnDelete_ClickAsync(object sender, RoutedEventArgs e)
         {
+            PermissionDeleteDialog dialog = new PermissionDeleteDialog();
+            ContentDialogResult resultat = ContentDialogResult.None;
+
             Button button = sender as Button;
 
             //DataContext représente l'élément parent
@@ -71,12 +75,43 @@ namespace ProjetFinal
             //permet de s'assurer que nous avons un élément sélectionné
             gvActivites.SelectedItem = activite;
 
-            foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
+            if (SingletonRequete.getListeSeance(activite.Nom).Count() > 0)
             {
-                SingletonRequete.supprimerSeance(seance.Id);
-            }
+                dialog.XamlRoot = gvActivites.XamlRoot;
+                dialog.Title = "Supprimer Activité";
+                dialog.Message = "Êtes-vous sûr de vouloir supprimer l'activité selectionné ainsi que les séances et inscriptions lié à cette activité?";
+                dialog.CloseButtonText = "Annuler";
+                dialog.PrimaryButtonText = "Supprimer";
+                dialog.DefaultButton = ContentDialogButton.Close;
 
-            SingletonRequete.supprimerActivite(activite.Nom);
+                resultat = await dialog.ShowAsync();
+
+                if (dialog.Supprimer)
+                {
+                    //Supprimer Inscriptions
+                    
+                    foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
+                    {
+                        SingletonRequete.supprimerSeance(seance.Id);
+                    }
+
+                    SingletonRequete.supprimerActivite(activite.Nom);
+                }
+            }
+            else
+            {
+                dialog.XamlRoot = gvActivites.XamlRoot;
+                dialog.Title = "Supprimer Activité";
+                dialog.Message = "Êtes-vous sûr de vouloir supprimer l'activité selectionné?";
+                dialog.CloseButtonText = "Annuler";
+                dialog.PrimaryButtonText = "Supprimer";
+                dialog.DefaultButton = ContentDialogButton.Close;
+
+                resultat = await dialog.ShowAsync();
+
+                if (dialog.Supprimer)
+                    SingletonRequete.supprimerActivite(activite.Nom);
+            }
 
             gvActivites.ItemsSource = SingletonRequete.getListeActivite();
         }
