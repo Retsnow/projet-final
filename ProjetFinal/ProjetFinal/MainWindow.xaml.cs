@@ -23,6 +23,7 @@ namespace ProjetFinal
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private NavigationViewItem itemPrecedent;
         public MainWindow()
         {
             this.InitializeComponent();
@@ -35,7 +36,13 @@ namespace ProjetFinal
             // À modiffier pour etre plus userfriendly
             if (MainFrame.CanGoBack)
             {
-                MainFrame.GoBack();
+                if (!RoleUtilisateur.Admin && RoleUtilisateur.UtilisateurConnecte == "" && (itemPrecedent.Tag as string == "pageconnexion" || itemPrecedent.Tag as string == "pageactivite" || itemPrecedent.Tag as string == "pageseance"))
+                    MainFrame.GoBack();
+                if (!RoleUtilisateur.Admin && RoleUtilisateur.UtilisateurConnecte != "" && (itemPrecedent.Tag as string == "pagedeconnexion" || itemPrecedent.Tag as string == "pageactivite" || itemPrecedent.Tag as string == "pageseance"))
+                    MainFrame.GoBack();
+                if (RoleUtilisateur.Admin && itemPrecedent.Tag as string != "pageconnexion")
+                    MainFrame.GoBack();
+
             }
         }
 
@@ -48,6 +55,7 @@ namespace ProjetFinal
 
         private void nv_main_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            itemPrecedent = nv_main.SelectedItem as NavigationViewItem;
             if (nv_activite.IsSelected)
             {
                 MainFrame.Navigate(typeof(PageActivite), new object[2] { this, nv_activite });
