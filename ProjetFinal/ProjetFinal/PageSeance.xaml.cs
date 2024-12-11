@@ -96,6 +96,9 @@ namespace ProjetFinal
 
         private void cbxDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
             if (cbxDate.SelectedIndex != -1)
             {
                 DateOnly date = (cbxDate.SelectedItem as Seance).Date;
@@ -119,7 +122,15 @@ namespace ProjetFinal
                 {
                     if (SingletonRequete.UtilisateurEstInscritSeance(RoleUtilisateur.UtilisateurConnecte, idSeance))
                     {
-                        ratingControl.Visibility = Visibility.Visible;
+                        
+                        if (date < today)
+                        {
+                            ratingControl.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            ratingControl.Visibility = Visibility.Collapsed;
+                        }
                         btnInscription.Visibility = Visibility.Collapsed;
                     }
                     else
