@@ -40,8 +40,9 @@
                                     <TextBlock Text="{x:Bind Prix_vente, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
                                 </StackPanel>
                                 <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                    <TextBlock Text="Categorie : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                    <TextBlock Text="{x:Bind Id_categorie, Mode=OneWay}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5 0 0 0"/>
+                                    <TextBlock Text="Note moyenne : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <RatingControl IsEnabled="False" IsReadOnly="False" MaxRating="5" Value="{x:Bind NoteMoyenne, Mode=OneWay}" PlaceholderValue="0" />
+                                    <TextBlock Text="{x:Bind NoteMoyenne, Mode=OneWay}"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">

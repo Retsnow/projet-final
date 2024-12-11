@@ -17,6 +17,7 @@ namespace ProjetFinal
         private double prix_vente;
         private int id_categorie;
         private Visibility btnDelete;
+        private double noteMoyenne;
 
 
         public Visibility BtnDelete
@@ -26,6 +27,17 @@ namespace ProjetFinal
                 btnDelete = RoleUtilisateur.Admin ? Visibility.Visible : Visibility.Collapsed;
                 this.OnPropertyChanged(nameof(BtnDelete));
                 return btnDelete;
+            }
+        }
+
+
+        public double NoteMoyenne
+        {
+            get
+            {
+                noteMoyenne = SingletonRequete.moyenneNoteActivite(Nom).Note;
+                this.OnPropertyChanged(nameof(NoteMoyenne));
+                return noteMoyenne;
             }
         }
 

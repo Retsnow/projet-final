@@ -505,7 +505,6 @@ namespace ProjetFinal
 
             try
             {
-
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
                 commande.CommandText = "Select id, nom, prenom from adherent where id = '" + idEntree + "'";
@@ -690,6 +689,38 @@ namespace ProjetFinal
                     conn.Close();
             }
             return liste;
+        }
+
+        public static ActiviteNote moyenneNoteActivite(string nomActivite)
+        {
+            ActiviteNote temp = new ActiviteNote("", 0);
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand();
+                commande.Connection = conn;
+                commande.CommandText = "SELECT * FROM moyennenoteactivite WHERE nom=@nomActivite";
+
+                commande.Parameters.AddWithValue("@nomActivite", nomActivite);
+
+                conn.Open();
+                commande.Prepare();
+                MySqlDataReader r = commande.ExecuteReader();
+
+                while (r.Read())
+                {
+                    temp = new ActiviteNote(r["nom"].ToString(), Convert.ToDouble(r["noteMoyenne"]));
+                }
+
+                r.Close();
+                conn.Close();
+            }
+            catch (Exception)
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                    conn.Close();
+            }
+            return temp;
         }
 
         public static string ajouterAdherent(string nom, string prenom, string adresse, DateOnly date_naissance)
