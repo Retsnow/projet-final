@@ -51,7 +51,7 @@ namespace ProjetFinal
 
         private async void btnDelete_ClickAsync(object sender, RoutedEventArgs e)
         {
-            PermissionDeleteDialog dialog = new PermissionDeleteDialog();
+            PermissionDialog dialog = new PermissionDialog();
             ContentDialogResult resultat = ContentDialogResult.None;
 
             Button button = sender as Button;
@@ -73,7 +73,7 @@ namespace ProjetFinal
 
                 resultat = await dialog.ShowAsync();
 
-                if (dialog.Supprimer)
+                if (dialog.Resultat)
                 {
                     foreach (Seance seance in SingletonRequete.getListeSeance(activite.Nom))
                     {
@@ -95,7 +95,7 @@ namespace ProjetFinal
 
                 resultat = await dialog.ShowAsync();
 
-                if (dialog.Supprimer)
+                if (dialog.Resultat)
                     SingletonRequete.supprimerActivite(activite.Nom);
             }
 

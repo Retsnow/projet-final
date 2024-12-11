@@ -23,7 +23,7 @@
                   FontSize="20">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="x:String">
-                        <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
+                        <TextBlock Text="{x:Bind }" Margin="0,5,0,5"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -36,8 +36,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:ActiviteNote">
                         <StackPanel>
-                            <TextBlock Text="{x:Bind Nom }" x:Phase="1" Margin="0,5,0,5"/>
-                            <RatingControl IsEnabled="False" Value="{x:Bind Note}" />
+                            <TextBlock Text="{x:Bind Nom }" Margin="0,5,0,5"/>
+                            <RatingControl IsEnabled="False" MaxRating="5" Value="{x:Bind Note}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -50,7 +50,7 @@
                   FontSize="20">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="x:String">
-                        <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
+                        <TextBlock Text="{x:Bind }" Margin="0,5,0,5"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -62,19 +62,19 @@
                   FontSize="20">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="x:String">
-                        <TextBlock Text="{x:Bind }" x:Phase="1" Margin="0,5,0,5"/>
+                        <TextBlock Text="{x:Bind }" Margin="0,5,0,5"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
             <ListView x:Name="lv_profit_activite"  
                 SelectionMode="Single" 
-                Header="Profi de chaque activite:" 
+                Header="Profit de chaque activité:" 
                 Margin="5"
                 FontSize="20">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="x:String">
-                        <TextBlock Text="{x:Bind}" x:Phase="1" Margin="0,5,0,5"/>
+                        <TextBlock Text="{x:Bind}" Margin="0,5,0,5"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

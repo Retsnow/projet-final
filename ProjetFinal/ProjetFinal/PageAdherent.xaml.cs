@@ -83,7 +83,7 @@ namespace ProjetFinal
             Button button = sender as Button;
             Adherent adherent = button.DataContext as Adherent;
 
-            PermissionDeleteDialog dialog = new PermissionDeleteDialog();
+            PermissionDialog dialog = new PermissionDialog();
             dialog.XamlRoot = sv_main.XamlRoot;
             dialog.Title = "Supprimer Adherent";
             dialog.CloseButtonText = "Annuler";
@@ -98,7 +98,7 @@ namespace ProjetFinal
 
             lv_adherent.SelectedItem = adherent;
 
-            if (dialog.Supprimer)
+            if (dialog.Resultat)
             SingletonRequete.supprimerAdherent(adherent.Id);
 
             lv_adherent.ItemsSource = SingletonRequete.getListeAdherent();
