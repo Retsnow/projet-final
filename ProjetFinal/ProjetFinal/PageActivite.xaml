@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
     <ScrollViewer>
         <Grid>
 
@@ -41,8 +41,7 @@
                                 </StackPanel>
                                 <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                                     <TextBlock Text="Note moyenne : " FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                    <RatingControl IsEnabled="False" IsReadOnly="False" MaxRating="5" Value="{x:Bind NoteMoyenne, Mode=OneWay}" PlaceholderValue="0" />
-                                    <TextBlock Text="{x:Bind NoteMoyenne, Mode=OneWay}"/>
+                                    <RatingControl IsReadOnly="True" MaxRating="5" Value="{x:Bind NoteMoyenne, Mode=OneWay}" PlaceholderValue="0" />
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
