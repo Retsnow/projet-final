@@ -36,6 +36,15 @@ namespace ProjetFinal
         {
             this.InitializeComponent();
 
+            if (RoleUtilisateur.Admin)
+            {
+                btn_ajouter.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btn_ajouter.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -122,7 +131,8 @@ namespace ProjetFinal
                 {
                     if (SingletonRequete.UtilisateurEstInscritSeance(RoleUtilisateur.UtilisateurConnecte, idSeance))
                     {
-                        
+                        btnInscription.Visibility = Visibility.Collapsed;
+
                         if (date < today)
                         {
                             ratingControl.Visibility = Visibility.Visible;
@@ -131,12 +141,21 @@ namespace ProjetFinal
                         {
                             ratingControl.Visibility = Visibility.Collapsed;
                         }
-                        btnInscription.Visibility = Visibility.Collapsed;
+
+
                     }
                     else
                     {
                         ratingControl.Visibility = Visibility.Collapsed;
-                        btnInscription.Visibility = Visibility.Visible;
+
+                        if (date < today)
+                        {
+                            btnInscription.Visibility = Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            btnInscription.Visibility = Visibility.Visible;
+                        }
                     }
                 }
                 else
@@ -158,6 +177,7 @@ namespace ProjetFinal
                 btnInscription.Visibility = Visibility.Collapsed;
                 btnDelete.Visibility = Visibility.Collapsed;
                 btnModifier.Visibility = Visibility.Collapsed;
+                btn_ajouter.Visibility = Visibility.Collapsed;
             }
         }
     }
