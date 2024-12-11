@@ -33,7 +33,6 @@ namespace ProjetFinal
 
         private void Nv_main_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
-            // À modiffier pour etre plus userfriendly
             if (MainFrame.CanGoBack)
             {
                 if (!RoleUtilisateur.Admin && RoleUtilisateur.UtilisateurConnecte == "" && (itemPrecedent.Tag as string == "pageconnexion" || itemPrecedent.Tag as string == "pageactivite" || itemPrecedent.Tag as string == "pageseance"))
