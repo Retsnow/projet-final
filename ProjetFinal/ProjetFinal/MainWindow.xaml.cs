@@ -24,6 +24,7 @@ namespace ProjetFinal
     public sealed partial class MainWindow : Window
     {
         private NavigationViewItem itemPrecedent;
+        private NavigationViewItem itemActuel;
         public MainWindow()
         {
             this.InitializeComponent();
@@ -33,14 +34,28 @@ namespace ProjetFinal
 
         private void Nv_main_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
+
             if (MainFrame.CanGoBack)
             {
-                if (!RoleUtilisateur.Admin && (RoleUtilisateur.UtilisateurConnecte == "" || RoleUtilisateur.UtilisateurConnecte == null) && (itemPrecedent.Tag as string == "nv_connexion" || itemPrecedent.Tag as string == "nv_activite"))
-                    MainFrame.GoBack();
-                if (!RoleUtilisateur.Admin && RoleUtilisateur.UtilisateurConnecte != "" && RoleUtilisateur.UtilisateurConnecte == null && (itemPrecedent.Tag as string == "nv_deconnexion" || itemPrecedent.Tag as string == "nv_activite"))
-                    MainFrame.GoBack();
+                if (!RoleUtilisateur.Admin && (RoleUtilisateur.UtilisateurConnecte == "" || RoleUtilisateur.UtilisateurConnecte == null))
+                    if (itemPrecedent.Tag as string == "nv_connexion")
+                        nv_connexion.IsSelected = true;
+                    else if (itemPrecedent.Tag as string == "nv_activite")
+                        nv_activite.IsSelected = true;
+                if (!RoleUtilisateur.Admin && RoleUtilisateur.UtilisateurConnecte != "" && RoleUtilisateur.UtilisateurConnecte != null)
+                    if (itemPrecedent.Tag as string == "nv_connexion")
+                        nv_connexion.IsSelected = true;
+                    else if (itemPrecedent.Tag as string == "nv_activite")
+                        nv_activite.IsSelected = true;
                 if (RoleUtilisateur.Admin && itemPrecedent.Tag as string != "nv_connexion")
-                    MainFrame.GoBack();
+                    if (itemPrecedent.Tag as string == "nv_activite")
+                        nv_activite.IsSelected = true;
+                    else if (itemPrecedent.Tag as string == "nv_deconnexion")
+                        nv_deconnexion.IsSelected = true;
+                    else if (itemPrecedent.Tag as string == "nv_statistique")
+                        nv_statistique.IsSelected = true;
+                    else if (itemPrecedent.Tag as string == "nv_adherent")
+                        nv_adherent.IsSelected = true;
 
             }
         }
@@ -54,7 +69,10 @@ namespace ProjetFinal
 
         private void nv_main_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            itemPrecedent = nv_main.SelectedItem as NavigationViewItem;
+            if (itemActuel != null)
+                itemPrecedent = itemActuel;
+            itemActuel = nv_main.SelectedItem as NavigationViewItem;
+
             if (nv_activite.IsSelected)
             {
                 MainFrame.Navigate(typeof(PageActivite), new object[2] { this, nv_activite });
