@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
@@ -50,7 +51,7 @@ namespace ProjetFinal
 
                 foreach (var item in cbxCategorie.Items)
                     if ((item as Categorie).Id == activite.Id_categorie)
-                        cbxCategorie.SelectedItem = item; 
+                        cbxCategorie.SelectedItem = item;
 
             }
         }
@@ -62,15 +63,83 @@ namespace ProjetFinal
             cbxCategorie.ItemsSource = SingletonRequete.getListeCategorie();
         }
 
-        private void btn_submit_Click(object sender, RoutedEventArgs e)
+        private async void btn_submit_Click(object sender, RoutedEventArgs e)
         {
+            PermissionDialog dialog = new PermissionDialog();
+            dialog.XamlRoot = stk_aj_activite.XamlRoot;
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+
+            double prix_vente;
+            double cout_organisation;
+
+            bool validation_prix_vente = double.TryParse(tbx_prix_vente.Text, out prix_vente);
+            bool validation_cout_organisation = double.TryParse(tbx_cout_organisation.Text, out cout_organisation);
+
+            if (validation_cout_organisation && validation_prix_vente)
+            {
+                if (prix_vente - cout_organisation <= 0)
+                {
+                    dialog.Message = "Voulez-vous vraiment ajouter cette activité ?\nElle ne rapportera pas ou vous feras perdre de l'argent.";
+                }
+                else if (prix_vente < 0)
+                {
+                    dialog.Message = "Voulez-vous vraiment ajouter cette activité ?\nLe prix de vente est négatif.";
+                }
+                else if (cout_organisation < 0)
+                {
+                    dialog.Message = "Voulez-vous vraiment ajouter cette activité ?\nLe cout d'organisation est négatif.";
+                }
+                else
+                {
+                    dialog.Message = "Voulez-vous vraiment ajouter cette activité ?";
+                }
+            }
+            else if (!validation_prix_vente && !validation_cout_organisation)
+            {
+                dialog.Message = "Le prix de vente et le cout d'organisation ne sont pas des nombres";
+                await dialog.ShowAsync();
+                return;
+            }
+            else if (!validation_prix_vente)
+            {
+                dialog.Message = "Le prix de vente n'est pas un nombre";
+                await dialog.ShowAsync();
+                return;
+            }
+            else if (!validation_cout_organisation)
+            {
+                dialog.Message = "Le cout d'organisation n'est pas un nombre";
+                await dialog.ShowAsync();
+                return;
+            }
+
+
+
             if (activite != null)
-                SingletonRequete.modifierActivite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+            {
+                dialog.Title = "Modifier Activité";
+                dialog.PrimaryButtonText = "Modifier";
+                ContentDialogResult resultat = await dialog.ShowAsync();
+                if (dialog.Resultat)
+                    SingletonRequete.modifierActivite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+
+            }
+
             else
-                SingletonRequete.ajouterActivite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+            {
+                dialog.Title = "Ajouter Activité";
+                dialog.PrimaryButtonText = "Ajouter";
+                ContentDialogResult resultat = await dialog.ShowAsync();
+                if (dialog.Resultat)
+                    SingletonRequete.ajouterActivite(tbx_nom_activite.Text, Convert.ToDouble(tbx_cout_organisation.Text), Convert.ToDouble(tbx_prix_vente.Text), (cbxCategorie.SelectedItem as Categorie).Id.ToString());
+            }
 
             nv_activite.IsSelected = false;
             nv_activite.IsSelected = true;
         }
+
     }
 }
+

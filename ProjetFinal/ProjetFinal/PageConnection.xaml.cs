@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -30,7 +31,7 @@ namespace ProjetFinal
         public PageConnection()
         {
             this.InitializeComponent();
-            
+
 
         }
 
@@ -43,22 +44,26 @@ namespace ProjetFinal
 
         }
 
-        private void btn_submit_Click(object sender, RoutedEventArgs e)
+        private async void btn_submit_Click(object sender, RoutedEventArgs e)
         {
 
             if (SingletonRequete.connexionAdherant(tbx_id_adherent.Text))
             {
-                
+                txt_validation.Text = "Connexion en tant qu'adhérent réussie";
+                txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
+                txt_validation.Visibility = Visibility.Visible;
+                await Task.Delay(1000);
                 nv_activite.IsSelected = true;
-               
+
             }
             else
             {
                 txt_validation.Text = "Échec de la connexion en tant qu'adhérent";
                 txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+                txt_validation.Visibility = Visibility.Visible;
             }
 
-            txt_validation.Visibility = Visibility.Visible;
+
         }
 
         private async void btn_admin_Click(object sender, RoutedEventArgs e)
@@ -73,20 +78,24 @@ namespace ProjetFinal
             ContentDialogResult resultat = await dialog.ShowAsync();
 
 
-           
 
-                if (dialog.Administrateur)
-                {
-                    nv_activite.IsSelected = true;
-                }
-                else
-                {
-                    txt_validation.Text = "Échec de la connexion en tant qu'administrateur";
-                    txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
-                }
 
+            if (dialog.Administrateur)
+            {
+                txt_validation.Text = "Connexion en tant qu'adhérent réussie";
+                txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
                 txt_validation.Visibility = Visibility.Visible;
-           
+                await Task.Delay(1000);
+                nv_activite.IsSelected = true;
+            }
+            else
+            {
+                txt_validation.Text = "Échec de la connexion en tant qu'administrateur";
+                txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+            }
+
+            txt_validation.Visibility = Visibility.Visible;
+
 
         }
 
