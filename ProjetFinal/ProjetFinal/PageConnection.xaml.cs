@@ -52,7 +52,7 @@ namespace ProjetFinal
                 txt_validation.Text = "Connexion en tant qu'adhérent réussie";
                 txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
                 txt_validation.Visibility = Visibility.Visible;
-                await Task.Delay(1000);
+                await Task.Delay(500);
                 nv_activite.IsSelected = true;
 
             }
@@ -80,17 +80,27 @@ namespace ProjetFinal
 
 
 
-            if (dialog.Administrateur)
+            if (dialog.user == false)
+            {
+                txt_validation.Text = "Le champ nom d'utilisateur est vide";
+                txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+            }
+            else if (dialog.password == false)
+            {
+                txt_validation.Text = "Le champ mot de passe est vide";
+                txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
+            }
+            else if (dialog.Administrateur)
             {
                 txt_validation.Text = "Connexion en tant qu'administrateur réussie";
                 txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
                 txt_validation.Visibility = Visibility.Visible;
-                await Task.Delay(1000);
+                await Task.Delay(500);
                 nv_activite.IsSelected = true;
             }
             else
             {
-                txt_validation.Text = "Échec de la connexion en tant qu'administrateur";
+                txt_validation.Text = "Les informations entrées ne corespondent pas";
                 txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red);
             }
 

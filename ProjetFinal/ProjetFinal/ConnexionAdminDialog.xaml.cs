@@ -21,6 +21,8 @@ namespace ProjetFinal
     public sealed partial class ConnexionAdminDialog : ContentDialog
     {
         public bool Administrateur { get; set; }
+        public bool user { get; set; }
+        public bool password { get; set; }
 
         public ConnexionAdminDialog()
         {
@@ -29,20 +31,29 @@ namespace ProjetFinal
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-           
+            user = true;
+            password = true;
 
-                if (SingletonRequete.connexionAdmin(tbx_user.Text, pwd_password.Password))
-                {
-                    Administrateur = true;
-                    
+            if (tbx_user.Text == "")
+            {
+                user = false;
+            }
+            else if (pwd_password.Password == "")
+            {
+                password = false;
+            }
+            else if (SingletonRequete.connexionAdmin(tbx_user.Text, pwd_password.Password))
 
-                }
-                else
-                {
-                    Administrateur= false;
-                }
+            {
+                Administrateur = true;
 
-            
+            }
+            else
+            {
+                Administrateur = false;
+            }
+
+
         }
     }
 }
