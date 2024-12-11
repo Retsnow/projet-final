@@ -98,7 +98,8 @@ namespace ProjetFinal
             }
             else if (!validation_prix_vente && !validation_cout_organisation)
             {
-
+                dialog.Message = "Le prix de vente et le cout d'organisation ne sont pas des nombres";
+                await dialog.ShowAsync();
                 return;
             }
             else if (!validation_prix_vente)
@@ -109,6 +110,8 @@ namespace ProjetFinal
             }
             else if (!validation_cout_organisation)
             {
+                dialog.Message = "Le cout d'organisation n'est pas un nombre";
+                await dialog.ShowAsync();
                 return;
             }
 
