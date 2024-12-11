@@ -10,11 +10,11 @@
     <NavigationView x:Name="nv_main" SelectionChanged="nv_main_SelectionChanged" IsSettingsVisible="False" IsBackButtonVisible="Visible" IsBackEnabled="True">
         <NavigationView.MenuItems>
             <NavigationViewItem x:Name="nv_user" Content="Admin" Visibility="Collapsed" SelectsOnInvoked="False"/>
-            <NavigationViewItem Icon="List" x:Name="nv_activite" IsSelected="True"  Content="Activité" />
-            <NavigationViewItem Icon="OtherUser" x:Name="nv_connexion" Content="Connexion" />
-            <NavigationViewItem Icon="People" x:Name="nv_adherent" Content="Adhérent" Visibility="Collapsed" />
-            <NavigationViewItem Icon="Library" x:Name="nv_statistique" Content="Statistique" Visibility="Collapsed" />
-            <NavigationViewItem Icon="Remove" x:Name="nv_deconnexion" Content="Deconnexion" Visibility="Collapsed" />
+            <NavigationViewItem Icon="List" x:Name="nv_activite" IsSelected="True" Tag="nv_activite" Content="Activité" />
+            <NavigationViewItem Icon="OtherUser" x:Name="nv_connexion" Content="Connexion" Tag="nv_connexion" />
+            <NavigationViewItem Icon="People" x:Name="nv_adherent" Content="Adhérent" Tag="nv_adherent"  Visibility="Collapsed" />
+            <NavigationViewItem Icon="Library" x:Name="nv_statistique" Content="Statistique" Tag="nv_statistique" Visibility="Collapsed" />
+            <NavigationViewItem Icon="Remove" x:Name="nv_deconnexion" Content="Deconnexion" Tag="nv_deconnexion" Visibility="Collapsed" />
         </NavigationView.MenuItems>
         <Frame x:Name="MainFrame" />
     </NavigationView>

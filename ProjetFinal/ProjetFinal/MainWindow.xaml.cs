@@ -35,11 +35,11 @@ namespace ProjetFinal
         {
             if (MainFrame.CanGoBack)
             {
-                if (!RoleUtilisateur.Admin && RoleUtilisateur.UtilisateurConnecte == "" && (itemPrecedent.Tag as string == "pageconnexion" || itemPrecedent.Tag as string == "pageactivite" || itemPrecedent.Tag as string == "pageseance"))
+                if (!RoleUtilisateur.Admin && (RoleUtilisateur.UtilisateurConnecte == "" || RoleUtilisateur.UtilisateurConnecte == null) && (itemPrecedent.Tag as string == "nv_connexion" || itemPrecedent.Tag as string == "nv_activite"))
                     MainFrame.GoBack();
-                if (!RoleUtilisateur.Admin && RoleUtilisateur.UtilisateurConnecte != "" && (itemPrecedent.Tag as string == "pagedeconnexion" || itemPrecedent.Tag as string == "pageactivite" || itemPrecedent.Tag as string == "pageseance"))
+                if (!RoleUtilisateur.Admin && RoleUtilisateur.UtilisateurConnecte != "" && RoleUtilisateur.UtilisateurConnecte == null && (itemPrecedent.Tag as string == "nv_deconnexion" || itemPrecedent.Tag as string == "nv_activite"))
                     MainFrame.GoBack();
-                if (RoleUtilisateur.Admin && itemPrecedent.Tag as string != "pageconnexion")
+                if (RoleUtilisateur.Admin && itemPrecedent.Tag as string != "nv_connexion")
                     MainFrame.GoBack();
 
             }
