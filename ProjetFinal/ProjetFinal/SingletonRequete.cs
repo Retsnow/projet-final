@@ -254,8 +254,10 @@ namespace ProjetFinal
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select * from seance where nom_activite ='" + nomActivite + "'";
+                commande.CommandText = "Select * from seance where nom_activite =@nom";
+                commande.Parameters.AddWithValue("@nom", nomActivite);
                 conn.Open();
+                commande.Prepare();
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
@@ -289,8 +291,10 @@ namespace ProjetFinal
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select * from seance where id ='" + idSeance + "'";
+                commande.CommandText = "Select * from seance where id=@id";
+                commande.Parameters.AddWithValue("@id", idSeance);
                 conn.Open();
+                commande.Prepare();
                 MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())
                 {
@@ -507,8 +511,10 @@ namespace ProjetFinal
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select id, nom, prenom from adherent where id = '" + idEntree + "'";
+                commande.CommandText = "Select id, nom, prenom from adherent where id=@id";
+                commande.Parameters.AddWithValue("@id", idEntree);
                 conn.Open();
+                commande.Prepare();
                 MySqlDataReader r = commande.ExecuteReader();
 
 
@@ -543,8 +549,11 @@ namespace ProjetFinal
 
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "Select user, password from administrateur where user = '" + utili + "' && password = '" + pass + "'";
+                commande.CommandText = "Select user, password from administrateur where user=@utili && password=@pass";
+                commande.Parameters.AddWithValue("@utili", utili);
+                commande.Parameters.AddWithValue("@pass", pass);
                 conn.Open();
+                commande.Prepare();
                 MySqlDataReader r = commande.ExecuteReader();
 
 
@@ -732,9 +741,13 @@ namespace ProjetFinal
             {
                 MySqlCommand commande = new MySqlCommand();
                 commande.Connection = conn;
-                commande.CommandText = "INSERT INTO adherent (nom, prenom, adresse, date_naissance) VALUES ('" + nom + "', '" + prenom + "', '" + adresse + "', '" + date + "');";
+                commande.CommandText = "INSERT INTO adherent (nom, prenom, adresse, date_naissance) VALUES (@nom, @prenom, @adresse, @date_naissance)";
+                commande.Parameters.AddWithValue("@nom", nom);
+                commande.Parameters.AddWithValue("@prenom", prenom);
+                commande.Parameters.AddWithValue("@adresse", adresse);
+                commande.Parameters.AddWithValue("@date_naissance", date);
                 conn.Open();
-                commande.ExecuteReader();
+                commande.Prepare();
                 conn.Close();
                 return "Adherent ajouté avec succès";
             }
