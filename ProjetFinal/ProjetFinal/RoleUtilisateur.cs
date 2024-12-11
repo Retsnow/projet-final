@@ -28,8 +28,8 @@ namespace ProjetFinal
 
         public static string UtilisateurNom
         {
-            get { return utilisateurConnecte; }
-            set { utilisateurConnecte = value; }
+            get { return utilisateurNom; }
+            set { utilisateurNom = value; }
         }
     }
 }
