@@ -107,8 +107,8 @@ namespace ProjetFinal
             if (!RoleUtilisateur.Admin)
             {
                 Activite activite = gvActivites.SelectedItem as Activite;
-
-                window.mainFrame.Navigate(typeof(PageSeance), new object[3] { activite, window, nv_activite });
+                if (SingletonRequete.getListeSeance(activite.Nom).Count() > 0)
+                    window.mainFrame.Navigate(typeof(PageSeance), new object[3] { activite, window, nv_activite });
             }
         }
 

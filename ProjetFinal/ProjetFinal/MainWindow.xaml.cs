@@ -44,6 +44,8 @@ namespace ProjetFinal
             get { return MainFrame; }
         }
 
+
+
         private void nv_main_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             if (nv_activite.IsSelected)
