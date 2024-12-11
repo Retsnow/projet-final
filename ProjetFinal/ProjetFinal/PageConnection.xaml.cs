@@ -82,7 +82,7 @@ namespace ProjetFinal
 
             if (dialog.Administrateur)
             {
-                txt_validation.Text = "Connexion en tant qu'adhérent réussie";
+                txt_validation.Text = "Connexion en tant qu'administrateur réussie";
                 txt_validation.Foreground = new SolidColorBrush(Microsoft.UI.Colors.Green);
                 txt_validation.Visibility = Visibility.Visible;
                 await Task.Delay(1000);
