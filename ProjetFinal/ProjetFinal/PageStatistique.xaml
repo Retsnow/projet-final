@@ -37,7 +37,7 @@
                     <DataTemplate x:DataType="local:ActiviteNote">
                         <StackPanel>
                             <TextBlock Text="{x:Bind Nom }" x:Phase="1" Margin="0,5,0,5"/>
-                            <RatingControl Value="{x:Bind Note}" />
+                            <RatingControl IsEnabled="False" Value="{x:Bind Note}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
