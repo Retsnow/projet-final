@@ -25,11 +25,6 @@ namespace ProjetFinal
     /// </summary>
     /// 
 
-    public class ActiviteNote
-    {
-        public string Nom { get; set; }
-        public double Note { get; set; }
-    }
 
     public sealed partial class PageStatistique : Page
     {
@@ -49,16 +44,7 @@ namespace ProjetFinal
             tbk_nbAdherent.Text += " " + SingletonRequete.nbTotalAdherent();
             tbk_nbActivite.Text += " " + SingletonRequete.nbTotalActivite();
 
-            List<double> notes;
-            List<string> noms;
-            SingletonRequete.moyenneNoteActivite(out notes, out noms);
-
-            List<ActiviteNote> Note = new List<ActiviteNote>();
-            for (int i = 0; i < noms.Count; i++)
-            {
-                Note.Add(new ActiviteNote { Nom = noms[i], Note = notes[i] });
-            }
-            lv_moyenneNoteParActivite.ItemsSource = Note;
+            lv_moyenneNoteParActivite.ItemsSource = SingletonRequete.moyenneNoteActivite();
 
             lv_maxSeance.ItemsSource = SingletonRequete.max_seance();
             lv_prixMoyenActivitePourChaqueParticipant.ItemsSource = SingletonRequete.prixMoyenActivitePourChaqueParticipant();

@@ -664,10 +664,9 @@ namespace ProjetFinal
         }
 
 
-        public static void moyenneNoteActivite(out List<double> notes, out List<string> noms)
+        public static List<ActiviteNote> moyenneNoteActivite()
         {
-            notes = new List<double>();
-            noms = new List<string>();
+            List<ActiviteNote> liste = new List<ActiviteNote>();
 
             try
             {
@@ -679,11 +678,7 @@ namespace ProjetFinal
 
                 while (r.Read())
                 {
-                    double note = Convert.ToDouble(r["noteMoyenne"]);
-                    string nom = r["nom"].ToString();
-
-                    notes.Add(note);
-                    noms.Add(nom);
+                    liste.Add(new ActiviteNote(r["nom"].ToString(), Convert.ToDouble(r["noteMoyenne"])));
                 }
 
                 r.Close();
@@ -694,6 +689,7 @@ namespace ProjetFinal
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();
             }
+            return liste;
         }
 
         public static string ajouterAdherent(string nom, string prenom, string adresse, DateOnly date_naissance)
